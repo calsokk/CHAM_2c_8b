@@ -6,8 +6,8 @@ func_name = f'vec_uram'
 HEAD = f'\033[1m\033[92m[ {func_name:<12}]\033[0m'
 
 if __name__ == '__main__':
-    test_dir = '../../../tv/basic'
-    sim_dir = '../../vcs'
+    test_dir = '../tv/basic'
+    sim_dir = 'xsim'
 
     print(f'{HEAD} prepare uram_vec from {test_dir}')
     print()

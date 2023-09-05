@@ -87,10 +87,10 @@ if __name__ == '__main__':
 
     # directory of test vector
     if 'stg' in test_name or 'row' in test_name: # partial test
-        test_dir = '../../../tv/basic'
+        test_dir = '../tv/basic'
     else: # full test
         assert('full' in test_name)
-        test_dir = '../../../tv/' + test_name.split('_')[2]
+        test_dir = '../tv/' + test_name.split('_')[2]
 
     # prepare ksk
-    prepare_ksk_uram(test_dir, f'../../../sim/vcs')
+    prepare_ksk_uram(test_dir, f'../sim/xsim')

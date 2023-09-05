@@ -14244,7 +14244,7 @@ logic [COE_WIDTH-1:0] temp2;
     // KSK URAM check
     // -------------------------------------
     task check_ksk_uram;
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k0.mem"}, "r");
+        fd = $fopen("uram_k0.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k0.mem ! \n");
             $finish;
@@ -14262,7 +14262,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k1.mem"}, "r");
+        fd = $fopen("uram_k1.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k1.mem ! \n");
             $finish;
@@ -14280,7 +14280,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k2.mem"}, "r");
+        fd = $fopen("uram_k2.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k2.mem ! \n");
             $finish;
@@ -14298,7 +14298,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k3.mem"}, "r");
+        fd = $fopen("uram_k3.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k3.mem ! \n");
             $finish;
@@ -14316,7 +14316,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k4.mem"}, "r");
+        fd = $fopen("uram_k4.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k4.mem ! \n");
             $finish;
@@ -14334,7 +14334,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k5.mem"}, "r");
+        fd = $fopen("uram_k5.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k5.mem ! \n");
             $finish;
@@ -14352,7 +14352,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k6.mem"}, "r");
+        fd = $fopen("uram_k6.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k6.mem ! \n");
             $finish;
@@ -14370,7 +14370,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k7.mem"}, "r");
+        fd = $fopen("uram_k7.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k7.mem ! \n");
             $finish;
@@ -14388,7 +14388,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k8.mem"}, "r");
+        fd = $fopen("uram_k8.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k8.mem ! \n");
             $finish;
@@ -14406,7 +14406,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k9.mem"}, "r");
+        fd = $fopen("uram_k9.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k9.mem ! \n");
             $finish;
@@ -14424,7 +14424,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k10.mem"}, "r");
+        fd = $fopen("uram_k10.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k10.mem ! \n");
             $finish;
@@ -14442,7 +14442,7 @@ logic [COE_WIDTH-1:0] temp2;
         end
 
 
-        fd = $fopen({RUN_DIR, "vcs/", "uram_k11.mem"}, "r");
+        fd = $fopen("uram_k11.mem", "r");
         if(fd == 0) begin
             $display("ERROR!!! Cannot find file uram_k11.mem ! \n");
             $finish;

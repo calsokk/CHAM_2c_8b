@@ -56,12 +56,12 @@ if __name__ == '__main__':
 
     # partial test
     if 'stg' in test_name or 'row' in test_name:
-        test_dir = '../../../tv/basic'
+        test_dir = '../tv/basic'
         prepare_t0_output(test_dir, test_dir)
         prepare_tN_input(test_dir, test_dir)
     # full test
     elif 'full' in test_name:
-        test_dir = '../../../tv/' + test_name.split('_')[2]
+        test_dir = '../tv/' + test_name.split('_')[2]
         max_ts = max_timeslot(test_dir)
         prepare_t0_to_tN(test_dir, max_ts)
     else:

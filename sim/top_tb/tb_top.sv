@@ -86,7 +86,7 @@ module tb_top;
         localparam DEBUG_SINGLE_STAGE = 0;
     `endif
     
-    localparam RUN_DIR          = "./../../sim/";
+    localparam RUN_DIR          = "../../../../../";
 
 
     `ifdef INIT_KSK
@@ -558,11 +558,11 @@ module tb_top;
 
         always_comb begin
             ts_str.itoa(ts_full - 1);
-            timeslot = {{(4-ts_str.len()){"0"}}, ts_str};
+            timeslot = $sformatf("%04d", ts_full - 1);
         end
 
         assign ts            = ts_full - 1;
-        assign test_size     = "16x1024";
+        assign test_size     = "4x4096";
         assign cmod_data_dir = {RUN_DIR, "../tv/", test_size, "/"};
         assign test_data_dir = {cmod_data_dir, "t", timeslot, "/"};
     end
@@ -609,8 +609,8 @@ module tb_top;
     /************************ Waveform Setup in Testbench **************************/
     /*******************************************************************************/
     initial begin
-        $fsdbAutoSwitchDumpfile(1000, "waveform.fsdb", 50);
-        $fsdbDumpvars(0,tb_top,"+mda");
+        // $fsdbAutoSwitchDumpfile(1000, "waveform.fsdb", 50);
+        // $fsdbDumpvars(0,tb_top,"+mda");
     end
 
     /*******************************************************************************/
@@ -753,18 +753,19 @@ module tb_top;
         end
     endtask
 
+    integer idx;
     task initialize_ddr_mem(string file_vec, string file_mat, string file_ksk);
         initialize_ddr_vec(file_vec);
         initialize_ddr_mat(file_mat);
         initialize_ddr_ksk(file_ksk);
-        force i_ddr_mem.i_ddr_mem_bank_512b.base_bank.mem_bank = temp_mem; 
+        for (idx = 0; idx < DDR_MEM_DEPTH; idx=idx+1) force i_ddr_mem.i_ddr_mem_bank_512b.base_bank.mem_bank[idx] = temp_mem[idx]; 
         wait_one_cycle();
     endtask
 
     task initialize_ddr_mem_partial(string file_in, string file_ksk);
         initialize_ddr_partial(file_in);
         initialize_ddr_ksk(file_ksk);
-        force i_ddr_mem.i_ddr_mem_bank_512b.base_bank.mem_bank = temp_mem; 
+        for (idx = 0; idx < DDR_MEM_DEPTH; idx=idx+1) force i_ddr_mem.i_ddr_mem_bank_512b.base_bank.mem_bank[idx] = temp_mem[idx]; 
         wait_one_cycle();
     endtask
 

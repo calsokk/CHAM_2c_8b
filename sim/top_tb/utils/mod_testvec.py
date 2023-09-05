@@ -1,14 +1,14 @@
 #!/usr/bin/python3
 
 x6_files = [
-    '../../../tv/basic/stg2_a_out_x6.txt',
-    '../../../tv/basic/stg2_b_out_x6.txt',
-    '../../../tv/basic/stg3_a_in_x6.txt',
-    '../../../tv/basic/stg3_b_in_x6.txt',
-    '../../../tv/basic/stg3_a_out_x6.txt',
-    '../../../tv/basic/stg3_b_out_x6.txt',
-    '../../../tv/basic/stg4_a_in_x6.txt',
-    '../../../tv/basic/stg4_b_in_x6.txt'
+    '../tv/basic/stg2_a_out_x6.txt',
+    '../tv/basic/stg2_b_out_x6.txt',
+    '../tv/basic/stg3_a_in_x6.txt',
+    '../tv/basic/stg3_b_in_x6.txt',
+    '../tv/basic/stg3_a_out_x6.txt',
+    '../tv/basic/stg3_b_out_x6.txt',
+    '../tv/basic/stg4_a_in_x6.txt',
+    '../tv/basic/stg4_b_in_x6.txt'
 ]
 
 x6_repos = [0, 2, 4, 1, 3, 5]

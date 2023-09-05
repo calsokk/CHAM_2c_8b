@@ -34,20 +34,20 @@ if (Q_TYPE == 2) begin  // (COE_WIDTH == 39)
     if (NTT_INTT_CASE == 0) begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/ntt/ntt_rom_39q/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/ntt/ntt_rom_39q/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/ntt/ntt_rom_39q/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/ntt/ntt_rom_39q/tf3.mem", mem_bank);
+                0:$readmemh ("ntt_rom_39q_tf0.mem", mem_bank);
+                1:$readmemh ("ntt_rom_39q_tf1.mem", mem_bank);
+                2:$readmemh ("ntt_rom_39q_tf2.mem", mem_bank);
+                3:$readmemh ("ntt_rom_39q_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end
     end else begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/intt/intt_rom_39q/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/intt/intt_rom_39q/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/intt/intt_rom_39q/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/intt/intt_rom_39q/tf3.mem", mem_bank);
+                0:$readmemh ("intt_rom_39q_tf0.mem", mem_bank);
+                1:$readmemh ("intt_rom_39q_tf1.mem", mem_bank);
+                2:$readmemh ("intt_rom_39q_tf2.mem", mem_bank);
+                3:$readmemh ("intt_rom_39q_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end
@@ -57,20 +57,20 @@ else if  (Q_TYPE == 0) begin
     if (NTT_INTT_CASE == 0) begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/ntt/ntt_rom_35q0/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/ntt/ntt_rom_35q0/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/ntt/ntt_rom_35q0/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/ntt/ntt_rom_35q0/tf3.mem", mem_bank);
+                0:$readmemh ("ntt_rom_35q0_tf0.mem", mem_bank);
+                1:$readmemh ("ntt_rom_35q0_tf1.mem", mem_bank);
+                2:$readmemh ("ntt_rom_35q0_tf2.mem", mem_bank);
+                3:$readmemh ("ntt_rom_35q0_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end
     end else begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/intt/intt_rom_35q0/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/intt/intt_rom_35q0/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/intt/intt_rom_35q0/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/intt/intt_rom_35q0/tf3.mem", mem_bank);
+                0:$readmemh ("intt_rom_35q0_tf0.mem", mem_bank);
+                1:$readmemh ("intt_rom_35q0_tf1.mem", mem_bank);
+                2:$readmemh ("intt_rom_35q0_tf2.mem", mem_bank);
+                3:$readmemh ("intt_rom_35q0_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end
@@ -80,20 +80,20 @@ else begin
     if (NTT_INTT_CASE == 0) begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/ntt/ntt_rom_35q1/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/ntt/ntt_rom_35q1/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/ntt/ntt_rom_35q1/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/ntt/ntt_rom_35q1/tf3.mem", mem_bank);
+                0:$readmemh ("ntt_rom_35q1_tf0.mem", mem_bank);
+                1:$readmemh ("ntt_rom_35q1_tf1.mem", mem_bank);
+                2:$readmemh ("ntt_rom_35q1_tf2.mem", mem_bank);
+                3:$readmemh ("ntt_rom_35q1_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end
     end else begin
         initial begin
             case(PATH)
-                0:$readmemh ("../../src/intt/intt_rom_35q1/tf0.mem", mem_bank);
-                1:$readmemh ("../../src/intt/intt_rom_35q1/tf1.mem", mem_bank);
-                2:$readmemh ("../../src/intt/intt_rom_35q1/tf2.mem", mem_bank);
-                3:$readmemh ("../../src/intt/intt_rom_35q1/tf3.mem", mem_bank);
+                0:$readmemh ("intt_rom_35q1_tf0.mem", mem_bank);
+                1:$readmemh ("intt_rom_35q1_tf1.mem", mem_bank);
+                2:$readmemh ("intt_rom_35q1_tf2.mem", mem_bank);
+                3:$readmemh ("intt_rom_35q1_tf3.mem", mem_bank);
                 default: begin end
             endcase
         end

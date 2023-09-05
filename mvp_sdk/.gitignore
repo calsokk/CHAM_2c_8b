@@ -1,0 +1,8 @@
+deps/cpu_features-*/
+deps/GSL-*/
+deps/hexl-*/
+deps/SEAL-*/
+deps/zstd-*/
+build/
+.idea/
+.DS_Store

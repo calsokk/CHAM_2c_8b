@@ -395,7 +395,7 @@ def GenBuf():
     gen.append(f'{tab*1}// -------------------------------------')
     gen.append(f'{tab*1}task check_ksk_uram;')
     for ksk_uram_index in range(12):
-        gen.append(f'{tab*2}fd = $fopen({{RUN_DIR, "vcs/", "uram_k{ksk_uram_index}.mem"}}, "r");')
+        gen.append(f'{tab*2}fd = $fopen("uram_k{ksk_uram_index}.mem", "r");')
         gen.append(f'{tab*2}if(fd == 0) begin')
         gen.append(f'{tab*3}$display("ERROR!!! Cannot find file uram_k{ksk_uram_index}.mem ! \\n");')
         gen.append(f'{tab*3}$finish;')
@@ -419,7 +419,7 @@ def GenBuf():
 if __name__ == '__main__':
     assert len(sys.argv) == 1
 
-    fo = open('../task.sv', 'w')
+    fo = open('top_tb/task.sv', 'w')
     gen = GenBuf()
     for line in gen:
         fo.write(line + '\n')

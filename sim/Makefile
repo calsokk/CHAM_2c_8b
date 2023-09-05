@@ -1,10 +1,19 @@
-sim:
-	cp ${SIM_DIR}/tb_top.sh ${SIM_DIR}/current_run_top.sh
-	sed -i 's/vlogan_opts="-full64 -kdb -v2005"/vlogan_opts="-full64 -kdb -v2005 ${DEFINE}"/g' ${SIM_DIR}/current_run_top.sh
-	sed -i 's/vcs_sim_opts="-kdb -lca -ucli -licqueue -l simulate.log"/vcs_sim_opts="-kdb -lca -ucli -licqueue -l simulate.log +TESTNAME=${TESTNAME}"/g' ${SIM_DIR}/current_run_top.sh
-	cd ${SIM_DIR};	pwd; ./current_run_top.sh 
+.PHONY: partial_sim full_sim clean
+
+top_tb/tast.sv:
+	python3 top_tb/utils/gen_bus.py
+
+partial_sim: top_tb/tast.sv
+	python3 top_tb/utils/prepare_ksk_uram.py test_row
+	python3 top_tb/utils/prepare_vec_uram.py test_row
+	python3 top_tb/utils/tb_top.py test_row
+	vivado -source scripts/run_partial_sim.tcl -nojournal -nolog
+
+full_sim: top_tb/tast.sv
+	python3 top_tb/utils/prepare_ksk_uram.py test_full_4x4096
+	python3 top_tb/utils/prepare_vec_uram.py test_full_4x4096
+	python3 top_tb/utils/tb_top.py test_full_4x4096
+	vivado -source scripts/run_full_sim.tcl -nojournal -nolog
 
 clean:
-	rm -rf run_dir*
-	cd vcs;	pwd; ./tb_top.sh -reset_run
-
+	-rm -rf mvp_sim_prj

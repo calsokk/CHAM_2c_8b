@@ -114,12 +114,12 @@ if __name__ == '__main__':
 
     # partial test
     if 'stg' in test_name or 'row' in test_name:
-        test_dir = '../../../tv/basic'
+        test_dir = '../tv/basic'
         prepare_ddr_partial(test_dir, test_dir)
         prepare_ddr_ksk(f'{test_dir}/ksk', test_dir)
     # full test
     elif 'full' in test_name:
-        test_dir = '../../../tv/' + test_name.split('_')[2]
+        test_dir = '../tv/' + test_name.split('_')[2]
         prepare_ddr_vec(test_dir)
         prepare_ddr_mat(test_dir)
         prepare_ddr_ksk(f'{test_dir}/ksk', f'{test_dir}/t0000')

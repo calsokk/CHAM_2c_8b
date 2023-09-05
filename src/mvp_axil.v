@@ -45,23 +45,23 @@ module mvp_axil
 
 //------------------------Parameter----------------------
 localparam
-    ADDR_START             = 16'h0000,
-    ADDR_COMMAND_DATA_0    = 16'h0004,
-    ADDR_LEVEL_DATA_0      = 16'h0008,
-    ADDR_COL_SIZE_DATA_0   = 16'h000c,
-    ADDR_SPLIT_DATA_0      = 16'h0010,
-    ADDR_INDEX_NUM_DATA_0  = 16'h0014,
-    ADDR_MAT_LEN_DATA_0    = 16'h0018,
-    ADDR_KSK_PTR_DATA_0    = 16'h001c,
-    ADDR_KSK_PTR_DATA_1    = 16'h0020,
-    ADDR_MAT_PTR_DATA_0    = 16'h0024,
-    ADDR_MAT_PTR_DATA_1    = 16'h0028,
-    ADDR_VEC_PTR_DATA_0    = 16'h002c,
-    ADDR_VEC_PTR_DATA_1    = 16'h0030,
-    ADDR_OUTPUT_PTR_DATA_0 = 16'h0034,
-    ADDR_OUTPUT_PTR_DATA_1 = 16'h0038,
-    ADDR_DONE              = 16'h003c,
-    ADDR_TEST              = 16'h0040,
+    ADDR_START             = 32'h01100800,
+    ADDR_COMMAND_DATA_0    = 32'h01100804,
+    ADDR_LEVEL_DATA_0      = 32'h01100808,
+    ADDR_COL_SIZE_DATA_0   = 32'h0110080c,
+    ADDR_SPLIT_DATA_0      = 32'h01100810,
+    ADDR_INDEX_NUM_DATA_0  = 32'h01100814,
+    ADDR_MAT_LEN_DATA_0    = 32'h01100818,
+    ADDR_KSK_PTR_DATA_0    = 32'h0110081c,
+    ADDR_KSK_PTR_DATA_1    = 32'h01100820,
+    ADDR_MAT_PTR_DATA_0    = 32'h01100824,
+    ADDR_MAT_PTR_DATA_1    = 32'h01100828,
+    ADDR_VEC_PTR_DATA_0    = 32'h0110082c,
+    ADDR_VEC_PTR_DATA_1    = 32'h01100830,
+    ADDR_OUTPUT_PTR_DATA_0 = 32'h01100834,
+    ADDR_OUTPUT_PTR_DATA_1 = 32'h01100838,
+    ADDR_DONE              = 32'h0110083c,
+    ADDR_TEST              = 32'h01100840,
     WRIDLE                 = 2'd0,
     WRDATA                 = 2'd1,
     WRRESP                 = 2'd2,
@@ -69,7 +69,7 @@ localparam
     RDIDLE                 = 2'd0,
     RDDATA                 = 2'd1,
     RDRESET                = 2'd2,
-    ADDR_BITS              = 16;
+    ADDR_BITS              = 32;
 
 //------------------------Local signal-------------------
     reg  [1:0]                    wstate = WRRESET;

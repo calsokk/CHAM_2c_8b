@@ -71,16 +71,16 @@ if __name__ == '__main__':
 
     # duplicate current_tb_top.sv from tb_top.sv
     print(f'{HEAD} create ../current_tb_top.sv as copy of ../tb_top.sv')
-    subprocess.run([f'cp', f'../tb_top.sv', f'../current_tb_top.sv'])
+    subprocess.run([f'cp', f'top_tb/tb_top.sv', f'../current_tb_top.sv'])
 
     # partial test
     if 'stg' in test_name or 'row' in test_name:
-        test_dir = '../../../tv/basic'
-        configure_tb_top(f'../current_tb_top.sv', f'{test_dir}/info.txt')
+        test_dir = '../tv/basic'
+        configure_tb_top(f'top_tb/current_tb_top.sv', f'{test_dir}/info.txt')
     # full test
     elif 'full' in test_name:
-        test_dir = '../../../tv/' + test_name.split('_')[2]
-        configure_tb_top(f'../current_tb_top.sv', f'{test_dir}/info.txt')
-        configure_test_dir(f'../current_tb_top.sv', test_name.split('_')[2])
+        test_dir = '../tv/' + test_name.split('_')[2]
+        configure_tb_top(f'top_tb/current_tb_top.sv', f'{test_dir}/info.txt')
+        configure_test_dir(f'top_tb/current_tb_top.sv', test_name.split('_')[2])
     else:
         print(f'Error: Invalid test name {test_name}!')
