@@ -111,8 +111,8 @@ endfunction
 /////////////////////////////////////////////////////////////////////////////
 localparam integer LP_DW_BYTES                   = C_M_AXI_DATA_WIDTH/8;
 localparam integer LP_LOG_DW_BYTES               = $clog2(LP_DW_BYTES);
-localparam integer LP_MAX_BURST_LENGTH           = 256;   // Max AXI Protocol burst length
-localparam integer LP_MAX_BURST_BYTES            = 4096;  // Max AXI Protocol burst size in bytes
+localparam integer LP_MAX_BURST_LENGTH           = 64;   // Max AXI Protocol burst length
+localparam integer LP_MAX_BURST_BYTES            = 1024;  // Max AXI Protocol burst size in bytes
 localparam integer LP_AXI_BURST_LEN              = f_min(LP_MAX_BURST_BYTES/LP_DW_BYTES, LP_MAX_BURST_LENGTH);
 localparam integer LP_LOG_BURST_LEN              = $clog2(LP_AXI_BURST_LEN);
 localparam integer LP_LOG_MAX_W_TO_AW            = 8; // Allow up to 256 outstanding w to aw transactions

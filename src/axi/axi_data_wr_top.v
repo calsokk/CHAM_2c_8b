@@ -1,6 +1,6 @@
 module axi_data_wr_top #(
     parameter AXI_ADDR_WIDTH        = 64,
-    parameter AXI_DATA_WIDTH        = 512,
+    parameter AXI_DATA_WIDTH        = 128,
     parameter AXI_XFER_SIZE_WIDTH   = 32,
     parameter INCLUDE_DATA_FIFO     = 0,
     parameter DATA_WIDTH            = 39,

@@ -18,7 +18,8 @@
 module tb_top;
 
     parameter C_DATA_AXI_ADDR_WIDTH = 64;
-    parameter C_DATA_AXI_DATA_WIDTH = 512;
+    parameter C_DATA_AXI_DATA_WIDTH_MVP = 128;
+    parameter C_DATA_AXI_DATA_WIDTH_AXI_BRAM = 512;
     parameter C_S_AXI_CONTROL_ADDR_WIDTH = 12;
     parameter C_S_AXI_CONTROL_DATA_WIDTH = 32;
 
@@ -30,11 +31,11 @@ module tb_top;
     parameter Q0 = 35'h4_0800_0001;
     parameter Q1 = 35'h4_0008_0001;
 
-    parameter LEVEL = 3;
-    parameter COL_SIZE = 1024;
+    parameter LEVEL = 2;
+    parameter COL_SIZE = 4096;
     parameter N_SPLIT = 1;
-    parameter N_INDEX = 4;
-    parameter MAT_LEN = 2;
+    parameter N_INDEX = 1;
+    parameter MAT_LEN = 4;
 
     localparam  N_RSLT_POLY        = 4;
     localparam  N_KSK_POLY         = 144;
@@ -43,8 +44,8 @@ module tb_top;
     localparam  TB_DDR_ADDR_WIDTH  = $clog2(TB_DDR_DATA_SIZE);
     localparam  DDR_MEM_DEPTH      = (2 ** TB_DDR_ADDR_WIDTH) >> 6;
 
-    localparam  DDR_MEM_VEC_DEPTH  = (N_SPLIT * 6) << 9;
-    localparam  DDR_MEM_MAT_DEPTH  = (MAT_LEN * 3) << 9;
+    localparam  DDR_MEM_VEC_DEPTH  = (N_SPLIT * 4) << 9;
+    localparam  DDR_MEM_MAT_DEPTH  = (MAT_LEN * 2) << 9;
     localparam  DDR_MEM_KSK_DEPTH  = N_KSK_POLY << 9;
     localparam  DDR_MEM_RSLT_DEPTH = N_RSLT_POLY << 9;
 
@@ -120,7 +121,7 @@ module tb_top;
 
     bit                                     clk, rst_n;
     bit                                     start, interrupt;
-    bit [C_DATA_AXI_DATA_WIDTH/8-1:0]       tmp[7:0];
+    bit [C_DATA_AXI_DATA_WIDTH_AXI_BRAM/8-1:0]       tmp[7:0];
     bit [511:0]                             gold_mem;
     bit [COE_WIDTH*8-1:0]                   ksk_mem;
     bit [511:0]                             temp_mem [0:DDR_MEM_DEPTH-1];
@@ -169,8 +170,8 @@ module tb_top;
     wire    [7:0]                           data_axi_awlen;
     wire                                    data_axi_wvalid;
     wire                                    data_axi_wready;
-    wire    [C_DATA_AXI_DATA_WIDTH-1:0]     data_axi_wdata;
-    wire    [C_DATA_AXI_DATA_WIDTH/8-1:0]   data_axi_wstrb;
+    wire    [C_DATA_AXI_DATA_WIDTH_AXI_BRAM-1:0]     data_axi_wdata;
+    wire    [C_DATA_AXI_DATA_WIDTH_AXI_BRAM/2-1:0]   data_axi_wstrb;
     wire                                    data_axi_wlast;
     wire                                    data_axi_bvalid;
     wire                                    data_axi_bready;
@@ -180,7 +181,7 @@ module tb_top;
     wire    [7:0]                           data_axi_arlen;
     wire                                    data_axi_rvalid;
     wire                                    data_axi_rready;
-    wire    [C_DATA_AXI_DATA_WIDTH-1:0]     data_axi_rdata;
+    wire    [C_DATA_AXI_DATA_WIDTH_AXI_BRAM-1:0]     data_axi_rdata;
     wire                                    data_axi_rlast;
 
     // AXI4-Lite slave interface
@@ -235,7 +236,7 @@ module tb_top;
 
     // BRAM with AXI interface to mimic memory with AXI interface in Vitis Shell
     tb_axi_bram #(
-    .C_S_AXI_DATA_WIDTH (C_DATA_AXI_DATA_WIDTH),
+    .C_S_AXI_DATA_WIDTH (C_DATA_AXI_DATA_WIDTH_AXI_BRAM),
     .C_S_AXI_ADDR_WIDTH (TB_DDR_ADDR_WIDTH)
     ) i_ddr_mem (
         .s_axi_aclk   (clk),
@@ -296,7 +297,7 @@ module tb_top;
 
     mvp_top # (
         .AXI_ADDR_WIDTH     ( C_DATA_AXI_ADDR_WIDTH ),
-        .AXI_DATA_WIDTH     ( C_DATA_AXI_DATA_WIDTH )
+        .AXI_DATA_WIDTH     ( C_DATA_AXI_DATA_WIDTH_MVP )
     ) u_dut_top (
         .clk    ( clk   ),
         .rst_n  ( rst_n ),
@@ -394,9 +395,9 @@ module tb_top;
     );
 
     assign stage_done = {
-        `AXI_WR.o_axiwr_done,   // stg10
-        `RT.o_done_x5,          // stg5-9
-        `PP0.io_o_vpu4_done,    // stg4
+        1'd1,   // stg10
+        5'b11111,          // stg5-9
+        1'd1,
         `PP0.io_o_intt_done,    // stg3
         `DP.o_madd_done,        // stg2
         `DP.o_ntt_done,         // stg1
@@ -515,7 +516,7 @@ module tb_top;
             end
             else begin
 
-                stage_start_d1 <= {`AXI_WR.i_axiwr_start, `RT.i_start_x5, `PP0.io_i_vpu4_start, 
+                stage_start_d1 <= {/*`AXI_WR.i_axiwr_start, `RT.i_start_x5, `PP0.io_i_vpu4_start,*/ 1'd0, 5'd0, 1'd0,
                     `PP0.io_i_intt_start, `DP.i_madd_start, `DP.i_ntt_start, `AXI_RD.i_axird_initstart};
                 stage_start_d2 <= stage_start_d1;
                 stage_start_d3 <= stage_start_d2;
@@ -672,13 +673,13 @@ module tb_top;
             for (i = 0; i < DDR_MEM_VEC_DEPTH; i++) begin
                 rt = $fscanf(fd, "%h", tmp[0]);
                 rt = $fscanf(fd, "%h", tmp[1]);
-                rt = $fscanf(fd, "%h", tmp[2]);
-                rt = $fscanf(fd, "%h", tmp[3]);
-                rt = $fscanf(fd, "%h", tmp[4]);
-                rt = $fscanf(fd, "%h", tmp[5]);
-                rt = $fscanf(fd, "%h", tmp[6]);
-                rt = $fscanf(fd, "%h", tmp[7]);
-                temp_mem[VEC_START_LINE + i] = {tmp[7], tmp[6], tmp[5], tmp[4], tmp[3], tmp[2], tmp[1], tmp[0]};
+                //rt = $fscanf(fd, "%h", tmp[2]);
+                //rt = $fscanf(fd, "%h", tmp[3]);
+                //rt = $fscanf(fd, "%h", tmp[4]);
+                //rt = $fscanf(fd, "%h", tmp[5]);
+                //rt = $fscanf(fd, "%h", tmp[6]);
+                //rt = $fscanf(fd, "%h", tmp[7]);
+                temp_mem[VEC_START_LINE + i] = {/*tmp[7], tmp[6], tmp[5], tmp[4], tmp[3], tmp[2],*/ tmp[1], tmp[0]};
             end
             $fclose(fd);
         end
@@ -718,13 +719,13 @@ module tb_top;
             for (i = 0; i < DDR_MEM_MAT_DEPTH; i++) begin
                 rt = $fscanf(fd, "%h", tmp[0]);
                 rt = $fscanf(fd, "%h", tmp[1]);
-                rt = $fscanf(fd, "%h", tmp[2]);
-                rt = $fscanf(fd, "%h", tmp[3]);
-                rt = $fscanf(fd, "%h", tmp[4]);
-                rt = $fscanf(fd, "%h", tmp[5]);
-                rt = $fscanf(fd, "%h", tmp[6]);
-                rt = $fscanf(fd, "%h", tmp[7]);
-                temp_mem[MAT_START_LINE + i] = {tmp[7], tmp[6], tmp[5], tmp[4], tmp[3], tmp[2], tmp[1], tmp[0]};
+                //rt = $fscanf(fd, "%h", tmp[2]);
+                //rt = $fscanf(fd, "%h", tmp[3]);
+                //rt = $fscanf(fd, "%h", tmp[4]);
+                //rt = $fscanf(fd, "%h", tmp[5]);
+                //rt = $fscanf(fd, "%h", tmp[6]);
+                //rt = $fscanf(fd, "%h", tmp[7]);
+                temp_mem[MAT_START_LINE + i] = {/*tmp[7], tmp[6], tmp[5], tmp[4], tmp[3], tmp[2],*/ tmp[1], tmp[0]};
             end
             $fclose(fd);
         end

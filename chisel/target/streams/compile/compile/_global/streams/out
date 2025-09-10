@@ -1,0 +1,13 @@
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:90:36: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m        u_tpp(i).io.polyvec2_rd <> =DontCare[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:90:33: postfix operator <> needs to be enabled[0m
+[0m[[0m[31merror[0m] [0m[0mby making the implicit value scala.language.postfixOps visible.[0m
+[0m[[0m[31merror[0m] [0m[0m----[0m
+[0m[[0m[31merror[0m] [0m[0mThis can be achieved by adding the import clause 'import scala.language.postfixOps'[0m
+[0m[[0m[31merror[0m] [0m[0mor by setting the compiler option -language:postfixOps.[0m
+[0m[[0m[31merror[0m] [0m[0mSee the Scaladoc for value scala.language.postfixOps for a discussion[0m
+[0m[[0m[31merror[0m] [0m[0mwhy the feature needs to be explicitly enabled.[0m
+[0m[[0m[31merror[0m] [0m[0m        u_tpp(i).io.polyvec2_rd <> =DontCare[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

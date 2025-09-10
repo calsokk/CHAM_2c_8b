@@ -89,7 +89,7 @@ def prepare_ddr_mat(test_dir):
                     if n_rows >= n_split * 2:
                         a = read_file(f'{dir_name}/stg1_a_in_x3.txt')
                         b = read_file(f'{dir_name}/stg1_b_in_x3.txt')
-                        write_file(fw, a + b)
+                        write_file(fw, a[0:4096])
                     n_rows += 2
                     break
         assert(n_rows == n_split * 2 + mat_len)

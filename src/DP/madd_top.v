@@ -108,7 +108,7 @@ end
 madd#(
     .COE_WIDTH(COE_WIDTH),
     .DP_MADD_PIP_DELAY(DP_MADD_PIP_DELAY),
-    .NUM_POLY(6)
+    .NUM_POLY(NUM_POLY)
 ) madd_core
 (
     .clk(clk),

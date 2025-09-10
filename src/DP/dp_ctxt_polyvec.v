@@ -75,7 +75,7 @@ end
 always @ (posedge clk) begin
     if (~rst_n) begin
         cnt <= 'd0;
-        o_tpp_rdaddr = 'd0;
+        o_tpp_rdaddr <= 'd0;
     end
     else begin
         if (state == S_WRURAM_BUSY) begin

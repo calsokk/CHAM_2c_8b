@@ -1,9 +1,9 @@
 module axi_bram2axi #(
     parameter AXI_ADDR_WIDTH        = 64,
-    parameter AXI_DATA_WIDTH        = 512,
+    parameter AXI_DATA_WIDTH        = 128,
     parameter AXI_XFER_SIZE_WIDTH   = 32,
     parameter BRAM_ADDR_WIDTH       = 32,
-    parameter BRAM_DATA_WIDTH       = 512,
+    parameter BRAM_DATA_WIDTH       = 128,
     parameter BRAM_DELAY            = 2,
     parameter INCLUDE_DATA_FIFO     = 0
 )

@@ -4,11 +4,11 @@ bit [1:0] pp_tpp_mode;
 bit       pp_dpp_mode;
 
 initial begin
-    force rt_lower_state = `RT.g1[0].pp.state;
-    force rt_upper_state = `RT.g3[0].pp.state;
+    //force rt_lower_state = `RT.g1[0].pp.state;
+    //force rt_upper_state = `RT.g3[0].pp.state;
     force dp_tri_mode    = `DP.tri_pp0.mode;
     force pp_tpp_mode    = `PP0.u_tpp_0.state;
-    force pp_dpp_mode    = `PP0.u_dpp_0.state;
+    //force pp_dpp_mode    = `PP0.u_dpp_0.state;
 end 
     // -------------------------------------
     // Initialize input mem
@@ -26,17 +26,17 @@ end
             if(dp_tri_mode == 0) begin
                 //$display(" -- buf1");
                 initialize_dp_tri_pp0_buf1_as_input({test_data_dir, "stg1_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf1_as_input({test_data_dir, "stg1_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf1_as_input({test_data_dir, "stg1_b_in_x3.txt"});
             end
             else if(dp_tri_mode == 1) begin
                 //$display(" -- buf0");
                 initialize_dp_tri_pp0_buf0_as_input({test_data_dir, "stg1_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf0_as_input({test_data_dir, "stg1_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf0_as_input({test_data_dir, "stg1_b_in_x3.txt"});
             end
             else begin
                 //$display(" -- buf2");
                 initialize_dp_tri_pp0_buf2_as_input({test_data_dir, "stg1_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf2_as_input({test_data_dir, "stg1_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf2_as_input({test_data_dir, "stg1_b_in_x3.txt"});
             end
         end
     end
@@ -47,17 +47,17 @@ end
             if(dp_tri_mode == 0) begin
                 //$display(" -- buf2");
                 initialize_dp_tri_pp0_buf2_as_input({test_data_dir, "stg2_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf2_as_input({test_data_dir, "stg2_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf2_as_input({test_data_dir, "stg2_b_in_x3.txt"});
             end
             else if(dp_tri_mode == 1) begin
                 //$display(" -- buf1");
                 initialize_dp_tri_pp0_buf1_as_input({test_data_dir, "stg2_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf1_as_input({test_data_dir, "stg2_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf1_as_input({test_data_dir, "stg2_b_in_x3.txt"});
             end
             else begin
                 //$display(" -- buf0");
                 initialize_dp_tri_pp0_buf0_as_input({test_data_dir, "stg2_a_in_x3.txt"});
-                initialize_dp_tri_pp1_buf0_as_input({test_data_dir, "stg2_b_in_x3.txt"});
+                //initialize_dp_tri_pp1_buf0_as_input({test_data_dir, "stg2_b_in_x3.txt"});
             end
 
             initialize_dp_ctxt_uram("uram_vec.mem", 1);
@@ -70,17 +70,17 @@ end
             if(pp_tpp_mode == 0) begin
                 //$display(" -- buf0");
                 initialize_pp0_tpp_buf1_as_input({test_data_dir, "stg3_a_in_x6.txt"});
-                initialize_pp1_tpp_buf1_as_input({test_data_dir, "stg3_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf1_as_input({test_data_dir, "stg3_b_in_x6.txt"});
             end
             else if(pp_tpp_mode == 1) begin
                 //$display(" -- buf1");
                 initialize_pp0_tpp_buf0_as_input({test_data_dir, "stg3_a_in_x6.txt"});
-                initialize_pp1_tpp_buf0_as_input({test_data_dir, "stg3_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf0_as_input({test_data_dir, "stg3_b_in_x6.txt"});
             end
             else begin
                 //$display(" -- buf2");
                 initialize_pp0_tpp_buf2_as_input({test_data_dir, "stg3_a_in_x6.txt"});
-                initialize_pp1_tpp_buf2_as_input({test_data_dir, "stg3_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf2_as_input({test_data_dir, "stg3_b_in_x6.txt"});
             end
         end
     end
@@ -91,17 +91,17 @@ end
             if(pp_tpp_mode == 0) begin
                 //$display(" -- buf2");
                 initialize_pp0_tpp_buf2_as_input({test_data_dir, "stg4_a_in_x6.txt"});
-                initialize_pp1_tpp_buf2_as_input({test_data_dir, "stg4_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf2_as_input({test_data_dir, "stg4_b_in_x6.txt"});
             end
             else if(pp_tpp_mode == 1) begin
                 //$display(" -- buf1");
                 initialize_pp0_tpp_buf1_as_input({test_data_dir, "stg4_a_in_x6.txt"});
-                initialize_pp1_tpp_buf1_as_input({test_data_dir, "stg4_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf1_as_input({test_data_dir, "stg4_b_in_x6.txt"});
             end
             else begin
                 //$display(" -- buf0");
                 initialize_pp0_tpp_buf0_as_input({test_data_dir, "stg4_a_in_x6.txt"});
-                initialize_pp1_tpp_buf0_as_input({test_data_dir, "stg4_b_in_x6.txt"});
+                //initialize_pp1_tpp_buf0_as_input({test_data_dir, "stg4_b_in_x6.txt"});
             end
         end
     end
@@ -111,11 +111,11 @@ end
             $display("\nInitialize input lower RAM of stage-5\n");
             if (pp_dpp_mode) begin
                 initialize_pp0_dpp_buf0_as_input({test_data_dir, "stg4_a_out_x4.txt"});
-                initialize_pp1_dpp_buf0_as_input({test_data_dir, "stg4_b_out_x4.txt"});
+                //initialize_pp1_dpp_buf0_as_input({test_data_dir, "stg4_b_out_x4.txt"});
             end
             else begin
                 initialize_pp0_dpp_buf1_as_input({test_data_dir, "stg4_a_out_x4.txt"});
-                initialize_pp1_dpp_buf1_as_input({test_data_dir, "stg4_b_out_x4.txt"});
+                //initialize_pp1_dpp_buf1_as_input({test_data_dir, "stg4_b_out_x4.txt"});
             end
         end
     end
@@ -490,19 +490,19 @@ end
                 //$display(" -- dp0 buf0");
                 check_dp_tri_pp0_buf0_as_output({test_data_dir, "stg0_a_out_x3.txt"});
                 //$display(" -- dp1 buf0");
-                check_dp_tri_pp1_buf0_as_output({test_data_dir, "stg0_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf0_as_output({test_data_dir, "stg0_b_out_x3.txt"});
             end
             else if (dp_tri_mode == 1) begin
                 //$display(" -- dp0 buf2");
                 check_dp_tri_pp0_buf2_as_output({test_data_dir, "stg0_a_out_x3.txt"});
                 //$display(" -- dp1 buf2");
-                check_dp_tri_pp1_buf2_as_output({test_data_dir, "stg0_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf2_as_output({test_data_dir, "stg0_b_out_x3.txt"});
             end
             else begin
                 //$display(" -- dp0 buf1");
                 check_dp_tri_pp0_buf1_as_output({test_data_dir, "stg0_a_out_x3.txt"});
                 //$display(" -- dp1 buf1");
-                check_dp_tri_pp1_buf1_as_output({test_data_dir, "stg0_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf1_as_output({test_data_dir, "stg0_b_out_x3.txt"});
             end
         end
     end
@@ -514,19 +514,19 @@ end
                 //$display(" -- dp0 buf1");
                 check_dp_tri_pp0_buf1_as_output({test_data_dir, "stg1_a_out_x3.txt"});
                 //$display(" -- dp1 buf1");
-                check_dp_tri_pp1_buf1_as_output({test_data_dir, "stg1_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf1_as_output({test_data_dir, "stg1_b_out_x3.txt"});
             end
             else if (dp_tri_mode == 1) begin
                 //$display(" -- dp0 buf0");
                 check_dp_tri_pp0_buf0_as_output({test_data_dir, "stg1_a_out_x3.txt"});
                 //$display(" -- dp1 buf0");
-                check_dp_tri_pp1_buf0_as_output({test_data_dir, "stg1_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf0_as_output({test_data_dir, "stg1_b_out_x3.txt"});
             end
             else begin
                 //$display(" -- dp0 buf2");
                 check_dp_tri_pp0_buf2_as_output({test_data_dir, "stg1_a_out_x3.txt"});
                 //$display(" -- dp1 buf2");
-                check_dp_tri_pp1_buf2_as_output({test_data_dir, "stg1_b_out_x3.txt"});
+                //check_dp_tri_pp1_buf2_as_output({test_data_dir, "stg1_b_out_x3.txt"});
             end
         end
     end
@@ -538,19 +538,19 @@ end
                 //$display(" -- pp0 buf0");
                 check_pp0_tpp_buf0_as_output({test_data_dir, "stg2_a_out_x6.txt"});
                 //$display(" -- pp1 buf0");
-                check_pp1_tpp_buf0_as_output({test_data_dir, "stg2_b_out_x6.txt"});
+                //check_pp1_tpp_buf0_as_output({test_data_dir, "stg2_b_out_x6.txt"});
             end
             else if (pp_tpp_mode == 1) begin
                 //$display(" -- pp0 buf2");
                 check_pp0_tpp_buf2_as_output({test_data_dir, "stg2_a_out_x6.txt"});
                 //$display(" -- pp1 buf2");
-                check_pp1_tpp_buf2_as_output({test_data_dir, "stg2_b_out_x6.txt"});
+                //check_pp1_tpp_buf2_as_output({test_data_dir, "stg2_b_out_x6.txt"});
             end
             else begin
                 //$display(" -- pp0 buf1");
                 check_pp0_tpp_buf1_as_output({test_data_dir, "stg2_a_out_x6.txt"});
                 //$display(" -- pp1 buf1");
-                check_pp1_tpp_buf1_as_output({test_data_dir, "stg2_b_out_x6.txt"});
+                //check_pp1_tpp_buf1_as_output({test_data_dir, "stg2_b_out_x6.txt"});
             end
         end
     end
@@ -562,19 +562,19 @@ end
                 //$display(" -- pp0 buf1");
                 check_pp0_tpp_buf1_as_output({test_data_dir, "stg3_a_out_x6.txt"});
                 //$display(" -- pp1 buf1");
-                check_pp1_tpp_buf1_as_output({test_data_dir, "stg3_b_out_x6.txt"});
+                //check_pp1_tpp_buf1_as_output({test_data_dir, "stg3_b_out_x6.txt"});
             end
             else if (pp_tpp_mode == 1) begin
                 //$display(" -- pp0 buf0");
                 check_pp0_tpp_buf0_as_output({test_data_dir, "stg3_a_out_x6.txt"});
                 //$display(" -- pp1 buf0");
-                check_pp1_tpp_buf0_as_output({test_data_dir, "stg3_b_out_x6.txt"});
+                //check_pp1_tpp_buf0_as_output({test_data_dir, "stg3_b_out_x6.txt"});
             end
             else begin
                 //$display(" -- pp0 buf2");
                 check_pp0_tpp_buf2_as_output({test_data_dir, "stg3_a_out_x6.txt"});
                 //$display(" -- pp1 buf2");
-                check_pp1_tpp_buf2_as_output({test_data_dir, "stg3_b_out_x6.txt"});
+                //check_pp1_tpp_buf2_as_output({test_data_dir, "stg3_b_out_x6.txt"});
             end
         end
     end
@@ -586,13 +586,13 @@ end
                 //$display(" -- pp0 buf0");
                 check_pp0_dpp_buf0_as_output({test_data_dir, "stg4_a_out_x4.txt"});
                 //$display(" -- pp1 buf0");
-                check_pp1_dpp_buf0_as_output({test_data_dir, "stg4_b_out_x4.txt"});
+                //check_pp1_dpp_buf0_as_output({test_data_dir, "stg4_b_out_x4.txt"});
             end
             else begin
                 //$display(" -- pp0 buf1");
                 check_pp0_dpp_buf1_as_output({test_data_dir, "stg4_a_out_x4.txt"});
                 //$display(" -- pp1 buf1");
-                check_pp1_dpp_buf1_as_output({test_data_dir, "stg4_b_out_x4.txt"});
+                //check_pp1_dpp_buf1_as_output({test_data_dir, "stg4_b_out_x4.txt"});
             end
         end
     end
@@ -603,23 +603,23 @@ end
             $display("\nCheck timeslot %d output upper RAM of stage-5\n", ts);
             if (rt_upper_state == 0) begin
                 //$display(" -- buf4");
-                check_rt_pp3_buf4();
+                //check_rt_pp3_buf4();
             end
             else if (rt_upper_state == 1) begin
                 //$display(" -- buf0");
-                check_rt_pp3_buf0();
+                //check_rt_pp3_buf0();
             end
             else if (rt_upper_state == 2) begin
                 //$display(" -- buf1");
-                check_rt_pp3_buf1();
+                //check_rt_pp3_buf1();
             end
             else if (rt_upper_state == 3) begin
                 //$display(" -- buf2");
-                check_rt_pp3_buf2();
+                //check_rt_pp3_buf2();
             end
             else begin
                 //$display(" -- buf3");
-                check_rt_pp3_buf3();
+                //check_rt_pp3_buf3();
             end
         end
     end
@@ -629,15 +629,15 @@ end
             $display("\nCheck timeslot %d output lower RAM of stage-5\n", ts);
             if (rt_lower_state == 0) begin
                 //$display(" -- pp1 buf0");
-                check_rt_pp1_buf0();
+                //check_rt_pp1_buf0();
             end
             else if (rt_lower_state == 1) begin
                 //$display(" -- pp1 buf2");
-                check_rt_pp1_buf2();
+                //check_rt_pp1_buf2();
             end
             else begin
                 //$display(" -- pp1 buf1");
-                check_rt_pp1_buf1();
+                //check_rt_pp1_buf1();
             end
         end
     end
@@ -673,15 +673,15 @@ end
             $display("\nCheck timeslot %d output lower RAM of stage-6\n", ts);
             if (rt_lower_state == 0) begin
                 //$display(" -- pp1 buf1");
-                check_rt_pp1_buf1();
+                //check_rt_pp1_buf1();
             end
             else if (rt_lower_state == 1) begin
                 //$display(" -- pp1 buf0");
-                check_rt_pp1_buf0();
+                //check_rt_pp1_buf0();
             end
             else begin
                 //$display(" -- pp1 buf2");
-                check_rt_pp1_buf2();
+                //check_rt_pp1_buf2();
             end
         end
     end
@@ -717,15 +717,15 @@ end
             $display("\nCheck timeslot %d output lower RAM of stage-7\n", ts);
             if (rt_lower_state == 0) begin
                 //$display(" -- pp2 buf0");
-                check_rt_pp2_buf0();
+                //check_rt_pp2_buf0();
             end
             else if (rt_lower_state == 1) begin
                 //$display(" -- pp2 buf2");
-                check_rt_pp2_buf2();
+                //check_rt_pp2_buf2();
             end
             else begin
                 //$display(" -- pp2 buf1");
-                check_rt_pp2_buf1();
+                //check_rt_pp2_buf1();
             end
         end
     end
@@ -761,15 +761,15 @@ end
             $display("\nCheck timeslot %d output lower RAM of stage-8\n", ts);
             if (rt_lower_state == 0) begin
                 //$display(" -- pp2 buf1");
-                check_rt_pp2_buf1();
+                //check_rt_pp2_buf1();
             end
             else if (rt_lower_state == 1) begin
                 //$display(" -- pp2 buf0");
-                check_rt_pp2_buf0();
+                //check_rt_pp2_buf0();
             end
             else begin
                 //$display(" -- pp2 buf2");
-                check_rt_pp2_buf2();
+                //check_rt_pp2_buf2();
             end
         end
     end

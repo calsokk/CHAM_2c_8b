@@ -1,0 +1,133 @@
+/*
+
+Xilinx Vivado v2022.1 (64-bit) [Major: 2022, Minor: 1]
+SW Build: 3526262 on Mon Apr 18 15:47:01 MDT 2022
+IP Build: 3524634 on Mon Apr 18 20:55:01 MDT 2022
+
+Process ID (PID): 779668
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Sat Sep 06 03:26:11 GMT 2025
+Time zone: 	Greenwich Mean Time (GMT)
+
+OS: Rocky Linux release 8.10 (Green Obsidian)
+OS Version: 6.14.0-27-generic
+OS Architecture: amd64
+Available processors (cores): 8
+
+Display: 1.0
+Screen size: 1920x919
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	/cad/xilinx/Vivado/2022.1/tps/lnx64/jre11.0.11_9
+Java executable: 	/cad/xilinx/Vivado/2022.1/tps/lnx64/jre11.0.11_9/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m, -Xrs]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	calsokk
+User home directory: /home/users/calsokk
+User working directory: /home/users/calsokk/research/CHAM_2c_8b/sim
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /cad/xilinx/Vivado
+HDI_APPROOT: /cad/xilinx/Vivado/2022.1
+RDI_DATADIR: /cad/xilinx/Vivado/2022.1/data
+RDI_BINDIR: /cad/xilinx/Vivado/2022.1/bin
+
+Vivado preferences file: /home/users/calsokk/.Xilinx/Vivado/2022.1/vivado.xml
+Vivado preferences directory: /home/users/calsokk/.Xilinx/Vivado/2022.1/
+Vivado layouts directory: /home/users/calsokk/.Xilinx/Vivado/2022.1/data/layouts
+PlanAhead jar file: 	/cad/xilinx/Vivado/2022.1/lib/classes/planAhead.jar
+Vivado log file: 	
+Vivado journal file: 	
+Engine tmp dir: 	./.Xil/Vivado-779668-iron-01
+
+Xilinx Environment Variables
+----------------------------
+XILINX: /cad/xilinx/Vivado/2022.1/ids_lite/ISE
+XILINXD_LICENSE_FILE: 7193@cadlic0.stanford.edu
+XILINX_DSP: /cad/xilinx/Vivado/2022.1/ids_lite/ISE
+XILINX_HLS: /cad/xilinx/Vitis_HLS/2022.1
+XILINX_HOME: /cad/xilinx
+XILINX_PLANAHEAD: /cad/xilinx/Vivado/2022.1
+XILINX_SDK: /cad/xilinx/Vitis/2022.1
+XILINX_VITIS: /cad/xilinx/Vitis/2022.1
+XILINX_VIVADO: /cad/xilinx/Vivado/2022.1
+XILINX_VIVADO_HLS: /cad/xilinx/Vivado/2022.1
+
+
+GUI allocated memory:	308 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,852 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: START_PROGRESS_DIALOG
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: source scripts/run_full_sim.tcl 
+// Tcl Message: # source scripts/create_prj.tcl ## create_project mvp_sim_prj mvp_sim_prj -part xcvu9p-flgb2104-2L-e 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,798 MB. GUI used memory: 57 MB. Current time: 9/6/25, 3:26:12 AM GMT
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_ADD
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 88 MB (+90118kb) [00:00:18]
+// [Engine Memory]: 1,811 MB (+1747569kb) [00:00:18]
+// [GUI Memory]: 97 MB (+4254kb) [00:00:18]
+// WARNING: HEventQueue.dispatchEvent() is taking  2008 ms.
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/cad/xilinx/Vivado/2022.1/data/ip'. 
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// [GUI Memory]: 104 MB (+2566kb) [00:00:21]
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: create_project: Time (s): cpu = 00:00:22 ; elapsed = 00:00:10 . Memory (MB): peak = 7600.191 ; gain = 55.629 ; free physical = 41457 ; free virtual = 177850 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: ## import_files -force -norecurse 
+// Tcl Message: INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'sources_1' 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// [GUI Memory]: 118 MB (+9195kb) [00:00:28]
+// Tcl Message: ## set_property top mvp [current_fileset] ## update_compile_order -fileset sources_1 
+// TclEventType: DG_GRAPH_STALE
+// HMemoryUtils.trashcanNow. Engine heap size: 1,884 MB. GUI used memory: 61 MB. Current time: 9/6/25, 3:26:27 AM GMT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_OPTIONS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: ## set_property SOURCE_SET sources_1 [get_filesets sim_1] ## add_files -fileset sim_1 -norecurse -scan_for_includes {top_tb/tb_axi_bram.v top_tb/current_tb_top.sv top_tb/ram_model.sv xsim/glbl.v top_tb/testcase.sv top_tb/monitor.sv top_tb/control_tb.sv top_tb/task.sv top_tb/fifo_fwft.v} 
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: INFO: [filemgmt 56-200] Setting project included file '/home/users/calsokk/research/CHAM_2c_8b/sim/top_tb/testcase.sv' to type 'Verilog Header'. INFO: [filemgmt 56-200] Setting project included file '/home/users/calsokk/research/CHAM_2c_8b/sim/top_tb/monitor.sv' to type 'Verilog Header'. INFO: [filemgmt 56-200] Setting project included file '/home/users/calsokk/research/CHAM_2c_8b/sim/top_tb/task.sv' to type 'Verilog Header'. 
+// Tcl Message: ## import_files -fileset sim_1 -norecurse {top_tb/tb_axi_bram.v top_tb/current_tb_top.sv top_tb/ram_model.sv xsim/glbl.v top_tb/testcase.sv top_tb/monitor.sv top_tb/control_tb.sv top_tb/task.sv top_tb/fifo_fwft.v} ## add_files -fileset sim_1 -norecurse -scan_for_includes {xsim/uram_k0.mem xsim/uram_k10.mem xsim/uram_k2.mem xsim/uram_k6.mem xsim/uram_k8.mem xsim/uram_k9.mem xsim/uram_k11.mem xsim/uram_k4.mem xsim/uram_k1.mem xsim/uram_k7.mem xsim/uram_k5.mem xsim/uram_vec.mem xsim/uram_k3.mem} 

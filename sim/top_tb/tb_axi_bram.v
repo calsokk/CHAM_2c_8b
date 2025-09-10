@@ -338,7 +338,7 @@ begin
     if(s_axi_arvalid && s_axi_arready)
         raddr_reg <= s_axi_araddr;
     else if(enb && (rcnt_reg != 0))
-        raddr_reg <= rsize_reg[0] ? (raddr_reg + 8'b10000000) : (raddr_reg + 7'b1000000); 
+        raddr_reg <= rsize_reg[0] ? (raddr_reg + 8'b100000) : (raddr_reg + 7'b10000); 
 end
 
 always@(posedge s_axi_aclk or negedge s_axi_aresetn)
@@ -457,7 +457,7 @@ ram_model #(
       .clk(s_axi_aclk),      
       .doutb(doutb),   
       .addra(addra[C_S_AXI_ADDR_WIDTH-1:ENTRY_OFFSET_WIDTH]),
-      .addrb(addrb[C_S_AXI_ADDR_WIDTH-1:ENTRY_OFFSET_WIDTH]),
+      .addrb(addrb[C_S_AXI_ADDR_WIDTH-1 -2:ENTRY_OFFSET_WIDTH -2]),
       .dina(dina),               
       .wea(ena) 
    );

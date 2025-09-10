@@ -25,12 +25,12 @@ module pre_input_transposer #(
     
 
     /* input logic begin */
-    wire [8:0] count_i_coeff;   // number of coeff in a polynomial received
+    wire [10:0] count_i_coeff;   // number of coeff in a polynomial received
     wire [2:0] count_i_polyn;   // number of polyn received
 
-    assign count_i_coeff = i_ibuf_addr[8:0];
+    assign count_i_coeff = i_ibuf_addr[10:0];
     assign count_i_polyn = i_ibuf_addr[11:9];
-    assign input_completed = ({count_i_polyn, count_i_coeff} == 12'hbff);
+    assign input_completed = (i_ibuf_addr == 12'h7ff);
 
     always @ (posedge clk or negedge rst_n) begin
         if (~rst_n)
@@ -55,9 +55,9 @@ module pre_input_transposer #(
         for (i = 0; i < 8; i = i + 1) begin : gen_buf
 
             wire iwren;
-            wire [5:0] iaddr;
-            assign iwren = (count_i_coeff[8:6] == i) && i_ibuf_wren;
-            assign iaddr = count_i_coeff;
+            wire [7:0] iaddr;
+            assign iwren = (count_i_coeff[10:8] == i) && i_ibuf_wren;
+            assign iaddr = count_i_coeff[7:0];
 
             reg [5:0] owren;
             reg [5:0] owren_m1; // lutram delay = 1 cycle
@@ -75,15 +75,15 @@ module pre_input_transposer #(
             end
 
             /* instantiate buffer begin */
-            wire [8*DATA_WIDTH-1:0] ram_dout;
-            wire [8*DATA_WIDTH-1:0] ram_din;
+            wire [2*DATA_WIDTH-1:0] ram_dout;
+            wire [2*DATA_WIDTH-1:0] ram_din;
             assign ram_din = i_ibuf_data;
 
             xpm_memory_sdpram #(
-                .ADDR_WIDTH_A           ( 6                     ),
-                .ADDR_WIDTH_B           ( 6                     ),
+                .ADDR_WIDTH_A           ( 8                     ),
+                .ADDR_WIDTH_B           ( 8                     ),
                 .AUTO_SLEEP_TIME        ( 0                     ),
-                .BYTE_WRITE_WIDTH_A     ( 8 * DATA_WIDTH        ),
+                .BYTE_WRITE_WIDTH_A     ( 2 * DATA_WIDTH        ),
                 .CASCADE_HEIGHT         ( 0                     ),
                 .CLOCKING_MODE          ( "common_clock"        ),
                 .ECC_MODE               ( "no_ecc"              ),
@@ -91,9 +91,9 @@ module pre_input_transposer #(
                 .MEMORY_INIT_PARAM      ( "0"                   ),
                 .MEMORY_OPTIMIZATION    ( "true"                ),
                 .MEMORY_PRIMITIVE       ( "distributed"         ),
-                .MEMORY_SIZE            ( 8 * DATA_WIDTH * 64   ),
+                .MEMORY_SIZE            ( 2 * DATA_WIDTH * 256   ),
                 .MESSAGE_CONTROL        ( 0                     ),
-                .READ_DATA_WIDTH_B      ( 8 * DATA_WIDTH        ),
+                .READ_DATA_WIDTH_B      ( 2 * DATA_WIDTH        ),
                 .READ_LATENCY_B         ( 1                     ),
                 .READ_RESET_VALUE_B     ( "0"                   ),
                 .RST_MODE_A             ( "SYNC"                ),
@@ -102,7 +102,7 @@ module pre_input_transposer #(
                 .USE_EMBEDDED_CONSTRAINT( 0                     ),
                 .USE_MEM_INIT           ( 0                     ),
                 .WAKEUP_TIME            ( "disable_sleep"       ),
-                .WRITE_DATA_WIDTH_A     ( 8 * DATA_WIDTH        ),
+                .WRITE_DATA_WIDTH_A     ( 2 * DATA_WIDTH        ),
                 .WRITE_MODE_B           ( "read_first"          )
             )
             i_ibuf_lutram_sdpram (
@@ -110,8 +110,8 @@ module pre_input_transposer #(
                 .clkb   ( clk               ),
                 .ena    ( 1'b1              ),
                 .enb    ( 1'b1              ),
-                .addra  ( iaddr[5:0]        ),
-                .addrb  ( oaddr[8:3]        ),
+                .addra  ( iaddr[7:0]        ),
+                .addrb  ( oaddr[8:1]        ),
                 .wea    ( iwren             ),
                 .dina   ( ram_din           ),
                 .doutb  ( ram_dout          ),
@@ -121,15 +121,15 @@ module pre_input_transposer #(
 
             always @ (*) begin
                 odata = 'b0;
-                case (oaddr_m1[2:0])
-                    3'd0: odata = ram_dout[0 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd1: odata = ram_dout[1 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd2: odata = ram_dout[2 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd3: odata = ram_dout[3 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd4: odata = ram_dout[4 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd5: odata = ram_dout[5 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd6: odata = ram_dout[6 * DATA_WIDTH +: DATA_WIDTH];
-                    3'd7: odata = ram_dout[7 * DATA_WIDTH +: DATA_WIDTH];
+                case (oaddr_m1[0])
+                    1'd0: odata = ram_dout[0 * DATA_WIDTH +: DATA_WIDTH];
+                    1'd1: odata = ram_dout[1 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd2: odata = ram_dout[2 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd3: odata = ram_dout[3 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd4: odata = ram_dout[4 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd5: odata = ram_dout[5 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd6: odata = ram_dout[6 * DATA_WIDTH +: DATA_WIDTH];
+                    //3'd7: odata = ram_dout[7 * DATA_WIDTH +: DATA_WIDTH];
                 endcase
             end
             /* instantiate buffer end */
@@ -137,7 +137,7 @@ module pre_input_transposer #(
 
             /* output logic begin */
             reg vld;
-            wire [8:0] count_o_coeff;
+            wire [10:0] count_o_coeff;
             wire [2:0] count_o_polyn;
 
             assign oaddr = count_o_coeff;
@@ -147,17 +147,17 @@ module pre_input_transposer #(
                     vld <= 1'b0;
                 else if (i_ibuf_reset)
                     vld <= 1'b0;
-                else if (count_i_coeff[8:6] == i &&
+                else if (count_i_coeff[10:8] == i &&
                          count_i_coeff[5:0] == 6'd62 && // early start
                          i_ibuf_wren)
                     vld <= 1'b1;
-                else if (vld && count_o_coeff == 9'd511)
+                else if (vld && count_o_coeff[10:0] == 11'd2047) // 2047 because we need to count to the max coefficient
                     vld <= 1'b0;
                 else
                     vld <= vld;
             end
 
-            counter #(.C_WIDTH(12), . MAX_COUNT('hbff), .C_INIT(12'd0))
+            counter #(.C_WIDTH(14), . MAX_COUNT('h7FF), .C_INIT(14'd0))
             i_cntr_output(
                 .clk        ( clk                               ),
                 .clken      ( 1'b1                              ),
@@ -165,7 +165,7 @@ module pre_input_transposer #(
                 .load       ( i_ibuf_reset                      ),
                 .incr       ( vld                               ),
                 .decr       ( 1'b0                              ),
-                .load_value ( 12'd0                             ),
+                .load_value ( 14'd0                             ),
                 .count      ( {count_o_polyn, count_o_coeff}    ),
                 .is_zero    (                                   )
             );
@@ -173,7 +173,7 @@ module pre_input_transposer #(
             always @ (*) begin
                 owren = 'b0;
                 if (vld) begin
-                    case (count_o_polyn)
+                    case ({count_o_polyn[0], count_o_coeff[10:9]})
                         3'd0: owren = 6'b00_0001;
                         3'd1: owren = 6'b00_0010;
                         3'd2: owren = 6'b00_0100;
@@ -191,7 +191,7 @@ module pre_input_transposer #(
                     o_comp[i] <= 1'b0;
                 else if (o_ibuf_done)
                     o_comp[i] <= 1'b0;
-                else if ({count_o_polyn, count_o_coeff} == 12'hbff)
+                else if (count_o_coeff == 11'h7FF)
                     o_comp[i] <= 1'b1;
                 else
                     o_comp[i] <= o_comp[i];

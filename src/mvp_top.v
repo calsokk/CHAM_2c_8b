@@ -18,7 +18,7 @@
 
 module mvp_top #(
     parameter integer AXI_ADDR_WIDTH      = 64 ,
-    parameter integer AXI_DATA_WIDTH      = 512
+    parameter integer AXI_DATA_WIDTH      = 128
 )
 (
     input  wire                             clk                  ,
@@ -86,7 +86,7 @@ module mvp_top #(
     parameter Q0_WIDTH          = 35;
     parameter Q1_WIDTH          = 35;
     parameter N_STAGE           = 5;
-    parameter N_POLY            = 6;
+    parameter N_POLY            = 2;
     parameter INCLUDE_DATA_FIFO = 0;
     parameter AXI_XFER_WIDTH    = 32;
 
@@ -118,18 +118,18 @@ module mvp_top #(
     wire    [1 : 0]                 dp_mode_w;
     wire    [11 : 0]                coeff_index_w;
     // axi => dp
-    wire    [N_POLY * NUM_BASE_BANK-1:0]        axi_dp_we_w;
+    wire    [N_POLY * 3 * NUM_BASE_BANK-1:0]        axi_dp_we_w;
     wire    [N_POLY * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
     wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  axi_dp_waddr_w; 
-    wire    [2 * N_POLY * COE_WIDTH_S-1:0]      axi_dp_wdata_w; 
+    wire    [2 * NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
     // dp1 => preprocess
-    wire    [2 * N_POLY * NUM_BASE_BANK-1:0]    dp1_pre_we_w; //bit_width ?
-    wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  dp1_pre_waddr_w; 
-    wire    [2 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w; 
-    wire    [2 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w0; 
-    wire    [2 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w1; 
+    wire                                        dp1_pre_we_w; //bit_width ?
+    wire    [ADDR_WIDTH -1:0]  dp1_pre_waddr_w; 
+    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w; 
+    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w0; 
+    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w1; 
     wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  dp1_pre_raddr_w; 
-    wire    [2 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_rdata_w; 
+    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_rdata_w; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w0; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w1; 
     // preprocess => mux
@@ -282,13 +282,14 @@ module mvp_top #(
     assign axi_run_command_w = command[0];
     assign mat_size_bytes_w = mat_size_bytes_r; //for 200M; break the critical path
     assign vec_size_bytes_w = vec_size_bytes_r; //for 250M; break the critical path
-    assign ksk_size_bytes = 32'h00480000;
+    assign ksk_size_bytes = 32'h00120000;
     assign data_size_bytes = 32'h00020000;
     assign data_size_batches = mat_len[14:1] + split[2:0];
     assign mvp_start_pulse = ap_start & !ap_start_r;
     assign mvp_start_w = mvp_start_r & ((config_error == 0) | !command[0]);
     assign ap_ready = ap_done[0];
     assign ap_idle = ap_idle_r;
+    /*
     assign axi_dp_we_2_w = 
            {axi_dp_we_w[47],axi_dp_we_w[41],axi_dp_we_w[35],axi_dp_we_w[29],axi_dp_we_w[23],axi_dp_we_w[17],axi_dp_we_w[11],axi_dp_we_w[05],
             axi_dp_we_w[46],axi_dp_we_w[40],axi_dp_we_w[34],axi_dp_we_w[28],axi_dp_we_w[22],axi_dp_we_w[16],axi_dp_we_w[10],axi_dp_we_w[04],
@@ -296,6 +297,10 @@ module mvp_top #(
             axi_dp_we_w[44],axi_dp_we_w[38],axi_dp_we_w[32],axi_dp_we_w[26],axi_dp_we_w[20],axi_dp_we_w[14],axi_dp_we_w[08],axi_dp_we_w[02],
             axi_dp_we_w[43],axi_dp_we_w[37],axi_dp_we_w[31],axi_dp_we_w[25],axi_dp_we_w[19],axi_dp_we_w[13],axi_dp_we_w[07],axi_dp_we_w[01],
             axi_dp_we_w[42],axi_dp_we_w[36],axi_dp_we_w[30],axi_dp_we_w[24],axi_dp_we_w[18],axi_dp_we_w[12],axi_dp_we_w[06],axi_dp_we_w[00]};
+    */
+    assign axi_dp_we_2_w =
+        { axi_dp_we_w[45], axi_dp_we_w[39], axi_dp_we_w[33], axi_dp_we_w[27], axi_dp_we_w[21],axi_dp_we_w[15],axi_dp_we_w[9],axi_dp_we_w[3],
+            axi_dp_we_w[42], axi_dp_we_w[36], axi_dp_we_w[30], axi_dp_we_w[24], axi_dp_we_w[18],axi_dp_we_w[12],axi_dp_we_w[6],axi_dp_we_w[0]};
     /*assign axi_dp_we_2_w = 
            {axi_dp_we_w[47],axi_dp_we_w[39],axi_dp_we_w[31],axi_dp_we_w[23],axi_dp_we_w[15],axi_dp_we_w[07],
             axi_dp_we_w[46],axi_dp_we_w[38],axi_dp_we_w[30],axi_dp_we_w[22],axi_dp_we_w[14],axi_dp_we_w[06],
@@ -463,9 +468,10 @@ u_dp_top(
 wire pre_mux_done_w;
 assign pre_mux_done_w = done_w[5] | stall_w; //Risky
 assign dp1_pre_rdata_w = {dp1_pre_rdata_w1, dp1_pre_rdata_w0};
-assign dp1_pre_wdata_w1 = dp1_pre_wdata_w[COE_WIDTH_L*ADDR_WIDTH_H*4-1 : COE_WIDTH_L*ADDR_WIDTH_H*2]; 
-assign dp1_pre_wdata_w0 = dp1_pre_wdata_w[COE_WIDTH_L*ADDR_WIDTH_H*2-1 : 0];
+assign dp1_pre_wdata_w1 = dp1_pre_wdata_w[COE_WIDTH_L*2-1:0]; 
+assign dp1_pre_wdata_w0 = dp1_pre_wdata_w[COE_WIDTH_L*2-1:0];
 
+/*
 preprocess_top #(
     .DATA_WIDTH             ( COE_WIDTH_L       ),
     .ADDR_WIDTH             ( ADDR_WIDTH        )
@@ -490,7 +496,7 @@ u_preprocess_top1(
     .io_i_mux_rdaddr        ( mux_raddr_a1_w    ),
     .io_o_mux_rddata        ( mux_pre_rdata_a1_w)
 );
-
+*/
 preprocess_top #(
     .DATA_WIDTH             ( COE_WIDTH_L       ),
     .ADDR_WIDTH             ( ADDR_WIDTH        )
@@ -515,6 +521,30 @@ u_preprocess_top0(
     .io_o_mux_rddata        ( mux_pre_rdata_a0_w)
 );
 
+/*
+preprocess_top #(
+    .DATA_WIDTH ( COE_WIDTH_L ),
+    .ADDR_WIDTH ( ADDR_WIDTH  )
+) u_preprocess_top0 (
+    .clock            ( clk              ),
+    .reset            ( ~rst_n           ),
+    .io_i_pre_switch  ( pre_tpp_switch_w ),
+    .io_i_intt_start  ( start_w[3]       ),
+    .io_o_intt_done   ( pre_s3_done0     ),
+
+    // NEW: use INTT-out read port; drive it from reduce_trace’s raddr
+    .io_i_intt_rdaddr ( mux_raddr_a0_w   ),
+    .io_o_intt_rddata ( mux_pre_rdata_a0_w ),
+
+    // dp1 ingress/egress (unchanged)
+    .io_i_dp1_wren    ( dp1_pre_we_w     ),
+    .io_i_dp1_wraddr  ( dp1_pre_waddr_w  ),
+    .io_i_dp1_wrdata  ( dp1_pre_wdata_w0 ),
+    .io_i_dp1_rdaddr  ( dp1_pre_raddr_w  ),
+    .io_o_dp1_rddata  ( dp1_pre_rdata_w0 )
+);
+*/
+
 genvar _i_tmp;
 generate
     for (_i_tmp = 0; _i_tmp < NUM_POLY; _i_tmp = _i_tmp + 1) begin
@@ -525,9 +555,9 @@ generate
     end
 endgenerate
 
-assign done_w[3] = pre_s3_done0 & pre_s3_done1;
-assign done_w[4] = pre_s4_done0 & pre_s4_done1;
-
+assign done_w[3] = pre_s3_done0;
+assign done_w[4] = 'd1;
+/*
 reduce_trace #(
     .COE_WIDTH              ( COE_WIDTH_L       ),
     .Q_WIDTH                ( COE_WIDTH_S       ),
@@ -575,6 +605,7 @@ u_reduce_trace(
     .i_ksk_rdata            ( ksk_rdata_w_sf    ),
     .o_ksk_raddr            ( ksk_raddr_w       )
 );
+*/
 
 control #(
     .LEVEL_WIDTH            ( LEVEL_WIDTH       ),
@@ -632,7 +663,7 @@ u_control(
     .o_coeff_index          ( coeff_index_w     ),
     .o_uram_index           ( uram_index_w      )
 );
-
+/*
 assign redbuf_raddr_w = mvp_idle_w ? axi_rd_raddr_w : rt_rd_raddr_w;
 assign redbuf_addr_w = redbuf_we_w ? redbuf_waddr_w : redbuf_raddr_w;
 
@@ -651,5 +682,5 @@ u_reduce_buffer (
     .i_uram_index           ( uram_index_w      ),
     .o_data                 ( redbuf_rdata_w    )
 );
-
+*/
 endmodule

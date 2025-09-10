@@ -1,6 +1,6 @@
 module axi_data_rd_top #(
     parameter AXI_ADDR_WIDTH        = 64,
-    parameter AXI_DATA_WIDTH        = 512,
+    parameter AXI_DATA_WIDTH        = 128,
     parameter AXI_XFER_SIZE_WIDTH   = 32,
     parameter INCLUDE_DATA_FIFO     = 0,
     parameter KSK_DATA_WIDTH        = 39,
@@ -45,7 +45,7 @@ module axi_data_rd_top #(
 
     // Preprocess Data
     output  wire    [47:0]                      o_axird_pre_wren,   // p5b7 ~ p0b7 ~ p0b0 : p = polyn, b = bank = 1/8 polyn
-    output  wire    [71:0]                      o_axird_pre_wraddr, // 9 * 8
+    output  wire    [87:0]                      o_axird_pre_wraddr, // 9 * 8
     output  wire    [8*PRE_DATA_WIDTH-1:0]      o_axird_pre_wrdata  // 35/39 * 8
 );
 
@@ -67,7 +67,7 @@ module axi_data_rd_top #(
     wire [31:0] ibuf_addr;
     reg  [14:0] count_batch;
     assign ksk_wraddr = a2b_addr;
-    assign ibuf_addr = a2b_addr - count_batch * 12'hc00;
+    assign ibuf_addr = a2b_addr - count_batch * 12'h800;
     
     wire [AXI_DATA_WIDTH-1:0] a2b_data;
     wire [AXI_DATA_WIDTH-1:0] ksk_wrdata;
@@ -104,7 +104,7 @@ module axi_data_rd_top #(
             end
             
             S_PRE_XFER: begin
-                if (ibuf_addr == 12'hbff && a2b_wren)
+                if (ibuf_addr == 12'h7ff && a2b_wren)
                     state_nxt <= S_PRE_HALT;
             end
             
@@ -192,7 +192,7 @@ module axi_data_rd_top #(
 
 
     /* instantiate ksk buffer begin */
-    wire [8*KSK_DATA_WIDTH-1:0] ksk_wrdata_trim; // trimmed write data
+    wire [2*KSK_DATA_WIDTH-1:0] ksk_wrdata_trim; // trimmed write data
 
     wire [3:0] ksk_wr_stage;
     wire [3:0] ksk_wr_index;
@@ -201,7 +201,7 @@ module axi_data_rd_top #(
     data_trimmer #(
         .IN_WIDTH       ( 64                ),
         .OUT_WIDTH      ( KSK_DATA_WIDTH    ),
-        .DATA_COUNT     ( 8                 )
+        .DATA_COUNT     ( 2                 )
     )
     i_ksk_input_trimmer (
         .trim_in        ( ksk_wrdata        ),
@@ -244,12 +244,12 @@ module axi_data_rd_top #(
     
 
     /* instantiate preprocess input buffer begin */
-    wire [8*PRE_DATA_WIDTH-1:0] ibuf_din_trim;
+    wire [2*PRE_DATA_WIDTH-1:0] ibuf_din_trim;
 
     data_trimmer #(
         .IN_WIDTH       ( 64                ),
         .OUT_WIDTH      ( PRE_DATA_WIDTH    ),
-        .DATA_COUNT     ( 8                 )
+        .DATA_COUNT     ( 2                 )
     )
     i_pre_input_trimmer (
         .trim_in        ( ibuf_din          ),

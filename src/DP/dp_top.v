@@ -43,9 +43,9 @@ module dp_top#(
     output                                              o_madd_done,
     output                                              o_madd_we,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_wraddr,
-    output [COE_WIDTH*NUM_POLY*4-1:0]                   o_madd_data,
+    output [COE_WIDTH*NUM_POLY*2-1:0]                   o_madd_data,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_rdaddr,
-    input  [COE_WIDTH*NUM_POLY*4-1:0]                   i_madd_data
+    input  [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_data
 );
 
 localparam M_CTXT = 2'b01;
@@ -61,15 +61,15 @@ wire [1:0] o_madd_done_base;
 assign axi_ntt_madd_done = i_axi_done && o_ntt_done && (i_mode==M_CTXT? o_wruram_done : o_madd_done);
 
 /* ntt internal signals */
-(* keep = "true" *) wire [NUM_BASE_BANK*NUM_POLY*2-1:0]                 ntt_we;
-(* keep = "true" *) wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1:0]      ntt_wraddr;
-(* keep = "true" *) wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1:0]       ntt_tpp_data;
-(* keep = "true" *) wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1:0]      ntt_rdaddr;
-(* keep = "true" *) wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1:0]       tpp_ntt_data;
+(* keep = "true" *) wire [NUM_BASE_BANK*NUM_POLY-1:0]                 ntt_we;
+(* keep = "true" *) wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]      ntt_wraddr;
+(* keep = "true" *) wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]       ntt_tpp_data;
+(* keep = "true" *) wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]      ntt_rdaddr;
+(* keep = "true" *) wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]       tpp_ntt_data;
 (* keep = "true" *) wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]        madd_rdaddr;
-(* keep = "true" *) wire  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1 : 0]    tpp_madd_data;
+(* keep = "true" *) wire  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1 : 0]    tpp_madd_data;
 (* keep = "true" *) wire [ADDR_WIDTH+LOG_NUM_BANK-1:0]                  madd_curaddr;
-(* keep = "true" *) wire  [COE_WIDTH*NUM_POLY*2-1 : 0]                  madd_dina;
+(* keep = "true" *) wire  [COE_WIDTH*NUM_POLY-1 : 0]                  madd_dina;
 (* keep = "true" *) wire  [(ADDR_WIDTH+LOG_NUM_BANK)*NUM_BASE_BANK-1 : 0]madd_dina_rdaddr;
 
 
@@ -205,6 +205,7 @@ dp0(
 );
 
 /* instance of the triple buffer */
+/*
 (* keep = "true" *) dp_triple_pp_buffer#(
     .COE_WIDTH        (COE_WIDTH),
     .ADDR_WIDTH       (ADDR_WIDTH),                 // Depth of ram is 1<<ADDR_WIDTH
@@ -228,8 +229,10 @@ tri_pp1(
     .i_madd_rdaddr      (madd_rdaddr),
     .o_madd_data        (tpp_madd_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY*2-1 -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY])
 );
+*/
 
 /* instance two dp_core */
+/*
 (* keep = "true" *) dp_core#(
     .COE_WIDTH        (COE_WIDTH),
     .ADDR_WIDTH       (ADDR_WIDTH),                 // Depth of ram is 1<<ADDR_WIDTH
@@ -268,13 +271,13 @@ dp1(
     .o_uram_addr          (),
     .i_uram_din           (uram_dout)
 );
-
+*/
 
 
 /* instance of the double buffer */
 
 
-assign o_ntt_done = &o_ntt_done_base;
-assign o_madd_done = &o_madd_done_base;
+assign o_ntt_done = o_ntt_done_base;
+assign o_madd_done = o_madd_done_base;
 
 endmodule
