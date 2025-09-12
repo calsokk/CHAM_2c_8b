@@ -59,7 +59,11 @@ module mvp_top #(
     input  wire [AXI_ADDR_WIDTH-1:0]        ksk_ptr              ,
     input  wire [AXI_ADDR_WIDTH-1:0]        mat_ptr              ,
     input  wire [AXI_ADDR_WIDTH-1:0]        vec_ptr              ,
-    input  wire [AXI_ADDR_WIDTH-1:0]        data_ptr
+    input  wire [AXI_ADDR_WIDTH-1:0]        data_ptr             ,
+    
+    output  wire    [279:0]             io_o_intt_concat,
+    output  wire                        io_o_intt_we_result,
+    output  wire    [71:0]              io_o_intt_addr_result
 );
 
     parameter LEVEL_WIDTH       = 4;
@@ -121,14 +125,14 @@ module mvp_top #(
     wire    [N_POLY * 3 * NUM_BASE_BANK-1:0]        axi_dp_we_w;
     wire    [N_POLY * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
     wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  axi_dp_waddr_w; 
-    wire    [2 * NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
+    wire    [NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
     // dp1 => preprocess
     wire                                        dp1_pre_we_w; //bit_width ?
     wire    [ADDR_WIDTH -1:0]  dp1_pre_waddr_w; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w0; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w1; 
-    wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  dp1_pre_raddr_w; 
+    wire    [ADDR_WIDTH -1:0]  dp1_pre_raddr_w; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_rdata_w; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w0; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w1; 
@@ -360,7 +364,7 @@ axi_data_rd_top #(
     .AXI_DATA_WIDTH         ( AXI_DATA_WIDTH    ),
     .AXI_XFER_SIZE_WIDTH    ( AXI_XFER_WIDTH    ),
     .INCLUDE_DATA_FIFO      ( INCLUDE_DATA_FIFO ),
-    .KSK_DATA_WIDTH         ( COE_WIDTH_L       ),
+    //.KSK_DATA_WIDTH         ( COE_WIDTH_L       ),
     .PRE_DATA_WIDTH         ( COE_WIDTH_L       ),
     .RAM_DELAY              ( COMMON_URAM_DELAY )
 )
@@ -382,23 +386,24 @@ u_axi_data_rd_top(
     .i_axird_start          ( start_w[0]        ),
     .o_axird_done           ( axird_done        ),
     .o_axird_alldone        ( axi_alldone_w     ),
-    .ksk_ptr                ( ksk_ptr           ),
+    //.ksk_ptr                ( ksk_ptr           ),
     .mat_ptr                ( mat_ptr           ),
     .vec_ptr                ( vec_ptr           ),
     .mat_size_bytes         ( mat_size_bytes_w  ),
     .vec_size_bytes         ( vec_size_bytes_w  ),
-    .ksk_size_bytes         ( ksk_size_bytes    ),
+    //.ksk_size_bytes         ( ksk_size_bytes    ),
     .data_size_batches      ( data_size_batches ),
     // KSK
-    .i_axird_ksk_stage      ( level_s7_w        ),
-    .i_axird_ksk_rdaddr     ( ksk_raddr_w       ),
-    .o_axird_ksk_rddata     ( ksk_rdata_w       ),
+    //.i_axird_ksk_stage      ( level_s7_w        ),
+    //.i_axird_ksk_rdaddr     ( ksk_raddr_w       ),
+    //.o_axird_ksk_rddata     ( ksk_rdata_w       ),
     // Preprocess
     .o_axird_pre_wren       ( axi_dp_we_w       ),
     .o_axird_pre_wraddr     ( axi_dp_waddr_w    ),
     .o_axird_pre_wrdata     ( axi_dp_wdata_w    )
 );
 
+/*
 axi_data_wr_top #(
     .AXI_ADDR_WIDTH         ( AXI_ADDR_WIDTH    ),
     .AXI_DATA_WIDTH         ( AXI_DATA_WIDTH    ),
@@ -431,6 +436,7 @@ u_axi_data_wr_top(
     .o_axiwr_rdaddr         ( axi_rd_raddr_w    ),
     .i_axiwr_rddata         ( redbuf_rdata_w    )
 );
+*/
 
 dp_top #(
     .COE_WIDTH              ( COE_WIDTH_L       ),
@@ -497,6 +503,7 @@ u_preprocess_top1(
     .io_o_mux_rddata        ( mux_pre_rdata_a1_w)
 );
 */
+
 preprocess_top #(
     .DATA_WIDTH             ( COE_WIDTH_L       ),
     .ADDR_WIDTH             ( ADDR_WIDTH        )
@@ -518,7 +525,10 @@ u_preprocess_top0(
     .io_i_dp1_rdaddr        ( dp1_pre_raddr_w   ),
     .io_o_dp1_rddata        ( dp1_pre_rdata_w0  ),
     .io_i_mux_rdaddr        ( mux_raddr_a0_w    ),
-    .io_o_mux_rddata        ( mux_pre_rdata_a0_w)
+    .io_o_mux_rddata        ( mux_pre_rdata_a0_w),
+    .io_o_intt_concat (io_o_intt_concat),
+    .io_o_intt_we_result(io_o_intt_we_result),
+    .io_o_intt_addr_result(io_o_intt_addr_result)
 );
 
 /*

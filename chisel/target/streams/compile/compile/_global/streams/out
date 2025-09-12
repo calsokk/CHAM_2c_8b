@@ -1,13 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:90:36: reassignment to val[0m
-[0m[[0m[31merror[0m] [0m[0m        u_tpp(i).io.polyvec2_rd <> =DontCare[0m
-[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:90:33: postfix operator <> needs to be enabled[0m
-[0m[[0m[31merror[0m] [0m[0mby making the implicit value scala.language.postfixOps visible.[0m
-[0m[[0m[31merror[0m] [0m[0m----[0m
-[0m[[0m[31merror[0m] [0m[0mThis can be achieved by adding the import clause 'import scala.language.postfixOps'[0m
-[0m[[0m[31merror[0m] [0m[0mor by setting the compiler option -language:postfixOps.[0m
-[0m[[0m[31merror[0m] [0m[0mSee the Scaladoc for value scala.language.postfixOps for a discussion[0m
-[0m[[0m[31merror[0m] [0m[0mwhy the feature needs to be explicitly enabled.[0m
-[0m[[0m[31merror[0m] [0m[0m        u_tpp(i).io.polyvec2_rd <> =DontCare[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/INTT.scala:53:33: value o_we_result is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst_n: chisel3.Bool; val ntt_start: chisel3.Bool; val ntt_done: chisel3.Bool; val i_data_b_l: chisel3.UInt; val i_data_b_r: chisel3.UInt; val o_data_a: chisel3.UInt; val o_we_a_l: chisel3.Bool; val o_we_a_r: chisel3.Bool; val o_addr_a_l: chisel3.UInt; val o_addr_a_r: chisel3.UInt; val o_addr_b_l: chisel3.UInt; val o_addr_b_r: chisel3.UInt}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.o_we_result := u_intt.io.o_we_result[0m
 [0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

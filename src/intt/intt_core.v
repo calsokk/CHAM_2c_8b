@@ -34,7 +34,8 @@ module intt_core#(
     output [8:0]              o_addr_a_r,
     output [8:0]              o_addr_b_l,
     output [8:0]              o_addr_b_r,
-    output                    ntt_done
+    output                    ntt_done,
+    output                    o_we_result
 );
 
 /* Control signal */
@@ -130,7 +131,8 @@ cu(
     .o_addr_b_l(o_addr_b_l),
     .o_addr_b_r(o_addr_b_r),
     .o_addr_tf(o_addr_tf),
-    .ntt_done(ntt_done)
+    .ntt_done(ntt_done),
+    .o_we_result(o_we_result)
 );
 
 tf_rom_wrapper#(

@@ -33,7 +33,8 @@ module intt_cu#(
     output           [8:0]   o_addr_b_l,
     output           [8:0]   o_addr_b_r,
     output    reg    [10:0]  o_addr_tf,
-    output                   ntt_done
+    output                   ntt_done,
+    output                   o_we_result
 );
 
 /* FSM params */
@@ -150,6 +151,8 @@ assign coe_mux_sel = stage_cnt_reg[COMMON_BRAM_DELAY][0];
 assign swap_mux0_sel = bf_cnt_reg[COMMON_BRAM_DELAY+1][0];
 //assign swap_mux1_sel = bf_cnt_reg[0][COMMON_NTT_PIP_DELAY-1];
 assign tf_mux_sel = stage_cnt_reg[COMMON_BRAM_DELAY];
+
+assign o_we_result = (nxt_state  == 2'b10)? stage_cnt_reg[COMMON_NTT_PIP_DELAY] == 4'hb : 1'b0;
 
 assign o_we_a_l = (nxt_state  == 2'b10)? stage_cnt_reg[COMMON_NTT_PIP_DELAY][0]:1'b0;
 assign o_we_a_r = (nxt_state  == 2'b10)?(~stage_cnt_reg[COMMON_NTT_PIP_DELAY][0]):1'b0;

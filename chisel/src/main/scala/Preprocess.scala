@@ -14,11 +14,11 @@ class preprocess_top_chisel extends Module {
 
     val io = IO(new Bundle {
         val i_intt_start = Input(Bool())
-        val o_intt_done = Output(Bool())
+        val o_intt_done  = Output(Bool())
         //val i_vpu4_start = Input(Bool())
-        //val o_vpu4_done = Output(Bool())
+        //val o_vpu4_done  = Output(Bool())
         val i_pre_switch = Input(Bool())
-        val i_mux_done = Input(Bool())
+        val i_mux_done   = Input(Bool())
 
         val i_coeff_index = Input(UInt(12.W))
         
@@ -33,6 +33,12 @@ class preprocess_top_chisel extends Module {
             List.tabulate(4) { x => Flipped(new VpuRdPort(utils.MODWIDTH(x%2), 12, 8)) }
         )
         */
+
+        // NEW: concatenated output of all 8 INTT lanes
+        val o_intt_concat = Output(UInt((utils.MODWIDTH(0) * 8).W))
+        val o_intt_addr = Output(UInt((9 * 8).W))
+
+        val o_intt_we_result = Output(Bool())
     })
 
     val u_intt = List.tabulate(1) { x => Module(new intt_wrapper(x/2)) }
@@ -112,9 +118,7 @@ class preprocess_top_chisel extends Module {
     for (i <- 0 until 1) {
         io.i_intt_start <> u_intt(i).io.ntt_start
     }
-    io.o_intt_done      := u_intt(0).io.ntt_done //&& u_intt(1).io.ntt_done &&
-                           //u_intt(2).io.ntt_done && u_intt(3).io.ntt_done &&
-                           //u_intt(4).io.ntt_done && u_intt(5).io.ntt_done
+    io.o_intt_done      := u_intt(0).io.ntt_done
 
     //io.i_vpu4_start     <> u_vpu4.io.i_vpu4_start
     //io.o_vpu4_done      <> u_vpu4.io.o_vpu4_done
@@ -127,5 +131,21 @@ class preprocess_top_chisel extends Module {
     for (i <- 0 until 4) {
         //u_dpp(i).io.i_done := io.o_vpu4_done && io.i_mux_done
     }
-    
+
+    // -----------------------------------------------------------------------
+    // Concatenate the INTT's 8-lane output bus
+    // -----------------------------------------------------------------------
+    {
+        // Replace ".data" with the actual Vec field name in intt_wrapper
+        val lanes: Vec[UInt] = u_intt(0).io.wr_l.data
+        io.o_intt_concat := Cat(lanes.reverse)
+    }
+
+    {
+        // Replace ".data" with the actual Vec field name in intt_wrapper
+        val lanes: Vec[UInt] = u_intt(0).io.wr_l.addr
+        io.o_intt_addr := Cat(lanes.reverse)
+    }
+
+    io.o_intt_we_result := u_intt(0).io.o_we_result
 }

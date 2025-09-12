@@ -91,6 +91,7 @@ module tb_top;
 
 
     `ifdef INIT_KSK
+    /*
         defparam `KSK_RAM.gen_ksk_uram[0].i_ksk_uram_spdram.MEMORY_PRIMITIVE="block";
         defparam `KSK_RAM.gen_ksk_uram[0].i_ksk_uram_spdram.MEMORY_INIT_FILE="uram_k0.mem";
         defparam `KSK_RAM.gen_ksk_uram[1].i_ksk_uram_spdram.MEMORY_PRIMITIVE="block";
@@ -115,6 +116,7 @@ module tb_top;
         defparam `KSK_RAM.gen_ksk_uram[10].i_ksk_uram_spdram.MEMORY_INIT_FILE="uram_k10.mem";
         defparam `KSK_RAM.gen_ksk_uram[11].i_ksk_uram_spdram.MEMORY_PRIMITIVE="block";
         defparam `KSK_RAM.gen_ksk_uram[11].i_ksk_uram_spdram.MEMORY_INIT_FILE="uram_k11.mem";
+        */
     `endif
 
     int                                     fd, rt, i, ii;
@@ -183,6 +185,8 @@ module tb_top;
     wire                                    data_axi_rready;
     wire    [C_DATA_AXI_DATA_WIDTH_AXI_BRAM-1:0]     data_axi_rdata;
     wire                                    data_axi_rlast;
+    wire    [279:0]                         io_o_intt_concat;
+    wire                                    io_o_intt_we_result;
 
     // AXI4-Lite slave interface
     // reg                                     s_axi_control_awvalid;
@@ -338,11 +342,15 @@ module tb_top;
         .ksk_ptr    ( csr_ksk_ptr   ),
         .mat_ptr    ( csr_mat_ptr   ),
         .vec_ptr    ( csr_vec_ptr   ),
-        .data_ptr   ( csr_rslt_ptr  )
+        .data_ptr   ( csr_rslt_ptr  ),
+        
+        .io_o_intt_concat(io_o_intt_concat),
+        .io_o_intt_we_result(io_o_intt_we_result)
     );
 
     assign interrupt = csr_ap_done[0];  // TODO
-
+    
+    /*
     // KSK URAM module for stg_0_0 ksk write result check 
     wire                    wea   [0:11];
     wire [12:0]             addra [0:11];
@@ -371,6 +379,7 @@ module tb_top;
             );
         end
     endgenerate
+    */
 
     wire                    rslt_wea  ;
     wire [10:0]             rslt_addra;
@@ -864,14 +873,9 @@ module tb_top;
     endtask
 
     task full_test();
-        stage0_mode = 0;
+        stage0_mode = 1;
         initialize_ddr_mem({test_data_dir, "ddr_in_vec.txt"}, 
             {test_data_dir, "ddr_in_mat.txt"}, {test_data_dir, "ddr_in_ksk.txt"});
-        config_kernel_init();
-        mvp_start();
-        wait(interrupt);
-        wait_some_cycles();
-        stage0_mode = 1;
         config_kernel_run();
         mvp_start();
         wait(interrupt);

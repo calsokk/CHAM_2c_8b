@@ -25,6 +25,7 @@ class intt_core(width: Int, modType: Int)
         val o_addr_a_r = Output(UInt(9.W))
         val o_addr_b_l = Output(UInt(9.W))
         val o_addr_b_r = Output(UInt(9.W))
+        val o_we_result = Output(Bool())
     })
 }
 
@@ -40,12 +41,14 @@ class intt_wrapper(modType: Int) extends Module {
         val wr_r = new BufWrPort(width, 9, 8)
         val rd_l = new BufRdPort(width, 9, 8)
         val rd_r = new BufRdPort(width, 9, 8)
+        val o_we_result = Output(Bool())
     })
 
     val u_intt = Module(new intt_core(width, modType))
 
     u_intt.io.clk   := clock
     u_intt.io.rst_n := !(reset.asBool)
+    io.o_we_result := u_intt.io.o_we_result
 
     io.ntt_start    <> u_intt.io.ntt_start
     io.ntt_done     <> u_intt.io.ntt_done

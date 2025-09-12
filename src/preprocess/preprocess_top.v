@@ -16,11 +16,14 @@ module preprocess_top #(
 
     input   wire                        io_i_dp1_wren,
     input   wire    [ADDR_WIDTH-1:0]    io_i_dp1_wraddr,
-    input   wire    [6*DATA_WIDTH-1:0]  io_i_dp1_wrdata,
+    input   wire    [2*DATA_WIDTH-1:0]  io_i_dp1_wrdata,
     input   wire    [ADDR_WIDTH-1:0]    io_i_dp1_rdaddr,
-    output  wire    [6*DATA_WIDTH-1:0]  io_o_dp1_rddata,
+    output  wire    [2*DATA_WIDTH-1:0]  io_o_dp1_rddata,
     input   wire    [ADDR_WIDTH-1:0]    io_i_mux_rdaddr,
-    output  wire    [4*DATA_WIDTH-1:0]  io_o_mux_rddata
+    output  wire    [4*DATA_WIDTH-1:0]  io_o_mux_rddata,
+    output  wire    [279:0]             io_o_intt_concat,
+    output  wire                        io_o_intt_we_result,
+    output  wire    [71:0]              io_o_intt_addr_result
 );
 
     preprocess_top_chisel u_dp2_top (
@@ -40,7 +43,10 @@ module preprocess_top #(
         .io_dp1_wr_0_data (io_i_dp1_wrdata[0*DATA_WIDTH + 35 - 1 : 0*DATA_WIDTH]),
 
         .io_dp1_rd_0_addr (io_i_dp1_rdaddr),
-        .io_dp1_rd_0_data (io_o_dp1_rddata[0*DATA_WIDTH + 35 - 1 : 0*DATA_WIDTH])
+        .io_dp1_rd_0_data (io_o_dp1_rddata[0*DATA_WIDTH + 35 - 1 : 0*DATA_WIDTH]),
+        .io_o_intt_concat (io_o_intt_concat),
+        .io_o_intt_we_result(io_o_intt_we_result),
+        .io_o_intt_addr (io_o_intt_addr_result)
     );
 
     assign io_o_vpu4_done = 1'b1;
@@ -48,7 +54,7 @@ module preprocess_top #(
     genvar i;
     generate
         if (DATA_WIDTH > 35) begin
-            for (i = 0; i < 4; i = i + 1) begin : gen_zero_35
+            for (i = 0; i < 1; i = i + 1) begin : gen_zero_35
                 assign io_o_dp1_rddata[(i+1)*DATA_WIDTH-1 : i*DATA_WIDTH+35] = 'b0;
                 assign io_o_mux_rddata[(i+1)*DATA_WIDTH-1 : i*DATA_WIDTH+35] = 'b0;
             end

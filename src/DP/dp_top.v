@@ -124,13 +124,13 @@ generate
     for(idx_poly = 0; idx_poly < NUM_POLY; idx_poly = idx_poly + 1) begin
         assign uram_din[idx_poly*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*idx_poly+uram_wraddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
         assign madd_dina[idx_poly*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*idx_poly+madd_curaddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
-        assign uram_din[(NUM_POLY+idx_poly)*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*(NUM_POLY+idx_poly)+uram_wraddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
-        assign madd_dina[(NUM_POLY+idx_poly)*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*(NUM_POLY+idx_poly)+madd_curaddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
+        //assign uram_din[(NUM_POLY+idx_poly)*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*(NUM_POLY+idx_poly)+uram_wraddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
+        //assign madd_dina[(NUM_POLY+idx_poly)*COE_WIDTH +: COE_WIDTH] =  tpp_madd_data[COE_WIDTH*(NUM_BASE_BANK*(NUM_POLY+idx_poly)+madd_curaddr[LOG_NUM_BANK-1:0]) +: COE_WIDTH];
     end
     for(idx_poly = 0; idx_poly < NUM_BASE_BANK; idx_poly = idx_poly + 1) begin
         assign madd_rdaddr[ADDR_WIDTH*idx_poly +: ADDR_WIDTH] = (i_mode == M_CTXT? uram_tpp_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH] : madd_dina_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH]);
-        assign madd_rdaddr[ADDR_WIDTH*(idx_poly+NUM_BASE_BANK) +: ADDR_WIDTH] = (i_mode == M_CTXT? uram_tpp_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH] : madd_dina_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH]);
-        assign madd_rdaddr[ADDR_WIDTH*(idx_poly+2*NUM_BASE_BANK) +: ADDR_WIDTH] = (i_mode == M_CTXT? uram_tpp_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH] : madd_dina_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH]);
+        //assign madd_rdaddr[ADDR_WIDTH*(idx_poly+NUM_BASE_BANK) +: ADDR_WIDTH] = (i_mode == M_CTXT? uram_tpp_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH] : madd_dina_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH]);
+        //assign madd_rdaddr[ADDR_WIDTH*(idx_poly+2*NUM_BASE_BANK) +: ADDR_WIDTH] = (i_mode == M_CTXT? uram_tpp_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH] : madd_dina_rdaddr[idx_poly*URAM_ADDR_WIDTH+LOG_NUM_BANK +: ADDR_WIDTH]);
     end
 endgenerate
 
