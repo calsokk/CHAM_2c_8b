@@ -90,7 +90,7 @@ module mvp_top #(
     parameter Q0_WIDTH          = 35;
     parameter Q1_WIDTH          = 35;
     parameter N_STAGE           = 5;
-    parameter N_POLY            = 2;
+    parameter N_POLY            = 1;
     parameter INCLUDE_DATA_FIFO = 0;
     parameter AXI_XFER_WIDTH    = 32;
 
@@ -122,18 +122,18 @@ module mvp_top #(
     wire    [1 : 0]                 dp_mode_w;
     wire    [11 : 0]                coeff_index_w;
     // axi => dp
-    wire    [N_POLY * 3 * NUM_BASE_BANK-1:0]        axi_dp_we_w;
-    wire    [N_POLY * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
+    wire    [N_POLY *2 * 3 * NUM_BASE_BANK-1:0]        axi_dp_we_w;
+    wire    [N_POLY * 2 * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
     wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  axi_dp_waddr_w; 
     wire    [NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
     // dp1 => preprocess
     wire                                        dp1_pre_we_w; //bit_width ?
     wire    [ADDR_WIDTH -1:0]  dp1_pre_waddr_w; 
-    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w; 
+    wire    [1 * COE_WIDTH_L-1:0]      dp1_pre_wdata_w; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w0; 
     wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_wdata_w1; 
     wire    [ADDR_WIDTH -1:0]  dp1_pre_raddr_w; 
-    wire    [1 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_rdata_w; 
+    wire    [2 * N_POLY * COE_WIDTH_L-1:0]      dp1_pre_rdata_w; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w0; 
     wire    [N_POLY * COE_WIDTH_L-1:0]          dp1_pre_rdata_w1; 
     // preprocess => mux
@@ -444,7 +444,7 @@ dp_top #(
     .URAM_ADDR_WIDTH        ( ADDR_WIDTH        ),
     .NUM_SPLIT              ( 4                 ),
     .LOG_NUM_BANK           ( ADDR_WIDTH_H      ),
-    .NUM_POLY               ( N_POLY/2          ),
+    .NUM_POLY               ( N_POLY          ),
     .NUM_BASE_BANK          ( NUM_BASE_BANK     ),
     .COMMON_BRAM_DELAY      ( COMMON_BRAM_DELAY ),
     .DP_MADD_PIP_DELAY      ( 5                 )
@@ -474,8 +474,8 @@ u_dp_top(
 wire pre_mux_done_w;
 assign pre_mux_done_w = done_w[5] | stall_w; //Risky
 assign dp1_pre_rdata_w = {dp1_pre_rdata_w1, dp1_pre_rdata_w0};
-assign dp1_pre_wdata_w1 = dp1_pre_wdata_w[COE_WIDTH_L*2-1:0]; 
-assign dp1_pre_wdata_w0 = dp1_pre_wdata_w[COE_WIDTH_L*2-1:0];
+assign dp1_pre_wdata_w1 = dp1_pre_wdata_w[COE_WIDTH_L-1:0]; 
+assign dp1_pre_wdata_w0 = dp1_pre_wdata_w[COE_WIDTH_L-1:0];
 
 /*
 preprocess_top #(

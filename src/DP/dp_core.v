@@ -40,10 +40,10 @@ module dp_core#(
     // madd ports to downstream buffer
     output                                                 o_madd_nxt_we,
     output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]              o_madd_nxt_wraddr,
-    output      [COE_WIDTH*NUM_POLY*2-1:0]                 o_madd_nxt_dout,
+    output      [COE_WIDTH * NUM_POLY-1:0]                 o_madd_nxt_dout,
     // madd ports from upstream buffer
     output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]              o_madd_nxt_rdaddr,
-    input       [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_nxt_din_psum,
+    input       [COE_WIDTH*NUM_POLY-1:0]                   i_madd_nxt_din_psum,
     output      [(ADDR_WIDTH+LOG_NUM_BANK)*NUM_BASE_BANK-1:0]              o_madd_rdaddr,
     output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]               o_madd_curaddr,
     input       [COE_WIDTH*NUM_POLY-1:0]                   i_madd_dina,
@@ -120,8 +120,8 @@ polyvec_ntt(
 
 
 /* instance madd */
-wire [NUM_POLY*COE_WIDTH*2-1 : 0] madd_dina, uram_din;
-wire [NUM_POLY*COE_WIDTH*2-1 : 0] madd_nxt_din_psum, madd_nxt_dout;
+wire [NUM_POLY*COE_WIDTH-1 : 0] madd_dina, uram_din;
+wire [NUM_POLY*COE_WIDTH-1 : 0] madd_nxt_din_psum, madd_nxt_dout;
 
 madd_top #(
     .COE_WIDTH(COE_WIDTH),
@@ -154,8 +154,8 @@ madd_top #(
 genvar idx_poly;
 generate
     for(idx_poly = 0; idx_poly < NUM_POLY; idx_poly = idx_poly + 1) begin
-        assign madd_dina[COE_WIDTH*2*idx_poly +: COE_WIDTH*2] = {2{i_madd_dina[COE_WIDTH*idx_poly +: COE_WIDTH]}};
-        assign uram_din[COE_WIDTH*2*idx_poly +: COE_WIDTH*2] = {i_uram_din[COE_WIDTH*(NUM_POLY+idx_poly) +: COE_WIDTH], i_uram_din[COE_WIDTH*idx_poly +: COE_WIDTH]};
+        assign madd_dina[COE_WIDTH*idx_poly +: COE_WIDTH] = {i_madd_dina[COE_WIDTH*idx_poly +: COE_WIDTH]};
+        assign uram_din[COE_WIDTH*idx_poly +: COE_WIDTH] = {i_uram_din[COE_WIDTH*(NUM_POLY+idx_poly) +: COE_WIDTH], i_uram_din[COE_WIDTH*idx_poly +: COE_WIDTH]};
     end
 endgenerate
 endmodule

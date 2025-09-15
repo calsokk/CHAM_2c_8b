@@ -10,7 +10,7 @@ module pre_input_transposer #(
 
     input   wire                        i_ibuf_wren,
     input   wire    [11:0]              i_ibuf_addr,    // 0 ~ 3071
-    input   wire    [8*DATA_WIDTH-1:0]  i_ibuf_data,
+    input   wire    [2*DATA_WIDTH-1:0]  i_ibuf_data,
 
     output  wire    [47:0]              o_ibuf_wren,    // p5b7 ~ p0b7 ~ p0b0 : p = polyn, b = bank = 1/8 polyn
     output  wire    [71:0]              o_ibuf_addr,    // 9 * 8
@@ -79,6 +79,7 @@ module pre_input_transposer #(
             wire [2*DATA_WIDTH-1:0] ram_din;
             assign ram_din = i_ibuf_data;
 
+            /*
             xpm_memory_sdpram #(
                 .ADDR_WIDTH_A           ( 8                     ),
                 .ADDR_WIDTH_B           ( 8                     ),
@@ -117,6 +118,28 @@ module pre_input_transposer #(
                 .doutb  ( ram_dout          ),
                 .regceb ( 1'b1              ),
                 .rstb   ( 1'b0              )
+            );
+            */
+            
+            sdpram #(
+                .ADDR_WIDTH_A        (8),
+                .ADDR_WIDTH_B        (8),
+                .WRITE_DATA_WIDTH_A  (2 * DATA_WIDTH),
+                .READ_DATA_WIDTH_B   (2 * DATA_WIDTH),
+                .READ_LATENCY_B      (1),
+                .WRITE_MODE_B        (0)  // 0 = read_first
+            ) i_ibuf_lutram_sdpram (
+                .clka    ( clk               ),
+                .clkb    ( clk               ),
+                .ena     ( 1'b1              ),
+                .enb     ( 1'b1              ),
+                .addra   ( iaddr[7:0]        ),
+                .addrb   ( oaddr[8:1]        ),
+                .wea     ( iwren             ),
+                .dina    ( ram_din           ),
+                .doutb   ( ram_dout          ),
+                .regceb  ( 1'b1              ),
+                .rstb    ( 1'b0              )
             );
 
             always @ (*) begin
@@ -201,4 +224,69 @@ module pre_input_transposer #(
         end
     endgenerate
 
+endmodule
+
+
+// Vendor-agnostic simple dual-port RAM (common or independent clocks)
+// Port A: write; Port B: read; READ_MODE_B: "read_first"; READ_LATENCY_B >= 1
+module sdpram #(
+  parameter integer ADDR_WIDTH_A        = 8,
+  parameter integer ADDR_WIDTH_B        = 8,
+  parameter integer WRITE_DATA_WIDTH_A  = 64,
+  parameter integer READ_DATA_WIDTH_B   = 64,
+  parameter integer READ_LATENCY_B      = 1,  // >=1
+  parameter integer WRITE_MODE_B        = 0   // 0=read_first (modeled)
+)(
+  input  wire                          clka,
+  input  wire                          clkb,
+  input  wire                          ena,
+  input  wire                          enb,
+  input  wire [ADDR_WIDTH_A-1:0]       addra,
+  input  wire [ADDR_WIDTH_B-1:0]       addrb,
+  input  wire                          wea,
+  input  wire [WRITE_DATA_WIDTH_A-1:0] dina,
+  output reg  [READ_DATA_WIDTH_B-1:0]  doutb,
+  input  wire                          regceb,
+  input  wire                          rstb
+);
+  localparam integer DEPTH = (1 << ADDR_WIDTH_A);
+
+  reg [WRITE_DATA_WIDTH_A-1:0] mem [0:DEPTH-1];
+
+  // Port A: Write
+  always @(posedge clka) begin
+    if (ena && wea)
+      mem[addra] <= dina;
+  end
+
+  // Port B: Read (read_first semantics)
+  generate
+    if (READ_LATENCY_B == 1) begin : g_rl1
+      // 1-cycle latency: register mem[addrb] directly to doutb
+      always @(posedge clkb) begin
+        if (rstb) begin
+          doutb <= {READ_DATA_WIDTH_B{1'b0}};
+        end else if (enb && regceb) begin
+          // For common-clock same-address collision, this samples "old" data
+          doutb <= mem[addrb];
+        end
+      end
+    end else begin : g_rlN
+      // N-cycle latency (N>=2): pipeline depth = N-1 ahead of doutb
+      reg [READ_DATA_WIDTH_B-1:0] pipe [0:READ_LATENCY_B-2];
+      integer i;
+      always @(posedge clkb) begin
+        if (rstb) begin
+          for (i = 0; i < READ_LATENCY_B-1; i = i + 1)
+            pipe[i] <= {READ_DATA_WIDTH_B{1'b0}};
+          doutb <= {READ_DATA_WIDTH_B{1'b0}};
+        end else if (enb && regceb) begin
+          pipe[0] <= mem[addrb];               // sample current mem value
+          for (i = 1; i < READ_LATENCY_B-1; i = i + 1)
+            pipe[i] <= pipe[i-1];
+          doutb <= pipe[READ_LATENCY_B-2];     // exactly N cycles latency
+        end
+      end
+    end
+  endgenerate
 endmodule

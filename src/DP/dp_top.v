@@ -43,7 +43,7 @@ module dp_top#(
     output                                              o_madd_done,
     output                                              o_madd_we,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_wraddr,
-    output [COE_WIDTH*NUM_POLY*2-1:0]                   o_madd_data,
+    output [COE_WIDTH*NUM_POLY-1:0]                   o_madd_data,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_rdaddr,
     input  [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_data
 );
@@ -193,10 +193,10 @@ dp0(
     // madd ports to downstream buffer
     .o_madd_nxt_we            (o_madd_we),          // avoid multi-driven
     .o_madd_nxt_wraddr        ({o_madd_wraddr[ADDR_WIDTH-1:0],o_madd_wraddr[ADDR_WIDTH +: LOG_NUM_BANK]}),          // multi-driven
-    .o_madd_nxt_dout          (o_madd_data[COE_WIDTH*NUM_POLY*2-1    -: COE_WIDTH*NUM_POLY*2]),
+    .o_madd_nxt_dout          (o_madd_data[COE_WIDTH*NUM_POLY-1    -: COE_WIDTH*NUM_POLY]),
     // madd ports from upstream buffer
     .o_madd_nxt_rdaddr        ({o_madd_rdaddr[ADDR_WIDTH-1:0],o_madd_rdaddr[ADDR_WIDTH +: LOG_NUM_BANK]}),
-    .i_madd_nxt_din_psum      (i_madd_data[COE_WIDTH*NUM_POLY*2-1 -: COE_WIDTH*NUM_POLY*2]),
+    .i_madd_nxt_din_psum      (i_madd_data[COE_WIDTH*NUM_POLY-1 -: COE_WIDTH*NUM_POLY]),
     .o_madd_curaddr           (madd_curaddr),
     .o_madd_rdaddr        (madd_dina_rdaddr),          // multi-driven
     .i_madd_dina          (madd_dina[COE_WIDTH*NUM_POLY-1 -: COE_WIDTH*NUM_POLY]),

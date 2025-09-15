@@ -290,6 +290,7 @@ inst_ar_to_r_transaction_cntr (
 // AXI Read Channel
 ///////////////////////////////////////////////////////////////////////////////
 generate
+/*
 if (C_INCLUDE_DATA_FIFO == 1) begin : gen_fifo
 
   // xpm_fifo_sync: Synchronous FIFO
@@ -342,14 +343,15 @@ if (C_INCLUDE_DATA_FIFO == 1) begin : gen_fifo
   assign m_axi_rready = 1'b1;
 end
 else begin : gen_no_fifo
+*/
 
-  // All signals pass through.
-  assign m_axis_tvalid = m_axi_rvalid;
-  assign m_axis_tdata  = m_axi_rdata;
-  assign m_axi_rready  = m_axis_tready;
-  assign m_axis_tlast  = m_axi_rlast;
+// All signals pass through.
+assign m_axis_tvalid = m_axi_rvalid;
+assign m_axis_tdata  = m_axi_rdata;
+assign m_axi_rready  = m_axis_tready;
+assign m_axis_tlast  = m_axi_rlast;
 
-end
+//end
 endgenerate
 
 assign rxfer = m_axi_rready & m_axi_rvalid;

@@ -16,9 +16,9 @@ module preprocess_top #(
 
     input   wire                        io_i_dp1_wren,
     input   wire    [ADDR_WIDTH-1:0]    io_i_dp1_wraddr,
-    input   wire    [2*DATA_WIDTH-1:0]  io_i_dp1_wrdata,
+    input   wire    [1*DATA_WIDTH-1:0]  io_i_dp1_wrdata,
     input   wire    [ADDR_WIDTH-1:0]    io_i_dp1_rdaddr,
-    output  wire    [2*DATA_WIDTH-1:0]  io_o_dp1_rddata,
+    output  wire    [1*DATA_WIDTH-1:0]  io_o_dp1_rddata,
     input   wire    [ADDR_WIDTH-1:0]    io_i_mux_rdaddr,
     output  wire    [4*DATA_WIDTH-1:0]  io_o_mux_rddata,
     output  wire    [279:0]             io_o_intt_concat,

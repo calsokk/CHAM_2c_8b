@@ -61,6 +61,10 @@ module axi_data_rd_top #(
     wire                           ibuf_wren = a2b_wren;
     wire [31:0]                    ibuf_addr = a2b_addr; // adjusted below per batch
 
+    wire                           ibuf_done;
+    reg [1:0] state, state_nxt;
+    reg [14:0] count_batch;
+
     axi_axi2bram #(
         .AXI_ADDR_WIDTH       ( AXI_ADDR_WIDTH      ),
         .AXI_DATA_WIDTH       ( AXI_DATA_WIDTH      ),
@@ -91,8 +95,8 @@ module axi_data_rd_top #(
     /////////////////
     // State machine (preprocess-only)
     /////////////////
-    reg [1:0] state, state_nxt;
-    reg [14:0] count_batch;
+    //reg [1:0] state, state_nxt;
+    //reg [14:0] count_batch;
 
     // each batch is 0x800 addresses (as in your original)
     wire [31:0] ibuf_addr_adj = a2b_addr - count_batch * 12'h800;
@@ -140,7 +144,7 @@ module axi_data_rd_top #(
     /////////////////
     wire [AXI_DATA_WIDTH-1:0]      ibuf_din = a2b_data;
     wire [2*PRE_DATA_WIDTH-1:0]    ibuf_din_trim;
-    wire                           ibuf_done;
+    //wire                           ibuf_done;
 
     data_trimmer #(
         .IN_WIDTH   ( 64               ),
