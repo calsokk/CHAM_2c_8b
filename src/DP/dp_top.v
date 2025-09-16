@@ -96,6 +96,8 @@ assign uram_mem_en = uram_en_bundle[i_idx_split];
 //    else uram_we = 'd0;
 //end
 assign uram_we = (o_wruram_done? 'd0: (i_mode == M_CTXT? uram_en_bundle[i_idx_split] : 'd0));
+
+/*
 dp_ctxt_polyvec #(
     .COE_WIDTH(COE_WIDTH),
     .ADDR_WIDTH(URAM_ADDR_WIDTH),
@@ -119,6 +121,11 @@ dp_ctxt_polyvec #(
     .i_uram_din(uram_din),
     .o_uram_dout(uram_dout)
 );
+
+*/
+
+assign o_wruram_done = 'd1; 
+
 genvar idx_poly;
 generate
     for(idx_poly = 0; idx_poly < NUM_POLY; idx_poly = idx_poly + 1) begin
@@ -135,7 +142,25 @@ generate
 endgenerate
 
 
-/* instance of a depth=8 triple buffer */
+wire [11:0] uram_rdaddr_shifted;
+assign uram_rdaddr_shifted = (uram_rdaddr >> 3); // divide by 8
+
+wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_temp_uram_data;
+reg [COE_WIDTH-1:0] temp_dp_uram_din;
+
+always @(*) begin
+    case(uram_rdaddr[2:0])
+        3'b000: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*7 +: COE_WIDTH];
+        3'b001: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*0 +: COE_WIDTH];
+        3'b010: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*1 +: COE_WIDTH];
+        3'b011: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*2 +: COE_WIDTH];
+        3'b100: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*3 +: COE_WIDTH];
+        3'b101: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*4 +: COE_WIDTH];
+        3'b110: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*5 +: COE_WIDTH];
+        3'b111: temp_dp_uram_din = o_temp_uram_data[COE_WIDTH*6 +: COE_WIDTH];
+        default: temp_dp_uram_din = 'd0;
+    endcase
+end
 
 /* instance of the triple buffer */
 (* keep = "true" *) dp_triple_pp_buffer#(
@@ -159,7 +184,10 @@ tri_pp0(
     .i_ntt_rdaddr       (ntt_rdaddr[ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1   -: ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY]),
     .o_ntt_data         (tpp_ntt_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1  -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
     .i_madd_rdaddr      (madd_rdaddr),
-    .o_madd_data        (tpp_madd_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1 -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY])
+    .o_madd_data        (tpp_madd_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1 -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+    .uram_rdaddr        (uram_rdaddr_shifted[8:0]),
+    .o_temp_uram_data   (o_temp_uram_data),
+    .ntt_done           (o_ntt_done)
 );
 
 /* instance two dp_core */
@@ -201,7 +229,7 @@ dp0(
     .o_madd_rdaddr        (madd_dina_rdaddr),          // multi-driven
     .i_madd_dina          (madd_dina[COE_WIDTH*NUM_POLY-1 -: COE_WIDTH*NUM_POLY]),
     .o_uram_addr          (uram_rdaddr),
-    .i_uram_din           (uram_dout)
+    .i_uram_din           (temp_dp_uram_din)
 );
 
 /* instance of the triple buffer */

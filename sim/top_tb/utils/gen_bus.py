@@ -114,6 +114,7 @@ def GenBuf():
     gen.append(f'{tab*3}$finish;')
     gen.append(f'{tab*2}end')
     gen.append(f'')
+    '''
     gen.append(f'{tab*2}for (_ct_split_idx = 0; _ct_split_idx < n_split; _ct_split_idx = _ct_split_idx + 1) begin')
     gen.append(f'{tab*3}for (_ct_idx = 0; _ct_idx < 6*4096; _ct_idx = _ct_idx + 1) begin')
     gen.append(f'{tab*4}flag = $fscanf(fp_r0, "%h", _ct_temp[_ct_idx]);')
@@ -126,6 +127,7 @@ def GenBuf():
         gen.append(f'{tab*4}end')
     gen.append(f'{tab*3}endcase')
     gen.append(f'{tab*2}end')
+    '''
     gen.append(f'{tab*1}endtask')
     gen.append(f'')
 

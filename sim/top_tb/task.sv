@@ -566,29 +566,6 @@ logic [DP_PP_COE_WIDTH-1:0] _ct_temp [6*4096-1:0];
             $finish;
         end
 
-        for (_ct_split_idx = 0; _ct_split_idx < n_split; _ct_split_idx = _ct_split_idx + 1) begin
-            for (_ct_idx = 0; _ct_idx < 6*4096; _ct_idx = _ct_idx + 1) begin
-                flag = $fscanf(fp_r0, "%h", _ct_temp[_ct_idx]);
-            end
-            case (_ct_split_idx)
-                0: begin
-                    `DP.ctxt_polyvec.genblk2[0].polyvec_ntt_ctxt0.genblk1[0].uram_inst.mem = _ct_temp[(0+1)*4096-1 -: 4096];
-                    `DP.ctxt_polyvec.genblk2[0].polyvec_ntt_ctxt1.genblk1[0].uram_inst.mem = _ct_temp[(1+1)*4096-1 -: 4096];
-                end
-                1: begin
-                    `DP.ctxt_polyvec.genblk2[1].polyvec_ntt_ctxt0.genblk1[0].uram_inst.mem = _ct_temp[(0+1)*4096-1 -: 4096];
-                    `DP.ctxt_polyvec.genblk2[1].polyvec_ntt_ctxt1.genblk1[0].uram_inst.mem = _ct_temp[(1+1)*4096-1 -: 4096];
-                end
-                2: begin
-                    `DP.ctxt_polyvec.genblk2[2].polyvec_ntt_ctxt0.genblk1[0].uram_inst.mem = _ct_temp[(0+1)*4096-1 -: 4096];
-                    `DP.ctxt_polyvec.genblk2[2].polyvec_ntt_ctxt1.genblk1[0].uram_inst.mem = _ct_temp[(1+1)*4096-1 -: 4096];
-                end
-                3: begin
-                    `DP.ctxt_polyvec.genblk2[3].polyvec_ntt_ctxt0.genblk1[0].uram_inst.mem = _ct_temp[(0+1)*4096-1 -: 4096];
-                    `DP.ctxt_polyvec.genblk2[3].polyvec_ntt_ctxt1.genblk1[0].uram_inst.mem = _ct_temp[(1+1)*4096-1 -: 4096];
-                end
-            endcase
-        end
     endtask
 
 // -------------------------------------

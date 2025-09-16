@@ -34,7 +34,10 @@ module dp_triple_pp_buffer#(
     output  reg  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]  o_ntt_data,
     // madd output port (madd size)
     input  [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]       i_madd_rdaddr,
-    output reg [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_madd_data
+    output reg [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_madd_data,
+    input [ADDR_WIDTH-1:0]                               uram_rdaddr,
+    output reg [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_temp_uram_data,
+    input                                                ntt_done
 );
 
 localparam S_AXI_NTT_MADD = 2'd0;
@@ -105,6 +108,8 @@ reg    [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   dina_polyvec2;
 reg    [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]  addrb_polyvec2;
 wire   [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   doutb_polyvec2;
 
+wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] temp_uram_addr = {NUM_BASE_BANK{uram_rdaddr}};
+
 /* mode controlled mux */
 always@(*) begin 
     case(mode)
@@ -112,7 +117,8 @@ always@(*) begin
             wea_polyvec0 = inf_mem_weaxi;
             addra_polyvec0 = inf_mem_addraxi;
             dina_polyvec0 = inf_mem_dataaxi;
-            addrb_polyvec0 = 'd0;
+            addrb_polyvec0 = temp_uram_addr;
+            o_temp_uram_data = doutb_polyvec0;
             wea_polyvec1 = i_ntt_we;
             addra_polyvec1 = i_ntt_wraddr;
             dina_polyvec1 = i_ntt_data;
@@ -128,7 +134,8 @@ always@(*) begin
             wea_polyvec2 = inf_mem_weaxi;
             addra_polyvec2 = inf_mem_addraxi;
             dina_polyvec2 = inf_mem_dataaxi;
-            addrb_polyvec2 = 'd0;
+            addrb_polyvec2 = temp_uram_addr;
+            o_temp_uram_data = doutb_polyvec2;
             wea_polyvec0 = i_ntt_we;
             addra_polyvec0 = i_ntt_wraddr;
             dina_polyvec0 = i_ntt_data;
@@ -148,7 +155,8 @@ always@(*) begin
             wea_polyvec2 = i_ntt_we;
             addra_polyvec2 = i_ntt_wraddr;
             dina_polyvec2 = i_ntt_data;
-            addrb_polyvec2 = i_ntt_rdaddr;
+            addrb_polyvec2 = ntt_done ? temp_uram_addr : i_ntt_rdaddr; // TODO: this optimization made for error ideally have uram or two read ports
+            o_temp_uram_data = doutb_polyvec2;
             o_ntt_data = doutb_polyvec2;
             wea_polyvec0 = 'd0;
             addra_polyvec0 = 'd0;
