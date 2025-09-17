@@ -396,7 +396,13 @@ module tb_top;
         .o_polyvec_addra2 (tb_polyvec_addra2),
         .o_polyvec_dina2  (tb_polyvec_dina2),
         .o_polyvec_addrb2 (tb_polyvec_addrb2),
-        .i_polyvec_doutb2 (tb_polyvec_doutb2)
+        .i_polyvec_doutb2 (tb_polyvec_doutb2),
+
+        .tppWrEnPacked       (tppWrEnPacked   ), // output [23:0]
+        .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
+        .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
+        .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
+        .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
 
     );
 
@@ -457,6 +463,169 @@ module tb_top;
     .addrb (tb_polyvec_addrb2),
     .doutb (tb_polyvec_doutb2)
     );
+
+    /***** Preprocess TPP Banks *****/
+    localparam integer PV_NPV   = 3;   // number of polyvecs
+    localparam integer PV_NBANK = 8;   // banks per polyvec
+    localparam integer PV_AW    = 9;   // bank address width
+    localparam integer PV_DW    = 35;  // bank data width
+
+    wire [PV_NPV*PV_NBANK      -1:0] tppWrEnPacked;    // [23:0]
+    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppWrAddrPacked;  // [215:0]
+    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppWrDataPacked;  // [839:0]
+    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppRdAddrPacked;  // [215:0]
+    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppRdDataPacked;  // [839:0]
+
+    // ---------------- Polyvec 0 banks ----------------
+    poly_ram_35_9_8 tppBank_0 (
+    .clock        (clk),
+
+    .io_wr_en_0   (tppWrEnPacked   [(0*PV_NBANK)+0]),
+    .io_wr_en_1   (tppWrEnPacked   [(0*PV_NBANK)+1]),
+    .io_wr_en_2   (tppWrEnPacked   [(0*PV_NBANK)+2]),
+    .io_wr_en_3   (tppWrEnPacked   [(0*PV_NBANK)+3]),
+    .io_wr_en_4   (tppWrEnPacked   [(0*PV_NBANK)+4]),
+    .io_wr_en_5   (tppWrEnPacked   [(0*PV_NBANK)+5]),
+    .io_wr_en_6   (tppWrEnPacked   [(0*PV_NBANK)+6]),
+    .io_wr_en_7   (tppWrEnPacked   [(0*PV_NBANK)+7]),
+
+    .io_wr_addr_0 (tppWrAddrPacked [(((0*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_wr_addr_1 (tppWrAddrPacked [(((0*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_wr_addr_2 (tppWrAddrPacked [(((0*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_wr_addr_3 (tppWrAddrPacked [(((0*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_wr_addr_4 (tppWrAddrPacked [(((0*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_wr_addr_5 (tppWrAddrPacked [(((0*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_wr_addr_6 (tppWrAddrPacked [(((0*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_wr_addr_7 (tppWrAddrPacked [(((0*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_wr_data_0 (tppWrDataPacked [(((0*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_wr_data_1 (tppWrDataPacked [(((0*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_wr_data_2 (tppWrDataPacked [(((0*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_wr_data_3 (tppWrDataPacked [(((0*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_wr_data_4 (tppWrDataPacked [(((0*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_wr_data_5 (tppWrDataPacked [(((0*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_wr_data_6 (tppWrDataPacked [(((0*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_wr_data_7 (tppWrDataPacked [(((0*PV_NBANK)+7)*PV_DW) +: PV_DW]),
+
+    .io_rd_addr_0 (tppRdAddrPacked [(((0*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_rd_addr_1 (tppRdAddrPacked [(((0*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_rd_addr_2 (tppRdAddrPacked [(((0*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_rd_addr_3 (tppRdAddrPacked [(((0*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_rd_addr_4 (tppRdAddrPacked [(((0*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_rd_addr_5 (tppRdAddrPacked [(((0*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_rd_addr_6 (tppRdAddrPacked [(((0*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_rd_addr_7 (tppRdAddrPacked [(((0*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_rd_data_0 (tppRdDataPacked [(((0*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_rd_data_1 (tppRdDataPacked [(((0*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_rd_data_2 (tppRdDataPacked [(((0*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_rd_data_3 (tppRdDataPacked [(((0*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_rd_data_4 (tppRdDataPacked [(((0*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_rd_data_5 (tppRdDataPacked [(((0*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_rd_data_6 (tppRdDataPacked [(((0*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_rd_data_7 (tppRdDataPacked [(((0*PV_NBANK)+7)*PV_DW) +: PV_DW])
+    );
+
+    // ---------------- Polyvec 1 banks ----------------
+    poly_ram_35_9_8 tppBank_1 (
+    .clock        (clk),
+
+    .io_wr_en_0   (tppWrEnPacked   [(1*PV_NBANK)+0]),
+    .io_wr_en_1   (tppWrEnPacked   [(1*PV_NBANK)+1]),
+    .io_wr_en_2   (tppWrEnPacked   [(1*PV_NBANK)+2]),
+    .io_wr_en_3   (tppWrEnPacked   [(1*PV_NBANK)+3]),
+    .io_wr_en_4   (tppWrEnPacked   [(1*PV_NBANK)+4]),
+    .io_wr_en_5   (tppWrEnPacked   [(1*PV_NBANK)+5]),
+    .io_wr_en_6   (tppWrEnPacked   [(1*PV_NBANK)+6]),
+    .io_wr_en_7   (tppWrEnPacked   [(1*PV_NBANK)+7]),
+
+    .io_wr_addr_0 (tppWrAddrPacked [(((1*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_wr_addr_1 (tppWrAddrPacked [(((1*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_wr_addr_2 (tppWrAddrPacked [(((1*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_wr_addr_3 (tppWrAddrPacked [(((1*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_wr_addr_4 (tppWrAddrPacked [(((1*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_wr_addr_5 (tppWrAddrPacked [(((1*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_wr_addr_6 (tppWrAddrPacked [(((1*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_wr_addr_7 (tppWrAddrPacked [(((1*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_wr_data_0 (tppWrDataPacked [(((1*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_wr_data_1 (tppWrDataPacked [(((1*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_wr_data_2 (tppWrDataPacked [(((1*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_wr_data_3 (tppWrDataPacked [(((1*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_wr_data_4 (tppWrDataPacked [(((1*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_wr_data_5 (tppWrDataPacked [(((1*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_wr_data_6 (tppWrDataPacked [(((1*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_wr_data_7 (tppWrDataPacked [(((1*PV_NBANK)+7)*PV_DW) +: PV_DW]),
+
+    .io_rd_addr_0 (tppRdAddrPacked [(((1*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_rd_addr_1 (tppRdAddrPacked [(((1*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_rd_addr_2 (tppRdAddrPacked [(((1*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_rd_addr_3 (tppRdAddrPacked [(((1*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_rd_addr_4 (tppRdAddrPacked [(((1*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_rd_addr_5 (tppRdAddrPacked [(((1*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_rd_addr_6 (tppRdAddrPacked [(((1*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_rd_addr_7 (tppRdAddrPacked [(((1*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_rd_data_0 (tppRdDataPacked [(((1*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_rd_data_1 (tppRdDataPacked [(((1*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_rd_data_2 (tppRdDataPacked [(((1*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_rd_data_3 (tppRdDataPacked [(((1*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_rd_data_4 (tppRdDataPacked [(((1*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_rd_data_5 (tppRdDataPacked [(((1*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_rd_data_6 (tppRdDataPacked [(((1*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_rd_data_7 (tppRdDataPacked [(((1*PV_NBANK)+7)*PV_DW) +: PV_DW])
+    );
+
+    // ---------------- Polyvec 2 banks ----------------
+    poly_ram_35_9_8 tppBank_2 (
+    .clock        (clk),
+
+    .io_wr_en_0   (tppWrEnPacked   [(2*PV_NBANK)+0]),
+    .io_wr_en_1   (tppWrEnPacked   [(2*PV_NBANK)+1]),
+    .io_wr_en_2   (tppWrEnPacked   [(2*PV_NBANK)+2]),
+    .io_wr_en_3   (tppWrEnPacked   [(2*PV_NBANK)+3]),
+    .io_wr_en_4   (tppWrEnPacked   [(2*PV_NBANK)+4]),
+    .io_wr_en_5   (tppWrEnPacked   [(2*PV_NBANK)+5]),
+    .io_wr_en_6   (tppWrEnPacked   [(2*PV_NBANK)+6]),
+    .io_wr_en_7   (tppWrEnPacked   [(2*PV_NBANK)+7]),
+
+    .io_wr_addr_0 (tppWrAddrPacked [(((2*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_wr_addr_1 (tppWrAddrPacked [(((2*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_wr_addr_2 (tppWrAddrPacked [(((2*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_wr_addr_3 (tppWrAddrPacked [(((2*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_wr_addr_4 (tppWrAddrPacked [(((2*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_wr_addr_5 (tppWrAddrPacked [(((2*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_wr_addr_6 (tppWrAddrPacked [(((2*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_wr_addr_7 (tppWrAddrPacked [(((2*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_wr_data_0 (tppWrDataPacked [(((2*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_wr_data_1 (tppWrDataPacked [(((2*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_wr_data_2 (tppWrDataPacked [(((2*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_wr_data_3 (tppWrDataPacked [(((2*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_wr_data_4 (tppWrDataPacked [(((2*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_wr_data_5 (tppWrDataPacked [(((2*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_wr_data_6 (tppWrDataPacked [(((2*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_wr_data_7 (tppWrDataPacked [(((2*PV_NBANK)+7)*PV_DW) +: PV_DW]),
+
+    .io_rd_addr_0 (tppRdAddrPacked [(((2*PV_NBANK)+0)*PV_AW) +: PV_AW]),
+    .io_rd_addr_1 (tppRdAddrPacked [(((2*PV_NBANK)+1)*PV_AW) +: PV_AW]),
+    .io_rd_addr_2 (tppRdAddrPacked [(((2*PV_NBANK)+2)*PV_AW) +: PV_AW]),
+    .io_rd_addr_3 (tppRdAddrPacked [(((2*PV_NBANK)+3)*PV_AW) +: PV_AW]),
+    .io_rd_addr_4 (tppRdAddrPacked [(((2*PV_NBANK)+4)*PV_AW) +: PV_AW]),
+    .io_rd_addr_5 (tppRdAddrPacked [(((2*PV_NBANK)+5)*PV_AW) +: PV_AW]),
+    .io_rd_addr_6 (tppRdAddrPacked [(((2*PV_NBANK)+6)*PV_AW) +: PV_AW]),
+    .io_rd_addr_7 (tppRdAddrPacked [(((2*PV_NBANK)+7)*PV_AW) +: PV_AW]),
+
+    .io_rd_data_0 (tppRdDataPacked [(((2*PV_NBANK)+0)*PV_DW) +: PV_DW]),
+    .io_rd_data_1 (tppRdDataPacked [(((2*PV_NBANK)+1)*PV_DW) +: PV_DW]),
+    .io_rd_data_2 (tppRdDataPacked [(((2*PV_NBANK)+2)*PV_DW) +: PV_DW]),
+    .io_rd_data_3 (tppRdDataPacked [(((2*PV_NBANK)+3)*PV_DW) +: PV_DW]),
+    .io_rd_data_4 (tppRdDataPacked [(((2*PV_NBANK)+4)*PV_DW) +: PV_DW]),
+    .io_rd_data_5 (tppRdDataPacked [(((2*PV_NBANK)+5)*PV_DW) +: PV_DW]),
+    .io_rd_data_6 (tppRdDataPacked [(((2*PV_NBANK)+6)*PV_DW) +: PV_DW]),
+    .io_rd_data_7 (tppRdDataPacked [(((2*PV_NBANK)+7)*PV_DW) +: PV_DW])
+    );
+
     
     assign interrupt = csr_ap_done[0];  // TODO
     

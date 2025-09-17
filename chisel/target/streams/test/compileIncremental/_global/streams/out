@@ -2,5 +2,13 @@
 [0m[[0m[0mdebug[0m] [0m[0mIncrementalCompile.incrementalCompile[0m
 [0m[[0m[0mdebug[0m] [0m[0mprevious = Stamps for: 18 products, 6 sources, 4 libraries[0m
 [0m[[0m[0mdebug[0m] [0m[0mcurrent source = Set(${BASE}/src/test/scala/GenVPU4.scala, ${BASE}/src/test/scala/GenINTT.scala, ${BASE}/src/test/scala/GenWrItf.scala, ${BASE}/src/test/scala/GenRdItf.scala, ${BASE}/src/test/scala/GenVPU2.scala, ${BASE}/src/test/scala/GenPreprocess.scala)[0m
-[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())[0m
+[0m[[0m[0mdebug[0m] [0m[0m> initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set(NamesChange(mvp.preprocess.preprocess_top_chisel,ModifiedNames(changes = UsedName(DW,[Default]), UsedName(N_PV,[Default]), UsedName(extBanksWr,[Default]), UsedName(lin,[Default]), UsedName(tppWrDataPacked,[Default]), UsedName(extBanksRd,[Default]), UsedName(tppRdAddrPacked,[Default]), UsedName(AW,[Default]), UsedName(N_BANK,[Default]), UsedName(tppWrAddrPacked,[Default]), UsedName(tppRdDataPacked,[Default]), UsedName(tppWrEnPacked,[Default])))))[0m
+[0m[[0m[0mdebug[0m] [0m[0mThe mvp.preprocess.preprocess_top_chisel has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(DW,[Default]), UsedName(N_PV,[Default]), UsedName(extBanksWr,[Default]), UsedName(lin,[Default]), UsedName(tppWrDataPacked,[Default]), UsedName(extBanksRd,[Default]), UsedName(tppRdAddrPacked,[Default]), UsedName(AW,[Default]), UsedName(N_BANK,[Default]), UsedName(tppWrAddrPacked,[Default]), UsedName(tppRdDataPacked,[Default]), UsedName(tppWrEnPacked,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0mAll member reference dependencies will be considered within this context.[0m
+[0m[[0m[0mdebug[0m] [0m[0mFiles invalidated by inheriting from (external) mvp.preprocess.preprocess_top_chisel: Set()[0m
+[0m[[0m[0mdebug[0m] [0m[0mNow invalidating by inheritance (internally).[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting direct dependencies of all classes transitively invalidated by inheritance.[0m
+[0m[[0m[0mdebug[0m] [0m[0mGetting classes that directly depend on (external) mvp.preprocess.preprocess_top_chisel.[0m
+[0m[[0m[0mdebug[0m] [0m[0mNone of the modified names appears in source file of GenPreprocess. This dependency is not being considered for invalidation.[0m
 [0m[[0m[0mdebug[0m] [0m[0mNo changes[0m

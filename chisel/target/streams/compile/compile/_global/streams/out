@@ -1,4 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/INTT.scala:53:33: value o_we_result is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst_n: chisel3.Bool; val ntt_start: chisel3.Bool; val ntt_done: chisel3.Bool; val i_data_b_l: chisel3.UInt; val i_data_b_r: chisel3.UInt; val o_data_a: chisel3.UInt; val o_we_a_l: chisel3.Bool; val o_we_a_r: chisel3.Bool; val o_addr_a_l: chisel3.UInt; val o_addr_a_r: chisel3.UInt; val o_addr_b_l: chisel3.UInt; val o_addr_b_r: chisel3.UInt}[0m
-[0m[[0m[31merror[0m] [0m[0m    io.o_we_result := u_intt.io.o_we_result[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Buffer.scala:107:5: Reference to uninitialized value io[0m
+[0m[[0m[33mwarn[0m] [0m[0m    io.banks_wr.foreach { wr =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Buffer.scala:112:5: Reference to uninitialized value io[0m
+[0m[[0m[33mwarn[0m] [0m[0m    io.banks_rd.foreach { rd =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m

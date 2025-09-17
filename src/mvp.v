@@ -293,7 +293,12 @@ u_mvp_top (
     .o_polyvec_addra        (),
     .o_polyvec_dina         (),
     .o_polyvec_addrb        (),
-    .i_polyvec_doutb        ()
+    .i_polyvec_doutb        (),
+    .tppWrEnPacked       (tppWrEnPacked   ), // output [23:0]
+    .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
+    .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
+    .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
+    .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
 );
 
   assign test_axi_c1_awid = 'b0;

@@ -481,517 +481,445 @@ module triple_pp_buffer_35_512_8(
   input  [34:0] io_polyvec1_wr_data_4,
   input  [34:0] io_polyvec1_wr_data_5,
   input  [34:0] io_polyvec1_wr_data_6,
-  input  [34:0] io_polyvec1_wr_data_7
+  input  [34:0] io_polyvec1_wr_data_7,
+  output [8:0]  io_banks_rd_0_addr_0,
+  output [8:0]  io_banks_rd_0_addr_1,
+  output [8:0]  io_banks_rd_0_addr_2,
+  output [8:0]  io_banks_rd_0_addr_3,
+  output [8:0]  io_banks_rd_0_addr_4,
+  output [8:0]  io_banks_rd_0_addr_5,
+  output [8:0]  io_banks_rd_0_addr_6,
+  output [8:0]  io_banks_rd_0_addr_7,
+  input  [34:0] io_banks_rd_0_data_0,
+  input  [34:0] io_banks_rd_0_data_1,
+  input  [34:0] io_banks_rd_0_data_2,
+  input  [34:0] io_banks_rd_0_data_3,
+  input  [34:0] io_banks_rd_0_data_4,
+  input  [34:0] io_banks_rd_0_data_5,
+  input  [34:0] io_banks_rd_0_data_6,
+  input  [34:0] io_banks_rd_0_data_7,
+  output [8:0]  io_banks_rd_1_addr_0,
+  output [8:0]  io_banks_rd_1_addr_1,
+  output [8:0]  io_banks_rd_1_addr_2,
+  output [8:0]  io_banks_rd_1_addr_3,
+  output [8:0]  io_banks_rd_1_addr_4,
+  output [8:0]  io_banks_rd_1_addr_5,
+  output [8:0]  io_banks_rd_1_addr_6,
+  output [8:0]  io_banks_rd_1_addr_7,
+  input  [34:0] io_banks_rd_1_data_0,
+  input  [34:0] io_banks_rd_1_data_1,
+  input  [34:0] io_banks_rd_1_data_2,
+  input  [34:0] io_banks_rd_1_data_3,
+  input  [34:0] io_banks_rd_1_data_4,
+  input  [34:0] io_banks_rd_1_data_5,
+  input  [34:0] io_banks_rd_1_data_6,
+  input  [34:0] io_banks_rd_1_data_7,
+  output [8:0]  io_banks_rd_2_addr_0,
+  output [8:0]  io_banks_rd_2_addr_1,
+  output [8:0]  io_banks_rd_2_addr_2,
+  output [8:0]  io_banks_rd_2_addr_3,
+  output [8:0]  io_banks_rd_2_addr_4,
+  output [8:0]  io_banks_rd_2_addr_5,
+  output [8:0]  io_banks_rd_2_addr_6,
+  output [8:0]  io_banks_rd_2_addr_7,
+  input  [34:0] io_banks_rd_2_data_0,
+  input  [34:0] io_banks_rd_2_data_1,
+  input  [34:0] io_banks_rd_2_data_2,
+  input  [34:0] io_banks_rd_2_data_3,
+  input  [34:0] io_banks_rd_2_data_4,
+  input  [34:0] io_banks_rd_2_data_5,
+  input  [34:0] io_banks_rd_2_data_6,
+  input  [34:0] io_banks_rd_2_data_7,
+  output        io_banks_wr_0_en_0,
+  output        io_banks_wr_0_en_1,
+  output        io_banks_wr_0_en_2,
+  output        io_banks_wr_0_en_3,
+  output        io_banks_wr_0_en_4,
+  output        io_banks_wr_0_en_5,
+  output        io_banks_wr_0_en_6,
+  output        io_banks_wr_0_en_7,
+  output [8:0]  io_banks_wr_0_addr_0,
+  output [8:0]  io_banks_wr_0_addr_1,
+  output [8:0]  io_banks_wr_0_addr_2,
+  output [8:0]  io_banks_wr_0_addr_3,
+  output [8:0]  io_banks_wr_0_addr_4,
+  output [8:0]  io_banks_wr_0_addr_5,
+  output [8:0]  io_banks_wr_0_addr_6,
+  output [8:0]  io_banks_wr_0_addr_7,
+  output [34:0] io_banks_wr_0_data_0,
+  output [34:0] io_banks_wr_0_data_1,
+  output [34:0] io_banks_wr_0_data_2,
+  output [34:0] io_banks_wr_0_data_3,
+  output [34:0] io_banks_wr_0_data_4,
+  output [34:0] io_banks_wr_0_data_5,
+  output [34:0] io_banks_wr_0_data_6,
+  output [34:0] io_banks_wr_0_data_7,
+  output        io_banks_wr_1_en_0,
+  output        io_banks_wr_1_en_1,
+  output        io_banks_wr_1_en_2,
+  output        io_banks_wr_1_en_3,
+  output        io_banks_wr_1_en_4,
+  output        io_banks_wr_1_en_5,
+  output        io_banks_wr_1_en_6,
+  output        io_banks_wr_1_en_7,
+  output [8:0]  io_banks_wr_1_addr_0,
+  output [8:0]  io_banks_wr_1_addr_1,
+  output [8:0]  io_banks_wr_1_addr_2,
+  output [8:0]  io_banks_wr_1_addr_3,
+  output [8:0]  io_banks_wr_1_addr_4,
+  output [8:0]  io_banks_wr_1_addr_5,
+  output [8:0]  io_banks_wr_1_addr_6,
+  output [8:0]  io_banks_wr_1_addr_7,
+  output [34:0] io_banks_wr_1_data_0,
+  output [34:0] io_banks_wr_1_data_1,
+  output [34:0] io_banks_wr_1_data_2,
+  output [34:0] io_banks_wr_1_data_3,
+  output [34:0] io_banks_wr_1_data_4,
+  output [34:0] io_banks_wr_1_data_5,
+  output [34:0] io_banks_wr_1_data_6,
+  output [34:0] io_banks_wr_1_data_7,
+  output        io_banks_wr_2_en_0,
+  output        io_banks_wr_2_en_1,
+  output        io_banks_wr_2_en_2,
+  output        io_banks_wr_2_en_3,
+  output        io_banks_wr_2_en_4,
+  output        io_banks_wr_2_en_5,
+  output        io_banks_wr_2_en_6,
+  output        io_banks_wr_2_en_7,
+  output [8:0]  io_banks_wr_2_addr_0,
+  output [8:0]  io_banks_wr_2_addr_1,
+  output [8:0]  io_banks_wr_2_addr_2,
+  output [8:0]  io_banks_wr_2_addr_3,
+  output [8:0]  io_banks_wr_2_addr_4,
+  output [8:0]  io_banks_wr_2_addr_5,
+  output [8:0]  io_banks_wr_2_addr_6,
+  output [8:0]  io_banks_wr_2_addr_7,
+  output [34:0] io_banks_wr_2_data_0,
+  output [34:0] io_banks_wr_2_data_1,
+  output [34:0] io_banks_wr_2_data_2,
+  output [34:0] io_banks_wr_2_data_3,
+  output [34:0] io_banks_wr_2_data_4,
+  output [34:0] io_banks_wr_2_data_5,
+  output [34:0] io_banks_wr_2_data_6,
+  output [34:0] io_banks_wr_2_data_7
 );
-  wire  u_ram_0_clock; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_0; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_1; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_2; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_3; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_4; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_5; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_6; // @[Buffer.scala 128:15]
-  wire  u_ram_0_io_wr_en_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_wr_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_wr_data_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_0_io_rd_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_0_io_rd_data_7; // @[Buffer.scala 128:15]
-  wire  u_ram_1_clock; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_0; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_1; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_2; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_3; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_4; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_5; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_6; // @[Buffer.scala 128:15]
-  wire  u_ram_1_io_wr_en_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_wr_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_wr_data_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_1_io_rd_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_1_io_rd_data_7; // @[Buffer.scala 128:15]
-  wire  u_ram_2_clock; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_0; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_1; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_2; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_3; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_4; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_5; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_6; // @[Buffer.scala 128:15]
-  wire  u_ram_2_io_wr_en_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_wr_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_wr_data_7; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_0; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_1; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_2; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_3; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_4; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_5; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_6; // @[Buffer.scala 128:15]
-  wire [8:0] u_ram_2_io_rd_addr_7; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_0; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_1; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_2; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_3; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_4; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_5; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_6; // @[Buffer.scala 128:15]
-  wire [34:0] u_ram_2_io_rd_data_7; // @[Buffer.scala 128:15]
-  reg  done_r; // @[Buffer.scala 115:25]
-  reg [1:0] state; // @[Buffer.scala 118:24]
-  wire [1:0] _GEN_0 = 2'h2 == state ? 2'h0 : state; // @[Buffer.scala 118:24 120:24 123:31]
-  wire [34:0] _GEN_12 = u_ram_1_io_rd_data_0; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_13 = u_ram_1_io_rd_data_1; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_14 = u_ram_1_io_rd_data_2; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_15 = u_ram_1_io_rd_data_3; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_16 = u_ram_1_io_rd_data_4; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_17 = u_ram_1_io_rd_data_5; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_18 = u_ram_1_io_rd_data_6; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_19 = u_ram_1_io_rd_data_7; // @[Buffer.scala 145:34 146:24]
-  wire [34:0] _GEN_52 = u_ram_2_io_rd_data_0; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_53 = u_ram_2_io_rd_data_1; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_54 = u_ram_2_io_rd_data_2; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_55 = u_ram_2_io_rd_data_3; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_56 = u_ram_2_io_rd_data_4; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_57 = u_ram_2_io_rd_data_5; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_58 = u_ram_2_io_rd_data_6; // @[Buffer.scala 145:34 148:24]
-  wire [34:0] _GEN_59 = u_ram_2_io_rd_data_7; // @[Buffer.scala 145:34 148:24]
-  wire [8:0] _GEN_124 = state == 2'h1 ? io_polyvec0_rd_addr_0 : io_polyvec1_rd_addr_0; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_125 = state == 2'h1 ? io_polyvec0_rd_addr_1 : io_polyvec1_rd_addr_1; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_126 = state == 2'h1 ? io_polyvec0_rd_addr_2 : io_polyvec1_rd_addr_2; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_127 = state == 2'h1 ? io_polyvec0_rd_addr_3 : io_polyvec1_rd_addr_3; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_128 = state == 2'h1 ? io_polyvec0_rd_addr_4 : io_polyvec1_rd_addr_4; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_129 = state == 2'h1 ? io_polyvec0_rd_addr_5 : io_polyvec1_rd_addr_5; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_130 = state == 2'h1 ? io_polyvec0_rd_addr_6 : io_polyvec1_rd_addr_6; // @[Buffer.scala 138:34 139:24]
-  wire [8:0] _GEN_131 = state == 2'h1 ? io_polyvec0_rd_addr_7 : io_polyvec1_rd_addr_7; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_132 = state == 2'h1 ? u_ram_2_io_rd_data_0 : _GEN_12; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_133 = state == 2'h1 ? u_ram_2_io_rd_data_1 : _GEN_13; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_134 = state == 2'h1 ? u_ram_2_io_rd_data_2 : _GEN_14; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_135 = state == 2'h1 ? u_ram_2_io_rd_data_3 : _GEN_15; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_136 = state == 2'h1 ? u_ram_2_io_rd_data_4 : _GEN_16; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_137 = state == 2'h1 ? u_ram_2_io_rd_data_5 : _GEN_17; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_138 = state == 2'h1 ? u_ram_2_io_rd_data_6 : _GEN_18; // @[Buffer.scala 138:34 139:24]
-  wire [34:0] _GEN_139 = state == 2'h1 ? u_ram_2_io_rd_data_7 : _GEN_19; // @[Buffer.scala 138:34 139:24]
-  wire  _GEN_140 = state == 2'h1 ? io_polyvec0_wr_en_0 : io_polyvec1_wr_en_0; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_141 = state == 2'h1 ? io_polyvec0_wr_en_1 : io_polyvec1_wr_en_1; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_142 = state == 2'h1 ? io_polyvec0_wr_en_2 : io_polyvec1_wr_en_2; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_143 = state == 2'h1 ? io_polyvec0_wr_en_3 : io_polyvec1_wr_en_3; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_144 = state == 2'h1 ? io_polyvec0_wr_en_4 : io_polyvec1_wr_en_4; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_145 = state == 2'h1 ? io_polyvec0_wr_en_5 : io_polyvec1_wr_en_5; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_146 = state == 2'h1 ? io_polyvec0_wr_en_6 : io_polyvec1_wr_en_6; // @[Buffer.scala 138:34 140:24]
-  wire  _GEN_147 = state == 2'h1 ? io_polyvec0_wr_en_7 : io_polyvec1_wr_en_7; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_148 = state == 2'h1 ? io_polyvec0_wr_addr_0 : io_polyvec1_wr_addr_0; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_149 = state == 2'h1 ? io_polyvec0_wr_addr_1 : io_polyvec1_wr_addr_1; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_150 = state == 2'h1 ? io_polyvec0_wr_addr_2 : io_polyvec1_wr_addr_2; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_151 = state == 2'h1 ? io_polyvec0_wr_addr_3 : io_polyvec1_wr_addr_3; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_152 = state == 2'h1 ? io_polyvec0_wr_addr_4 : io_polyvec1_wr_addr_4; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_153 = state == 2'h1 ? io_polyvec0_wr_addr_5 : io_polyvec1_wr_addr_5; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_154 = state == 2'h1 ? io_polyvec0_wr_addr_6 : io_polyvec1_wr_addr_6; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_155 = state == 2'h1 ? io_polyvec0_wr_addr_7 : io_polyvec1_wr_addr_7; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_156 = state == 2'h1 ? io_polyvec0_wr_data_0 : io_polyvec1_wr_data_0; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_157 = state == 2'h1 ? io_polyvec0_wr_data_1 : io_polyvec1_wr_data_1; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_158 = state == 2'h1 ? io_polyvec0_wr_data_2 : io_polyvec1_wr_data_2; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_159 = state == 2'h1 ? io_polyvec0_wr_data_3 : io_polyvec1_wr_data_3; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_160 = state == 2'h1 ? io_polyvec0_wr_data_4 : io_polyvec1_wr_data_4; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_161 = state == 2'h1 ? io_polyvec0_wr_data_5 : io_polyvec1_wr_data_5; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_162 = state == 2'h1 ? io_polyvec0_wr_data_6 : io_polyvec1_wr_data_6; // @[Buffer.scala 138:34 140:24]
-  wire [34:0] _GEN_163 = state == 2'h1 ? io_polyvec0_wr_data_7 : io_polyvec1_wr_data_7; // @[Buffer.scala 138:34 140:24]
-  wire [8:0] _GEN_164 = state == 2'h1 ? io_polyvec1_rd_addr_0 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_165 = state == 2'h1 ? io_polyvec1_rd_addr_1 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_166 = state == 2'h1 ? io_polyvec1_rd_addr_2 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_167 = state == 2'h1 ? io_polyvec1_rd_addr_3 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_168 = state == 2'h1 ? io_polyvec1_rd_addr_4 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_169 = state == 2'h1 ? io_polyvec1_rd_addr_5 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_170 = state == 2'h1 ? io_polyvec1_rd_addr_6 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [8:0] _GEN_171 = state == 2'h1 ? io_polyvec1_rd_addr_7 : 9'h0; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_172 = state == 2'h1 ? u_ram_0_io_rd_data_0 : _GEN_52; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_173 = state == 2'h1 ? u_ram_0_io_rd_data_1 : _GEN_53; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_174 = state == 2'h1 ? u_ram_0_io_rd_data_2 : _GEN_54; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_175 = state == 2'h1 ? u_ram_0_io_rd_data_3 : _GEN_55; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_176 = state == 2'h1 ? u_ram_0_io_rd_data_4 : _GEN_56; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_177 = state == 2'h1 ? u_ram_0_io_rd_data_5 : _GEN_57; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_178 = state == 2'h1 ? u_ram_0_io_rd_data_6 : _GEN_58; // @[Buffer.scala 138:34 141:24]
-  wire [34:0] _GEN_179 = state == 2'h1 ? u_ram_0_io_rd_data_7 : _GEN_59; // @[Buffer.scala 138:34 141:24]
-  wire  _GEN_180 = state == 2'h1 & io_polyvec1_wr_en_0; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_181 = state == 2'h1 & io_polyvec1_wr_en_1; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_182 = state == 2'h1 & io_polyvec1_wr_en_2; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_183 = state == 2'h1 & io_polyvec1_wr_en_3; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_184 = state == 2'h1 & io_polyvec1_wr_en_4; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_185 = state == 2'h1 & io_polyvec1_wr_en_5; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_186 = state == 2'h1 & io_polyvec1_wr_en_6; // @[Buffer.scala 138:34 142:24]
-  wire  _GEN_187 = state == 2'h1 & io_polyvec1_wr_en_7; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_188 = state == 2'h1 ? io_polyvec1_wr_addr_0 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_189 = state == 2'h1 ? io_polyvec1_wr_addr_1 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_190 = state == 2'h1 ? io_polyvec1_wr_addr_2 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_191 = state == 2'h1 ? io_polyvec1_wr_addr_3 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_192 = state == 2'h1 ? io_polyvec1_wr_addr_4 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_193 = state == 2'h1 ? io_polyvec1_wr_addr_5 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_194 = state == 2'h1 ? io_polyvec1_wr_addr_6 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_195 = state == 2'h1 ? io_polyvec1_wr_addr_7 : 9'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_196 = state == 2'h1 ? io_polyvec1_wr_data_0 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_197 = state == 2'h1 ? io_polyvec1_wr_data_1 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_198 = state == 2'h1 ? io_polyvec1_wr_data_2 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_199 = state == 2'h1 ? io_polyvec1_wr_data_3 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_200 = state == 2'h1 ? io_polyvec1_wr_data_4 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_201 = state == 2'h1 ? io_polyvec1_wr_data_5 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_202 = state == 2'h1 ? io_polyvec1_wr_data_6 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [34:0] _GEN_203 = state == 2'h1 ? io_polyvec1_wr_data_7 : 35'h0; // @[Buffer.scala 138:34 142:24]
-  wire [8:0] _GEN_204 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_0; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_205 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_1; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_206 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_2; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_207 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_3; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_208 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_4; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_209 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_5; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_210 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_6; // @[Buffer.scala 138:34 143:24]
-  wire [8:0] _GEN_211 = state == 2'h1 ? 9'h0 : io_polyvec0_rd_addr_7; // @[Buffer.scala 138:34 143:24]
-  wire  _GEN_220 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_0; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_221 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_1; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_222 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_2; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_223 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_3; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_224 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_4; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_225 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_5; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_226 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_6; // @[Buffer.scala 138:34 144:24]
-  wire  _GEN_227 = state == 2'h1 ? 1'h0 : io_polyvec0_wr_en_7; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_228 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_0; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_229 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_1; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_230 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_2; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_231 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_3; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_232 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_4; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_233 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_5; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_234 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_6; // @[Buffer.scala 138:34 144:24]
-  wire [8:0] _GEN_235 = state == 2'h1 ? 9'h0 : io_polyvec0_wr_addr_7; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_236 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_0; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_237 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_1; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_238 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_2; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_239 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_3; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_240 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_4; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_241 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_5; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_242 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_6; // @[Buffer.scala 138:34 144:24]
-  wire [34:0] _GEN_243 = state == 2'h1 ? 35'h0 : io_polyvec0_wr_data_7; // @[Buffer.scala 138:34 144:24]
-  poly_ram_35_9_8 u_ram_0 ( // @[Buffer.scala 128:15]
-    .clock(u_ram_0_clock),
-    .io_wr_en_0(u_ram_0_io_wr_en_0),
-    .io_wr_en_1(u_ram_0_io_wr_en_1),
-    .io_wr_en_2(u_ram_0_io_wr_en_2),
-    .io_wr_en_3(u_ram_0_io_wr_en_3),
-    .io_wr_en_4(u_ram_0_io_wr_en_4),
-    .io_wr_en_5(u_ram_0_io_wr_en_5),
-    .io_wr_en_6(u_ram_0_io_wr_en_6),
-    .io_wr_en_7(u_ram_0_io_wr_en_7),
-    .io_wr_addr_0(u_ram_0_io_wr_addr_0),
-    .io_wr_addr_1(u_ram_0_io_wr_addr_1),
-    .io_wr_addr_2(u_ram_0_io_wr_addr_2),
-    .io_wr_addr_3(u_ram_0_io_wr_addr_3),
-    .io_wr_addr_4(u_ram_0_io_wr_addr_4),
-    .io_wr_addr_5(u_ram_0_io_wr_addr_5),
-    .io_wr_addr_6(u_ram_0_io_wr_addr_6),
-    .io_wr_addr_7(u_ram_0_io_wr_addr_7),
-    .io_wr_data_0(u_ram_0_io_wr_data_0),
-    .io_wr_data_1(u_ram_0_io_wr_data_1),
-    .io_wr_data_2(u_ram_0_io_wr_data_2),
-    .io_wr_data_3(u_ram_0_io_wr_data_3),
-    .io_wr_data_4(u_ram_0_io_wr_data_4),
-    .io_wr_data_5(u_ram_0_io_wr_data_5),
-    .io_wr_data_6(u_ram_0_io_wr_data_6),
-    .io_wr_data_7(u_ram_0_io_wr_data_7),
-    .io_rd_addr_0(u_ram_0_io_rd_addr_0),
-    .io_rd_addr_1(u_ram_0_io_rd_addr_1),
-    .io_rd_addr_2(u_ram_0_io_rd_addr_2),
-    .io_rd_addr_3(u_ram_0_io_rd_addr_3),
-    .io_rd_addr_4(u_ram_0_io_rd_addr_4),
-    .io_rd_addr_5(u_ram_0_io_rd_addr_5),
-    .io_rd_addr_6(u_ram_0_io_rd_addr_6),
-    .io_rd_addr_7(u_ram_0_io_rd_addr_7),
-    .io_rd_data_0(u_ram_0_io_rd_data_0),
-    .io_rd_data_1(u_ram_0_io_rd_data_1),
-    .io_rd_data_2(u_ram_0_io_rd_data_2),
-    .io_rd_data_3(u_ram_0_io_rd_data_3),
-    .io_rd_data_4(u_ram_0_io_rd_data_4),
-    .io_rd_data_5(u_ram_0_io_rd_data_5),
-    .io_rd_data_6(u_ram_0_io_rd_data_6),
-    .io_rd_data_7(u_ram_0_io_rd_data_7)
-  );
-  poly_ram_35_9_8 u_ram_1 ( // @[Buffer.scala 128:15]
-    .clock(u_ram_1_clock),
-    .io_wr_en_0(u_ram_1_io_wr_en_0),
-    .io_wr_en_1(u_ram_1_io_wr_en_1),
-    .io_wr_en_2(u_ram_1_io_wr_en_2),
-    .io_wr_en_3(u_ram_1_io_wr_en_3),
-    .io_wr_en_4(u_ram_1_io_wr_en_4),
-    .io_wr_en_5(u_ram_1_io_wr_en_5),
-    .io_wr_en_6(u_ram_1_io_wr_en_6),
-    .io_wr_en_7(u_ram_1_io_wr_en_7),
-    .io_wr_addr_0(u_ram_1_io_wr_addr_0),
-    .io_wr_addr_1(u_ram_1_io_wr_addr_1),
-    .io_wr_addr_2(u_ram_1_io_wr_addr_2),
-    .io_wr_addr_3(u_ram_1_io_wr_addr_3),
-    .io_wr_addr_4(u_ram_1_io_wr_addr_4),
-    .io_wr_addr_5(u_ram_1_io_wr_addr_5),
-    .io_wr_addr_6(u_ram_1_io_wr_addr_6),
-    .io_wr_addr_7(u_ram_1_io_wr_addr_7),
-    .io_wr_data_0(u_ram_1_io_wr_data_0),
-    .io_wr_data_1(u_ram_1_io_wr_data_1),
-    .io_wr_data_2(u_ram_1_io_wr_data_2),
-    .io_wr_data_3(u_ram_1_io_wr_data_3),
-    .io_wr_data_4(u_ram_1_io_wr_data_4),
-    .io_wr_data_5(u_ram_1_io_wr_data_5),
-    .io_wr_data_6(u_ram_1_io_wr_data_6),
-    .io_wr_data_7(u_ram_1_io_wr_data_7),
-    .io_rd_addr_0(u_ram_1_io_rd_addr_0),
-    .io_rd_addr_1(u_ram_1_io_rd_addr_1),
-    .io_rd_addr_2(u_ram_1_io_rd_addr_2),
-    .io_rd_addr_3(u_ram_1_io_rd_addr_3),
-    .io_rd_addr_4(u_ram_1_io_rd_addr_4),
-    .io_rd_addr_5(u_ram_1_io_rd_addr_5),
-    .io_rd_addr_6(u_ram_1_io_rd_addr_6),
-    .io_rd_addr_7(u_ram_1_io_rd_addr_7),
-    .io_rd_data_0(u_ram_1_io_rd_data_0),
-    .io_rd_data_1(u_ram_1_io_rd_data_1),
-    .io_rd_data_2(u_ram_1_io_rd_data_2),
-    .io_rd_data_3(u_ram_1_io_rd_data_3),
-    .io_rd_data_4(u_ram_1_io_rd_data_4),
-    .io_rd_data_5(u_ram_1_io_rd_data_5),
-    .io_rd_data_6(u_ram_1_io_rd_data_6),
-    .io_rd_data_7(u_ram_1_io_rd_data_7)
-  );
-  poly_ram_35_9_8 u_ram_2 ( // @[Buffer.scala 128:15]
-    .clock(u_ram_2_clock),
-    .io_wr_en_0(u_ram_2_io_wr_en_0),
-    .io_wr_en_1(u_ram_2_io_wr_en_1),
-    .io_wr_en_2(u_ram_2_io_wr_en_2),
-    .io_wr_en_3(u_ram_2_io_wr_en_3),
-    .io_wr_en_4(u_ram_2_io_wr_en_4),
-    .io_wr_en_5(u_ram_2_io_wr_en_5),
-    .io_wr_en_6(u_ram_2_io_wr_en_6),
-    .io_wr_en_7(u_ram_2_io_wr_en_7),
-    .io_wr_addr_0(u_ram_2_io_wr_addr_0),
-    .io_wr_addr_1(u_ram_2_io_wr_addr_1),
-    .io_wr_addr_2(u_ram_2_io_wr_addr_2),
-    .io_wr_addr_3(u_ram_2_io_wr_addr_3),
-    .io_wr_addr_4(u_ram_2_io_wr_addr_4),
-    .io_wr_addr_5(u_ram_2_io_wr_addr_5),
-    .io_wr_addr_6(u_ram_2_io_wr_addr_6),
-    .io_wr_addr_7(u_ram_2_io_wr_addr_7),
-    .io_wr_data_0(u_ram_2_io_wr_data_0),
-    .io_wr_data_1(u_ram_2_io_wr_data_1),
-    .io_wr_data_2(u_ram_2_io_wr_data_2),
-    .io_wr_data_3(u_ram_2_io_wr_data_3),
-    .io_wr_data_4(u_ram_2_io_wr_data_4),
-    .io_wr_data_5(u_ram_2_io_wr_data_5),
-    .io_wr_data_6(u_ram_2_io_wr_data_6),
-    .io_wr_data_7(u_ram_2_io_wr_data_7),
-    .io_rd_addr_0(u_ram_2_io_rd_addr_0),
-    .io_rd_addr_1(u_ram_2_io_rd_addr_1),
-    .io_rd_addr_2(u_ram_2_io_rd_addr_2),
-    .io_rd_addr_3(u_ram_2_io_rd_addr_3),
-    .io_rd_addr_4(u_ram_2_io_rd_addr_4),
-    .io_rd_addr_5(u_ram_2_io_rd_addr_5),
-    .io_rd_addr_6(u_ram_2_io_rd_addr_6),
-    .io_rd_addr_7(u_ram_2_io_rd_addr_7),
-    .io_rd_data_0(u_ram_2_io_rd_data_0),
-    .io_rd_data_1(u_ram_2_io_rd_data_1),
-    .io_rd_data_2(u_ram_2_io_rd_data_2),
-    .io_rd_data_3(u_ram_2_io_rd_data_3),
-    .io_rd_data_4(u_ram_2_io_rd_data_4),
-    .io_rd_data_5(u_ram_2_io_rd_data_5),
-    .io_rd_data_6(u_ram_2_io_rd_data_6),
-    .io_rd_data_7(u_ram_2_io_rd_data_7)
-  );
-  assign io_polyvec0_rd_data_0 = state == 2'h0 ? u_ram_0_io_rd_data_0 : _GEN_132; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_1 = state == 2'h0 ? u_ram_0_io_rd_data_1 : _GEN_133; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_2 = state == 2'h0 ? u_ram_0_io_rd_data_2 : _GEN_134; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_3 = state == 2'h0 ? u_ram_0_io_rd_data_3 : _GEN_135; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_4 = state == 2'h0 ? u_ram_0_io_rd_data_4 : _GEN_136; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_5 = state == 2'h0 ? u_ram_0_io_rd_data_5 : _GEN_137; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_6 = state == 2'h0 ? u_ram_0_io_rd_data_6 : _GEN_138; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec0_rd_data_7 = state == 2'h0 ? u_ram_0_io_rd_data_7 : _GEN_139; // @[Buffer.scala 131:27 132:24]
-  assign io_polyvec1_rd_data_0 = state == 2'h0 ? u_ram_1_io_rd_data_0 : _GEN_172; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_1 = state == 2'h0 ? u_ram_1_io_rd_data_1 : _GEN_173; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_2 = state == 2'h0 ? u_ram_1_io_rd_data_2 : _GEN_174; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_3 = state == 2'h0 ? u_ram_1_io_rd_data_3 : _GEN_175; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_4 = state == 2'h0 ? u_ram_1_io_rd_data_4 : _GEN_176; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_5 = state == 2'h0 ? u_ram_1_io_rd_data_5 : _GEN_177; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_6 = state == 2'h0 ? u_ram_1_io_rd_data_6 : _GEN_178; // @[Buffer.scala 131:27 134:24]
-  assign io_polyvec1_rd_data_7 = state == 2'h0 ? u_ram_1_io_rd_data_7 : _GEN_179; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_0_clock = clock;
-  assign u_ram_0_io_wr_en_0 = state == 2'h0 ? io_polyvec0_wr_en_0 : _GEN_180; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_1 = state == 2'h0 ? io_polyvec0_wr_en_1 : _GEN_181; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_2 = state == 2'h0 ? io_polyvec0_wr_en_2 : _GEN_182; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_3 = state == 2'h0 ? io_polyvec0_wr_en_3 : _GEN_183; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_4 = state == 2'h0 ? io_polyvec0_wr_en_4 : _GEN_184; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_5 = state == 2'h0 ? io_polyvec0_wr_en_5 : _GEN_185; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_6 = state == 2'h0 ? io_polyvec0_wr_en_6 : _GEN_186; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_en_7 = state == 2'h0 ? io_polyvec0_wr_en_7 : _GEN_187; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_0 = state == 2'h0 ? io_polyvec0_wr_addr_0 : _GEN_188; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_1 = state == 2'h0 ? io_polyvec0_wr_addr_1 : _GEN_189; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_2 = state == 2'h0 ? io_polyvec0_wr_addr_2 : _GEN_190; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_3 = state == 2'h0 ? io_polyvec0_wr_addr_3 : _GEN_191; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_4 = state == 2'h0 ? io_polyvec0_wr_addr_4 : _GEN_192; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_5 = state == 2'h0 ? io_polyvec0_wr_addr_5 : _GEN_193; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_6 = state == 2'h0 ? io_polyvec0_wr_addr_6 : _GEN_194; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_addr_7 = state == 2'h0 ? io_polyvec0_wr_addr_7 : _GEN_195; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_0 = state == 2'h0 ? io_polyvec0_wr_data_0 : _GEN_196; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_1 = state == 2'h0 ? io_polyvec0_wr_data_1 : _GEN_197; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_2 = state == 2'h0 ? io_polyvec0_wr_data_2 : _GEN_198; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_3 = state == 2'h0 ? io_polyvec0_wr_data_3 : _GEN_199; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_4 = state == 2'h0 ? io_polyvec0_wr_data_4 : _GEN_200; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_5 = state == 2'h0 ? io_polyvec0_wr_data_5 : _GEN_201; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_6 = state == 2'h0 ? io_polyvec0_wr_data_6 : _GEN_202; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_wr_data_7 = state == 2'h0 ? io_polyvec0_wr_data_7 : _GEN_203; // @[Buffer.scala 131:27 133:24]
-  assign u_ram_0_io_rd_addr_0 = state == 2'h0 ? io_polyvec0_rd_addr_0 : _GEN_164; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_1 = state == 2'h0 ? io_polyvec0_rd_addr_1 : _GEN_165; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_2 = state == 2'h0 ? io_polyvec0_rd_addr_2 : _GEN_166; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_3 = state == 2'h0 ? io_polyvec0_rd_addr_3 : _GEN_167; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_4 = state == 2'h0 ? io_polyvec0_rd_addr_4 : _GEN_168; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_5 = state == 2'h0 ? io_polyvec0_rd_addr_5 : _GEN_169; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_6 = state == 2'h0 ? io_polyvec0_rd_addr_6 : _GEN_170; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_0_io_rd_addr_7 = state == 2'h0 ? io_polyvec0_rd_addr_7 : _GEN_171; // @[Buffer.scala 131:27 132:24]
-  assign u_ram_1_clock = clock;
-  assign u_ram_1_io_wr_en_0 = state == 2'h0 ? io_polyvec1_wr_en_0 : _GEN_220; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_1 = state == 2'h0 ? io_polyvec1_wr_en_1 : _GEN_221; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_2 = state == 2'h0 ? io_polyvec1_wr_en_2 : _GEN_222; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_3 = state == 2'h0 ? io_polyvec1_wr_en_3 : _GEN_223; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_4 = state == 2'h0 ? io_polyvec1_wr_en_4 : _GEN_224; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_5 = state == 2'h0 ? io_polyvec1_wr_en_5 : _GEN_225; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_6 = state == 2'h0 ? io_polyvec1_wr_en_6 : _GEN_226; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_en_7 = state == 2'h0 ? io_polyvec1_wr_en_7 : _GEN_227; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_0 = state == 2'h0 ? io_polyvec1_wr_addr_0 : _GEN_228; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_1 = state == 2'h0 ? io_polyvec1_wr_addr_1 : _GEN_229; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_2 = state == 2'h0 ? io_polyvec1_wr_addr_2 : _GEN_230; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_3 = state == 2'h0 ? io_polyvec1_wr_addr_3 : _GEN_231; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_4 = state == 2'h0 ? io_polyvec1_wr_addr_4 : _GEN_232; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_5 = state == 2'h0 ? io_polyvec1_wr_addr_5 : _GEN_233; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_6 = state == 2'h0 ? io_polyvec1_wr_addr_6 : _GEN_234; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_addr_7 = state == 2'h0 ? io_polyvec1_wr_addr_7 : _GEN_235; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_0 = state == 2'h0 ? io_polyvec1_wr_data_0 : _GEN_236; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_1 = state == 2'h0 ? io_polyvec1_wr_data_1 : _GEN_237; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_2 = state == 2'h0 ? io_polyvec1_wr_data_2 : _GEN_238; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_3 = state == 2'h0 ? io_polyvec1_wr_data_3 : _GEN_239; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_4 = state == 2'h0 ? io_polyvec1_wr_data_4 : _GEN_240; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_5 = state == 2'h0 ? io_polyvec1_wr_data_5 : _GEN_241; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_6 = state == 2'h0 ? io_polyvec1_wr_data_6 : _GEN_242; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_wr_data_7 = state == 2'h0 ? io_polyvec1_wr_data_7 : _GEN_243; // @[Buffer.scala 131:27 135:24]
-  assign u_ram_1_io_rd_addr_0 = state == 2'h0 ? io_polyvec1_rd_addr_0 : _GEN_204; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_1 = state == 2'h0 ? io_polyvec1_rd_addr_1 : _GEN_205; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_2 = state == 2'h0 ? io_polyvec1_rd_addr_2 : _GEN_206; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_3 = state == 2'h0 ? io_polyvec1_rd_addr_3 : _GEN_207; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_4 = state == 2'h0 ? io_polyvec1_rd_addr_4 : _GEN_208; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_5 = state == 2'h0 ? io_polyvec1_rd_addr_5 : _GEN_209; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_6 = state == 2'h0 ? io_polyvec1_rd_addr_6 : _GEN_210; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_1_io_rd_addr_7 = state == 2'h0 ? io_polyvec1_rd_addr_7 : _GEN_211; // @[Buffer.scala 131:27 134:24]
-  assign u_ram_2_clock = clock;
-  assign u_ram_2_io_wr_en_0 = state == 2'h0 ? 1'h0 : _GEN_140; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_1 = state == 2'h0 ? 1'h0 : _GEN_141; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_2 = state == 2'h0 ? 1'h0 : _GEN_142; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_3 = state == 2'h0 ? 1'h0 : _GEN_143; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_4 = state == 2'h0 ? 1'h0 : _GEN_144; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_5 = state == 2'h0 ? 1'h0 : _GEN_145; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_6 = state == 2'h0 ? 1'h0 : _GEN_146; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_en_7 = state == 2'h0 ? 1'h0 : _GEN_147; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_0 = state == 2'h0 ? 9'h0 : _GEN_148; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_1 = state == 2'h0 ? 9'h0 : _GEN_149; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_2 = state == 2'h0 ? 9'h0 : _GEN_150; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_3 = state == 2'h0 ? 9'h0 : _GEN_151; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_4 = state == 2'h0 ? 9'h0 : _GEN_152; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_5 = state == 2'h0 ? 9'h0 : _GEN_153; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_6 = state == 2'h0 ? 9'h0 : _GEN_154; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_addr_7 = state == 2'h0 ? 9'h0 : _GEN_155; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_0 = state == 2'h0 ? 35'h0 : _GEN_156; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_1 = state == 2'h0 ? 35'h0 : _GEN_157; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_2 = state == 2'h0 ? 35'h0 : _GEN_158; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_3 = state == 2'h0 ? 35'h0 : _GEN_159; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_4 = state == 2'h0 ? 35'h0 : _GEN_160; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_5 = state == 2'h0 ? 35'h0 : _GEN_161; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_6 = state == 2'h0 ? 35'h0 : _GEN_162; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_wr_data_7 = state == 2'h0 ? 35'h0 : _GEN_163; // @[Buffer.scala 131:27 137:24]
-  assign u_ram_2_io_rd_addr_0 = state == 2'h0 ? 9'h0 : _GEN_124; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_1 = state == 2'h0 ? 9'h0 : _GEN_125; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_2 = state == 2'h0 ? 9'h0 : _GEN_126; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_3 = state == 2'h0 ? 9'h0 : _GEN_127; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_4 = state == 2'h0 ? 9'h0 : _GEN_128; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_5 = state == 2'h0 ? 9'h0 : _GEN_129; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_6 = state == 2'h0 ? 9'h0 : _GEN_130; // @[Buffer.scala 131:27 136:24]
-  assign u_ram_2_io_rd_addr_7 = state == 2'h0 ? 9'h0 : _GEN_131; // @[Buffer.scala 131:27 136:24]
+  reg  done_r; // @[Buffer.scala 125:23]
+  reg [1:0] state; // @[Buffer.scala 128:22]
+  wire  _state_T = 2'h0 == state; // @[Mux.scala 81:61]
+  wire [1:0] _state_T_1 = 2'h0 == state ? 2'h1 : 2'h0; // @[Mux.scala 81:58]
+  wire  _state_T_2 = 2'h1 == state; // @[Mux.scala 81:61]
+  wire  _state_T_4 = 2'h2 == state; // @[Mux.scala 81:61]
+  wire [8:0] _GEN_1 = _state_T_4 ? io_polyvec0_rd_addr_0 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_2 = _state_T_4 ? io_polyvec0_rd_addr_1 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_3 = _state_T_4 ? io_polyvec0_rd_addr_2 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_4 = _state_T_4 ? io_polyvec0_rd_addr_3 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_5 = _state_T_4 ? io_polyvec0_rd_addr_4 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_6 = _state_T_4 ? io_polyvec0_rd_addr_5 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_7 = _state_T_4 ? io_polyvec0_rd_addr_6 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_8 = _state_T_4 ? io_polyvec0_rd_addr_7 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [34:0] _GEN_9 = _state_T_4 ? io_banks_rd_1_data_0 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_10 = _state_T_4 ? io_banks_rd_1_data_1 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_11 = _state_T_4 ? io_banks_rd_1_data_2 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_12 = _state_T_4 ? io_banks_rd_1_data_3 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_13 = _state_T_4 ? io_banks_rd_1_data_4 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_14 = _state_T_4 ? io_banks_rd_1_data_5 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_15 = _state_T_4 ? io_banks_rd_1_data_6 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire [34:0] _GEN_16 = _state_T_4 ? io_banks_rd_1_data_7 : 35'h0; // @[Buffer.scala 160:10 167:17 150:23]
+  wire  _GEN_17 = _state_T_4 & io_polyvec0_wr_en_0; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_18 = _state_T_4 & io_polyvec0_wr_en_1; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_19 = _state_T_4 & io_polyvec0_wr_en_2; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_20 = _state_T_4 & io_polyvec0_wr_en_3; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_21 = _state_T_4 & io_polyvec0_wr_en_4; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_22 = _state_T_4 & io_polyvec0_wr_en_5; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_23 = _state_T_4 & io_polyvec0_wr_en_6; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_24 = _state_T_4 & io_polyvec0_wr_en_7; // @[Buffer.scala 161:10 142:13 167:17]
+  wire [8:0] _GEN_25 = _state_T_4 ? io_polyvec0_wr_addr_0 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_26 = _state_T_4 ? io_polyvec0_wr_addr_1 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_27 = _state_T_4 ? io_polyvec0_wr_addr_2 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_28 = _state_T_4 ? io_polyvec0_wr_addr_3 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_29 = _state_T_4 ? io_polyvec0_wr_addr_4 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_30 = _state_T_4 ? io_polyvec0_wr_addr_5 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_31 = _state_T_4 ? io_polyvec0_wr_addr_6 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_32 = _state_T_4 ? io_polyvec0_wr_addr_7 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [34:0] _GEN_33 = _state_T_4 ? io_polyvec0_wr_data_0 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_34 = _state_T_4 ? io_polyvec0_wr_data_1 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_35 = _state_T_4 ? io_polyvec0_wr_data_2 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_36 = _state_T_4 ? io_polyvec0_wr_data_3 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_37 = _state_T_4 ? io_polyvec0_wr_data_4 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_38 = _state_T_4 ? io_polyvec0_wr_data_5 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_39 = _state_T_4 ? io_polyvec0_wr_data_6 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_40 = _state_T_4 ? io_polyvec0_wr_data_7 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [8:0] _GEN_41 = _state_T_4 ? io_polyvec1_rd_addr_0 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_42 = _state_T_4 ? io_polyvec1_rd_addr_1 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_43 = _state_T_4 ? io_polyvec1_rd_addr_2 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_44 = _state_T_4 ? io_polyvec1_rd_addr_3 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_45 = _state_T_4 ? io_polyvec1_rd_addr_4 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_46 = _state_T_4 ? io_polyvec1_rd_addr_5 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_47 = _state_T_4 ? io_polyvec1_rd_addr_6 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [8:0] _GEN_48 = _state_T_4 ? io_polyvec1_rd_addr_7 : 9'h0; // @[Buffer.scala 160:10 147:13 167:17]
+  wire [34:0] _GEN_49 = _state_T_4 ? io_banks_rd_2_data_0 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_50 = _state_T_4 ? io_banks_rd_2_data_1 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_51 = _state_T_4 ? io_banks_rd_2_data_2 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_52 = _state_T_4 ? io_banks_rd_2_data_3 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_53 = _state_T_4 ? io_banks_rd_2_data_4 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_54 = _state_T_4 ? io_banks_rd_2_data_5 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_55 = _state_T_4 ? io_banks_rd_2_data_6 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire [34:0] _GEN_56 = _state_T_4 ? io_banks_rd_2_data_7 : 35'h0; // @[Buffer.scala 160:10 167:17 151:23]
+  wire  _GEN_57 = _state_T_4 & io_polyvec1_wr_en_0; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_58 = _state_T_4 & io_polyvec1_wr_en_1; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_59 = _state_T_4 & io_polyvec1_wr_en_2; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_60 = _state_T_4 & io_polyvec1_wr_en_3; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_61 = _state_T_4 & io_polyvec1_wr_en_4; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_62 = _state_T_4 & io_polyvec1_wr_en_5; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_63 = _state_T_4 & io_polyvec1_wr_en_6; // @[Buffer.scala 161:10 142:13 167:17]
+  wire  _GEN_64 = _state_T_4 & io_polyvec1_wr_en_7; // @[Buffer.scala 161:10 142:13 167:17]
+  wire [8:0] _GEN_65 = _state_T_4 ? io_polyvec1_wr_addr_0 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_66 = _state_T_4 ? io_polyvec1_wr_addr_1 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_67 = _state_T_4 ? io_polyvec1_wr_addr_2 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_68 = _state_T_4 ? io_polyvec1_wr_addr_3 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_69 = _state_T_4 ? io_polyvec1_wr_addr_4 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_70 = _state_T_4 ? io_polyvec1_wr_addr_5 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_71 = _state_T_4 ? io_polyvec1_wr_addr_6 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [8:0] _GEN_72 = _state_T_4 ? io_polyvec1_wr_addr_7 : 9'h0; // @[Buffer.scala 161:10 143:13 167:17]
+  wire [34:0] _GEN_73 = _state_T_4 ? io_polyvec1_wr_data_0 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_74 = _state_T_4 ? io_polyvec1_wr_data_1 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_75 = _state_T_4 ? io_polyvec1_wr_data_2 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_76 = _state_T_4 ? io_polyvec1_wr_data_3 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_77 = _state_T_4 ? io_polyvec1_wr_data_4 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_78 = _state_T_4 ? io_polyvec1_wr_data_5 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_79 = _state_T_4 ? io_polyvec1_wr_data_6 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [34:0] _GEN_80 = _state_T_4 ? io_polyvec1_wr_data_7 : 35'h0; // @[Buffer.scala 161:10 144:13 167:17]
+  wire [8:0] _GEN_121 = _state_T_2 ? io_polyvec0_rd_addr_0 : _GEN_41; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_122 = _state_T_2 ? io_polyvec0_rd_addr_1 : _GEN_42; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_123 = _state_T_2 ? io_polyvec0_rd_addr_2 : _GEN_43; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_124 = _state_T_2 ? io_polyvec0_rd_addr_3 : _GEN_44; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_125 = _state_T_2 ? io_polyvec0_rd_addr_4 : _GEN_45; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_126 = _state_T_2 ? io_polyvec0_rd_addr_5 : _GEN_46; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_127 = _state_T_2 ? io_polyvec0_rd_addr_6 : _GEN_47; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_128 = _state_T_2 ? io_polyvec0_rd_addr_7 : _GEN_48; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_129 = _state_T_2 ? io_banks_rd_2_data_0 : _GEN_9; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_130 = _state_T_2 ? io_banks_rd_2_data_1 : _GEN_10; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_131 = _state_T_2 ? io_banks_rd_2_data_2 : _GEN_11; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_132 = _state_T_2 ? io_banks_rd_2_data_3 : _GEN_12; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_133 = _state_T_2 ? io_banks_rd_2_data_4 : _GEN_13; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_134 = _state_T_2 ? io_banks_rd_2_data_5 : _GEN_14; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_135 = _state_T_2 ? io_banks_rd_2_data_6 : _GEN_15; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_136 = _state_T_2 ? io_banks_rd_2_data_7 : _GEN_16; // @[Buffer.scala 160:10 167:17]
+  wire  _GEN_137 = _state_T_2 ? io_polyvec0_wr_en_0 : _GEN_57; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_138 = _state_T_2 ? io_polyvec0_wr_en_1 : _GEN_58; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_139 = _state_T_2 ? io_polyvec0_wr_en_2 : _GEN_59; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_140 = _state_T_2 ? io_polyvec0_wr_en_3 : _GEN_60; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_141 = _state_T_2 ? io_polyvec0_wr_en_4 : _GEN_61; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_142 = _state_T_2 ? io_polyvec0_wr_en_5 : _GEN_62; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_143 = _state_T_2 ? io_polyvec0_wr_en_6 : _GEN_63; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_144 = _state_T_2 ? io_polyvec0_wr_en_7 : _GEN_64; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_145 = _state_T_2 ? io_polyvec0_wr_addr_0 : _GEN_65; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_146 = _state_T_2 ? io_polyvec0_wr_addr_1 : _GEN_66; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_147 = _state_T_2 ? io_polyvec0_wr_addr_2 : _GEN_67; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_148 = _state_T_2 ? io_polyvec0_wr_addr_3 : _GEN_68; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_149 = _state_T_2 ? io_polyvec0_wr_addr_4 : _GEN_69; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_150 = _state_T_2 ? io_polyvec0_wr_addr_5 : _GEN_70; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_151 = _state_T_2 ? io_polyvec0_wr_addr_6 : _GEN_71; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_152 = _state_T_2 ? io_polyvec0_wr_addr_7 : _GEN_72; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_153 = _state_T_2 ? io_polyvec0_wr_data_0 : _GEN_73; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_154 = _state_T_2 ? io_polyvec0_wr_data_1 : _GEN_74; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_155 = _state_T_2 ? io_polyvec0_wr_data_2 : _GEN_75; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_156 = _state_T_2 ? io_polyvec0_wr_data_3 : _GEN_76; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_157 = _state_T_2 ? io_polyvec0_wr_data_4 : _GEN_77; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_158 = _state_T_2 ? io_polyvec0_wr_data_5 : _GEN_78; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_159 = _state_T_2 ? io_polyvec0_wr_data_6 : _GEN_79; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_160 = _state_T_2 ? io_polyvec0_wr_data_7 : _GEN_80; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_161 = _state_T_2 ? io_polyvec1_rd_addr_0 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_162 = _state_T_2 ? io_polyvec1_rd_addr_1 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_163 = _state_T_2 ? io_polyvec1_rd_addr_2 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_164 = _state_T_2 ? io_polyvec1_rd_addr_3 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_165 = _state_T_2 ? io_polyvec1_rd_addr_4 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_166 = _state_T_2 ? io_polyvec1_rd_addr_5 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_167 = _state_T_2 ? io_polyvec1_rd_addr_6 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_168 = _state_T_2 ? io_polyvec1_rd_addr_7 : 9'h0; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_169 = _state_T_2 ? io_banks_rd_0_data_0 : _GEN_49; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_170 = _state_T_2 ? io_banks_rd_0_data_1 : _GEN_50; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_171 = _state_T_2 ? io_banks_rd_0_data_2 : _GEN_51; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_172 = _state_T_2 ? io_banks_rd_0_data_3 : _GEN_52; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_173 = _state_T_2 ? io_banks_rd_0_data_4 : _GEN_53; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_174 = _state_T_2 ? io_banks_rd_0_data_5 : _GEN_54; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_175 = _state_T_2 ? io_banks_rd_0_data_6 : _GEN_55; // @[Buffer.scala 160:10 167:17]
+  wire [34:0] _GEN_176 = _state_T_2 ? io_banks_rd_0_data_7 : _GEN_56; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_185 = _state_T_2 ? io_polyvec1_wr_addr_0 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_186 = _state_T_2 ? io_polyvec1_wr_addr_1 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_187 = _state_T_2 ? io_polyvec1_wr_addr_2 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_188 = _state_T_2 ? io_polyvec1_wr_addr_3 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_189 = _state_T_2 ? io_polyvec1_wr_addr_4 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_190 = _state_T_2 ? io_polyvec1_wr_addr_5 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_191 = _state_T_2 ? io_polyvec1_wr_addr_6 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_192 = _state_T_2 ? io_polyvec1_wr_addr_7 : 9'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_193 = _state_T_2 ? io_polyvec1_wr_data_0 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_194 = _state_T_2 ? io_polyvec1_wr_data_1 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_195 = _state_T_2 ? io_polyvec1_wr_data_2 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_196 = _state_T_2 ? io_polyvec1_wr_data_3 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_197 = _state_T_2 ? io_polyvec1_wr_data_4 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_198 = _state_T_2 ? io_polyvec1_wr_data_5 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_199 = _state_T_2 ? io_polyvec1_wr_data_6 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_200 = _state_T_2 ? io_polyvec1_wr_data_7 : 35'h0; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_201 = _state_T_2 ? 9'h0 : _GEN_1; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_202 = _state_T_2 ? 9'h0 : _GEN_2; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_203 = _state_T_2 ? 9'h0 : _GEN_3; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_204 = _state_T_2 ? 9'h0 : _GEN_4; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_205 = _state_T_2 ? 9'h0 : _GEN_5; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_206 = _state_T_2 ? 9'h0 : _GEN_6; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_207 = _state_T_2 ? 9'h0 : _GEN_7; // @[Buffer.scala 160:10 167:17]
+  wire [8:0] _GEN_208 = _state_T_2 ? 9'h0 : _GEN_8; // @[Buffer.scala 160:10 167:17]
+  wire  _GEN_217 = _state_T_2 ? 1'h0 : _GEN_17; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_218 = _state_T_2 ? 1'h0 : _GEN_18; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_219 = _state_T_2 ? 1'h0 : _GEN_19; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_220 = _state_T_2 ? 1'h0 : _GEN_20; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_221 = _state_T_2 ? 1'h0 : _GEN_21; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_222 = _state_T_2 ? 1'h0 : _GEN_22; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_223 = _state_T_2 ? 1'h0 : _GEN_23; // @[Buffer.scala 161:10 167:17]
+  wire  _GEN_224 = _state_T_2 ? 1'h0 : _GEN_24; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_225 = _state_T_2 ? 9'h0 : _GEN_25; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_226 = _state_T_2 ? 9'h0 : _GEN_26; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_227 = _state_T_2 ? 9'h0 : _GEN_27; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_228 = _state_T_2 ? 9'h0 : _GEN_28; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_229 = _state_T_2 ? 9'h0 : _GEN_29; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_230 = _state_T_2 ? 9'h0 : _GEN_30; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_231 = _state_T_2 ? 9'h0 : _GEN_31; // @[Buffer.scala 161:10 167:17]
+  wire [8:0] _GEN_232 = _state_T_2 ? 9'h0 : _GEN_32; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_233 = _state_T_2 ? 35'h0 : _GEN_33; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_234 = _state_T_2 ? 35'h0 : _GEN_34; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_235 = _state_T_2 ? 35'h0 : _GEN_35; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_236 = _state_T_2 ? 35'h0 : _GEN_36; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_237 = _state_T_2 ? 35'h0 : _GEN_37; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_238 = _state_T_2 ? 35'h0 : _GEN_38; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_239 = _state_T_2 ? 35'h0 : _GEN_39; // @[Buffer.scala 161:10 167:17]
+  wire [34:0] _GEN_240 = _state_T_2 ? 35'h0 : _GEN_40; // @[Buffer.scala 161:10 167:17]
+  assign io_polyvec0_rd_data_0 = _state_T ? io_banks_rd_0_data_0 : _GEN_129; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_1 = _state_T ? io_banks_rd_0_data_1 : _GEN_130; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_2 = _state_T ? io_banks_rd_0_data_2 : _GEN_131; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_3 = _state_T ? io_banks_rd_0_data_3 : _GEN_132; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_4 = _state_T ? io_banks_rd_0_data_4 : _GEN_133; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_5 = _state_T ? io_banks_rd_0_data_5 : _GEN_134; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_6 = _state_T ? io_banks_rd_0_data_6 : _GEN_135; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec0_rd_data_7 = _state_T ? io_banks_rd_0_data_7 : _GEN_136; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_0 = _state_T ? io_banks_rd_1_data_0 : _GEN_169; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_1 = _state_T ? io_banks_rd_1_data_1 : _GEN_170; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_2 = _state_T ? io_banks_rd_1_data_2 : _GEN_171; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_3 = _state_T ? io_banks_rd_1_data_3 : _GEN_172; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_4 = _state_T ? io_banks_rd_1_data_4 : _GEN_173; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_5 = _state_T ? io_banks_rd_1_data_5 : _GEN_174; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_6 = _state_T ? io_banks_rd_1_data_6 : _GEN_175; // @[Buffer.scala 160:10 167:17]
+  assign io_polyvec1_rd_data_7 = _state_T ? io_banks_rd_1_data_7 : _GEN_176; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_0 = _state_T ? io_polyvec0_rd_addr_0 : _GEN_161; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_1 = _state_T ? io_polyvec0_rd_addr_1 : _GEN_162; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_2 = _state_T ? io_polyvec0_rd_addr_2 : _GEN_163; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_3 = _state_T ? io_polyvec0_rd_addr_3 : _GEN_164; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_4 = _state_T ? io_polyvec0_rd_addr_4 : _GEN_165; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_5 = _state_T ? io_polyvec0_rd_addr_5 : _GEN_166; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_6 = _state_T ? io_polyvec0_rd_addr_6 : _GEN_167; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_0_addr_7 = _state_T ? io_polyvec0_rd_addr_7 : _GEN_168; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_0 = _state_T ? io_polyvec1_rd_addr_0 : _GEN_201; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_1 = _state_T ? io_polyvec1_rd_addr_1 : _GEN_202; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_2 = _state_T ? io_polyvec1_rd_addr_2 : _GEN_203; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_3 = _state_T ? io_polyvec1_rd_addr_3 : _GEN_204; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_4 = _state_T ? io_polyvec1_rd_addr_4 : _GEN_205; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_5 = _state_T ? io_polyvec1_rd_addr_5 : _GEN_206; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_6 = _state_T ? io_polyvec1_rd_addr_6 : _GEN_207; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_1_addr_7 = _state_T ? io_polyvec1_rd_addr_7 : _GEN_208; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_0 = _state_T ? 9'h0 : _GEN_121; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_1 = _state_T ? 9'h0 : _GEN_122; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_2 = _state_T ? 9'h0 : _GEN_123; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_3 = _state_T ? 9'h0 : _GEN_124; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_4 = _state_T ? 9'h0 : _GEN_125; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_5 = _state_T ? 9'h0 : _GEN_126; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_6 = _state_T ? 9'h0 : _GEN_127; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_rd_2_addr_7 = _state_T ? 9'h0 : _GEN_128; // @[Buffer.scala 160:10 167:17]
+  assign io_banks_wr_0_en_0 = _state_T ? io_polyvec0_wr_en_0 : _state_T_2 & io_polyvec1_wr_en_0; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_1 = _state_T ? io_polyvec0_wr_en_1 : _state_T_2 & io_polyvec1_wr_en_1; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_2 = _state_T ? io_polyvec0_wr_en_2 : _state_T_2 & io_polyvec1_wr_en_2; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_3 = _state_T ? io_polyvec0_wr_en_3 : _state_T_2 & io_polyvec1_wr_en_3; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_4 = _state_T ? io_polyvec0_wr_en_4 : _state_T_2 & io_polyvec1_wr_en_4; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_5 = _state_T ? io_polyvec0_wr_en_5 : _state_T_2 & io_polyvec1_wr_en_5; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_6 = _state_T ? io_polyvec0_wr_en_6 : _state_T_2 & io_polyvec1_wr_en_6; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_en_7 = _state_T ? io_polyvec0_wr_en_7 : _state_T_2 & io_polyvec1_wr_en_7; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_0 = _state_T ? io_polyvec0_wr_addr_0 : _GEN_185; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_1 = _state_T ? io_polyvec0_wr_addr_1 : _GEN_186; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_2 = _state_T ? io_polyvec0_wr_addr_2 : _GEN_187; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_3 = _state_T ? io_polyvec0_wr_addr_3 : _GEN_188; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_4 = _state_T ? io_polyvec0_wr_addr_4 : _GEN_189; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_5 = _state_T ? io_polyvec0_wr_addr_5 : _GEN_190; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_6 = _state_T ? io_polyvec0_wr_addr_6 : _GEN_191; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_addr_7 = _state_T ? io_polyvec0_wr_addr_7 : _GEN_192; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_0 = _state_T ? io_polyvec0_wr_data_0 : _GEN_193; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_1 = _state_T ? io_polyvec0_wr_data_1 : _GEN_194; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_2 = _state_T ? io_polyvec0_wr_data_2 : _GEN_195; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_3 = _state_T ? io_polyvec0_wr_data_3 : _GEN_196; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_4 = _state_T ? io_polyvec0_wr_data_4 : _GEN_197; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_5 = _state_T ? io_polyvec0_wr_data_5 : _GEN_198; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_6 = _state_T ? io_polyvec0_wr_data_6 : _GEN_199; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_0_data_7 = _state_T ? io_polyvec0_wr_data_7 : _GEN_200; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_0 = _state_T ? io_polyvec1_wr_en_0 : _GEN_217; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_1 = _state_T ? io_polyvec1_wr_en_1 : _GEN_218; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_2 = _state_T ? io_polyvec1_wr_en_2 : _GEN_219; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_3 = _state_T ? io_polyvec1_wr_en_3 : _GEN_220; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_4 = _state_T ? io_polyvec1_wr_en_4 : _GEN_221; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_5 = _state_T ? io_polyvec1_wr_en_5 : _GEN_222; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_6 = _state_T ? io_polyvec1_wr_en_6 : _GEN_223; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_en_7 = _state_T ? io_polyvec1_wr_en_7 : _GEN_224; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_0 = _state_T ? io_polyvec1_wr_addr_0 : _GEN_225; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_1 = _state_T ? io_polyvec1_wr_addr_1 : _GEN_226; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_2 = _state_T ? io_polyvec1_wr_addr_2 : _GEN_227; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_3 = _state_T ? io_polyvec1_wr_addr_3 : _GEN_228; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_4 = _state_T ? io_polyvec1_wr_addr_4 : _GEN_229; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_5 = _state_T ? io_polyvec1_wr_addr_5 : _GEN_230; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_6 = _state_T ? io_polyvec1_wr_addr_6 : _GEN_231; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_addr_7 = _state_T ? io_polyvec1_wr_addr_7 : _GEN_232; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_0 = _state_T ? io_polyvec1_wr_data_0 : _GEN_233; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_1 = _state_T ? io_polyvec1_wr_data_1 : _GEN_234; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_2 = _state_T ? io_polyvec1_wr_data_2 : _GEN_235; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_3 = _state_T ? io_polyvec1_wr_data_3 : _GEN_236; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_4 = _state_T ? io_polyvec1_wr_data_4 : _GEN_237; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_5 = _state_T ? io_polyvec1_wr_data_5 : _GEN_238; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_6 = _state_T ? io_polyvec1_wr_data_6 : _GEN_239; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_1_data_7 = _state_T ? io_polyvec1_wr_data_7 : _GEN_240; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_0 = _state_T ? 1'h0 : _GEN_137; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_1 = _state_T ? 1'h0 : _GEN_138; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_2 = _state_T ? 1'h0 : _GEN_139; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_3 = _state_T ? 1'h0 : _GEN_140; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_4 = _state_T ? 1'h0 : _GEN_141; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_5 = _state_T ? 1'h0 : _GEN_142; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_6 = _state_T ? 1'h0 : _GEN_143; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_en_7 = _state_T ? 1'h0 : _GEN_144; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_0 = _state_T ? 9'h0 : _GEN_145; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_1 = _state_T ? 9'h0 : _GEN_146; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_2 = _state_T ? 9'h0 : _GEN_147; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_3 = _state_T ? 9'h0 : _GEN_148; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_4 = _state_T ? 9'h0 : _GEN_149; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_5 = _state_T ? 9'h0 : _GEN_150; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_6 = _state_T ? 9'h0 : _GEN_151; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_addr_7 = _state_T ? 9'h0 : _GEN_152; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_0 = _state_T ? 35'h0 : _GEN_153; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_1 = _state_T ? 35'h0 : _GEN_154; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_2 = _state_T ? 35'h0 : _GEN_155; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_3 = _state_T ? 35'h0 : _GEN_156; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_4 = _state_T ? 35'h0 : _GEN_157; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_5 = _state_T ? 35'h0 : _GEN_158; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_6 = _state_T ? 35'h0 : _GEN_159; // @[Buffer.scala 161:10 167:17]
+  assign io_banks_wr_2_data_7 = _state_T ? 35'h0 : _GEN_160; // @[Buffer.scala 161:10 167:17]
   always @(posedge clock) begin
-    done_r <= io_i_done; // @[Buffer.scala 115:25]
-    if (reset) begin // @[Buffer.scala 118:24]
-      state <= 2'h0; // @[Buffer.scala 118:24]
-    end else if (io_i_done & ~done_r) begin // @[Buffer.scala 119:33]
-      if (2'h0 == state) begin // @[Buffer.scala 120:24]
-        state <= 2'h1; // @[Buffer.scala 121:31]
-      end else if (2'h1 == state) begin // @[Buffer.scala 120:24]
-        state <= 2'h2; // @[Buffer.scala 122:31]
+    if (reset) begin // @[Buffer.scala 125:23]
+      done_r <= 1'h0; // @[Buffer.scala 125:23]
+    end else begin
+      done_r <= io_i_done; // @[Buffer.scala 125:23]
+    end
+    if (reset) begin // @[Buffer.scala 128:22]
+      state <= 2'h0; // @[Buffer.scala 128:22]
+    end else if (io_i_done & ~done_r) begin // @[Buffer.scala 130:30]
+      if (2'h2 == state) begin // @[Mux.scala 81:58]
+        state <= 2'h0;
+      end else if (2'h1 == state) begin // @[Mux.scala 81:58]
+        state <= 2'h2;
       end else begin
-        state <= _GEN_0;
+        state <= _state_T_1;
       end
     end
   end
@@ -1113,263 +1041,511 @@ module preprocess_top_chisel(
   output [34:0]  io_dp1_rd_0_data,
   output [279:0] io_o_intt_concat,
   output [71:0]  io_o_intt_addr,
-  output         io_o_intt_we_result
+  output         io_o_intt_we_result,
+  output [23:0]  tppWrEnPacked,
+  output [215:0] tppWrAddrPacked,
+  output [839:0] tppWrDataPacked,
+  output [215:0] tppRdAddrPacked,
+  input  [839:0] tppRdDataPacked
 );
-  wire  u_intt_0_clock; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_reset; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_ntt_start; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_ntt_done; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_0; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_1; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_2; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_3; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_4; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_5; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_6; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_l_en_7; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_0; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_1; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_2; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_3; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_4; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_5; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_6; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_l_addr_7; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_0; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_1; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_2; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_3; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_4; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_5; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_6; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_l_data_7; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_0; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_1; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_2; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_3; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_4; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_5; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_6; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_wr_r_en_7; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_0; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_1; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_2; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_3; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_4; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_5; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_6; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_wr_r_addr_7; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_0; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_1; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_2; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_3; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_4; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_5; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_6; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_wr_r_data_7; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_0; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_1; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_2; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_3; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_4; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_5; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_6; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_l_addr_7; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_0; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_1; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_2; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_3; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_4; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_5; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_6; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_l_data_7; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_0; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_1; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_2; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_3; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_4; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_5; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_6; // @[Preprocess.scala 44:48]
-  wire [8:0] u_intt_0_io_rd_r_addr_7; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_0; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_1; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_2; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_3; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_4; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_5; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_6; // @[Preprocess.scala 44:48]
-  wire [34:0] u_intt_0_io_rd_r_data_7; // @[Preprocess.scala 44:48]
-  wire  u_intt_0_io_o_we_result; // @[Preprocess.scala 44:48]
-  wire  u_intt_buf_0_clock; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_0; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_1; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_2; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_3; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_4; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_5; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_6; // @[Preprocess.scala 52:15]
-  wire  u_intt_buf_0_io_wr_en_7; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_0; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_1; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_2; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_3; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_4; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_5; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_6; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_wr_addr_7; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_0; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_1; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_2; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_3; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_4; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_5; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_6; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_wr_data_7; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_0; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_1; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_2; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_3; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_4; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_5; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_6; // @[Preprocess.scala 52:15]
-  wire [8:0] u_intt_buf_0_io_rd_addr_7; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_0; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_1; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_2; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_3; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_4; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_5; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_6; // @[Preprocess.scala 52:15]
-  wire [34:0] u_intt_buf_0_io_rd_data_7; // @[Preprocess.scala 52:15]
-  wire  u_tpp_0_clock; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_reset; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_i_done; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_0; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_1; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_2; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_3; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_4; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_5; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_6; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_7; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_0; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_1; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_2; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_3; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_4; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_5; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_6; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_rd_data_7; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_0; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_1; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_2; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_3; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_4; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_5; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_6; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec0_wr_en_7; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_0; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_1; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_2; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_3; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_4; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_5; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_6; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_7; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_0; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_1; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_2; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_3; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_4; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_5; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_6; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec0_wr_data_7; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_0; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_1; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_2; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_3; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_4; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_5; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_6; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_7; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_0; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_1; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_2; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_3; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_4; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_5; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_6; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_rd_data_7; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_0; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_1; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_2; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_3; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_4; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_5; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_6; // @[Preprocess.scala 55:15]
-  wire  u_tpp_0_io_polyvec1_wr_en_7; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_0; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_1; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_2; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_3; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_4; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_5; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_6; // @[Preprocess.scala 55:15]
-  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_7; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_0; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_1; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_2; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_3; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_4; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_5; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_6; // @[Preprocess.scala 55:15]
-  wire [34:0] u_tpp_0_io_polyvec1_wr_data_7; // @[Preprocess.scala 55:15]
-  wire  u_dp1_wr_itf_0_io_vpu_wr_en; // @[Preprocess.scala 65:15]
-  wire [11:0] u_dp1_wr_itf_0_io_vpu_wr_addr; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_vpu_wr_data; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_0; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_1; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_2; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_3; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_4; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_5; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_6; // @[Preprocess.scala 65:15]
-  wire  u_dp1_wr_itf_0_io_buf_wr_en_7; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_0; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_1; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_2; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_3; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_4; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_5; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_6; // @[Preprocess.scala 65:15]
-  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_7; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_0; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_1; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_2; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_3; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_4; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_5; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_6; // @[Preprocess.scala 65:15]
-  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_7; // @[Preprocess.scala 65:15]
-  wire  u_dp1_rd_itf_0_clock; // @[Preprocess.scala 68:15]
-  wire [11:0] u_dp1_rd_itf_0_io_vpu_rd_addr; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_vpu_rd_data; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_0; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_1; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_2; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_3; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_4; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_5; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_6; // @[Preprocess.scala 68:15]
-  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_7; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_0; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_1; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_2; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_3; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_4; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_5; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_6; // @[Preprocess.scala 68:15]
-  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_7; // @[Preprocess.scala 68:15]
+  wire  u_intt_0_clock; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_reset; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_ntt_start; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_ntt_done; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_0; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_1; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_2; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_3; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_4; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_5; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_6; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_l_en_7; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_0; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_1; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_2; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_3; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_4; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_5; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_6; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_l_addr_7; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_0; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_1; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_2; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_3; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_4; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_5; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_6; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_l_data_7; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_0; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_1; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_2; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_3; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_4; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_5; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_6; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_wr_r_en_7; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_0; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_1; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_2; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_3; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_4; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_5; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_6; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_wr_r_addr_7; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_0; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_1; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_2; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_3; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_4; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_5; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_6; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_wr_r_data_7; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_0; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_1; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_2; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_3; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_4; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_5; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_6; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_l_addr_7; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_0; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_1; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_2; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_3; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_4; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_5; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_6; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_l_data_7; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_0; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_1; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_2; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_3; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_4; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_5; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_6; // @[Preprocess.scala 39:46]
+  wire [8:0] u_intt_0_io_rd_r_addr_7; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_0; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_1; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_2; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_3; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_4; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_5; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_6; // @[Preprocess.scala 39:46]
+  wire [34:0] u_intt_0_io_rd_r_data_7; // @[Preprocess.scala 39:46]
+  wire  u_intt_0_io_o_we_result; // @[Preprocess.scala 39:46]
+  wire  u_intt_buf_0_clock; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_0; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_1; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_2; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_3; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_4; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_5; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_6; // @[Preprocess.scala 43:11]
+  wire  u_intt_buf_0_io_wr_en_7; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_0; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_1; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_2; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_3; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_4; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_5; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_6; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_wr_addr_7; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_0; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_1; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_2; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_3; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_4; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_5; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_6; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_wr_data_7; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_0; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_1; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_2; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_3; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_4; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_5; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_6; // @[Preprocess.scala 43:11]
+  wire [8:0] u_intt_buf_0_io_rd_addr_7; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_0; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_1; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_2; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_3; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_4; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_5; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_6; // @[Preprocess.scala 43:11]
+  wire [34:0] u_intt_buf_0_io_rd_data_7; // @[Preprocess.scala 43:11]
+  wire  u_tpp_0_clock; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_reset; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_i_done; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_rd_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_rd_data_7; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_0; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_1; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_2; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_3; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_4; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_5; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_6; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec0_wr_en_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec0_wr_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec0_wr_data_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_rd_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_rd_data_7; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_0; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_1; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_2; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_3; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_4; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_5; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_6; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_polyvec1_wr_en_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_polyvec1_wr_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_polyvec1_wr_data_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_0_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_0_data_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_1_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_1_data_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_rd_2_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_rd_2_data_7; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_0; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_1; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_2; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_3; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_4; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_5; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_6; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_0_en_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_0_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_0_data_7; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_0; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_1; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_2; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_3; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_4; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_5; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_6; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_1_en_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_1_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_1_data_7; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_0; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_1; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_2; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_3; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_4; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_5; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_6; // @[Preprocess.scala 48:11]
+  wire  u_tpp_0_io_banks_wr_2_en_7; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_0; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_1; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_2; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_3; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_4; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_5; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_6; // @[Preprocess.scala 48:11]
+  wire [8:0] u_tpp_0_io_banks_wr_2_addr_7; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_0; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_1; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_2; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_3; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_4; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_5; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_6; // @[Preprocess.scala 48:11]
+  wire [34:0] u_tpp_0_io_banks_wr_2_data_7; // @[Preprocess.scala 48:11]
+  wire  u_dp1_wr_itf_0_io_vpu_wr_en; // @[Preprocess.scala 53:11]
+  wire [11:0] u_dp1_wr_itf_0_io_vpu_wr_addr; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_vpu_wr_data; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_0; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_1; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_2; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_3; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_4; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_5; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_6; // @[Preprocess.scala 53:11]
+  wire  u_dp1_wr_itf_0_io_buf_wr_en_7; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_0; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_1; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_2; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_3; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_4; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_5; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_6; // @[Preprocess.scala 53:11]
+  wire [8:0] u_dp1_wr_itf_0_io_buf_wr_addr_7; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_0; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_1; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_2; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_3; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_4; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_5; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_6; // @[Preprocess.scala 53:11]
+  wire [34:0] u_dp1_wr_itf_0_io_buf_wr_data_7; // @[Preprocess.scala 53:11]
+  wire  u_dp1_rd_itf_0_clock; // @[Preprocess.scala 56:11]
+  wire [11:0] u_dp1_rd_itf_0_io_vpu_rd_addr; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_vpu_rd_data; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_0; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_1; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_2; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_3; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_4; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_5; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_6; // @[Preprocess.scala 56:11]
+  wire [8:0] u_dp1_rd_itf_0_io_buf_rd_addr_7; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_0; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_1; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_2; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_3; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_4; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_5; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_6; // @[Preprocess.scala 56:11]
+  wire [34:0] u_dp1_rd_itf_0_io_buf_rd_data_7; // @[Preprocess.scala 56:11]
+  wire  wrEnBits_2 = u_tpp_0_io_banks_wr_0_en_2; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_1 = u_tpp_0_io_banks_wr_0_en_1; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_0 = u_tpp_0_io_banks_wr_0_en_0; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_5 = u_tpp_0_io_banks_wr_0_en_5; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_4 = u_tpp_0_io_banks_wr_0_en_4; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_3 = u_tpp_0_io_banks_wr_0_en_3; // @[Preprocess.scala 84:26 95:23]
+  wire [5:0] tppWrEnPacked_lo_lo = {wrEnBits_5,wrEnBits_4,wrEnBits_3,wrEnBits_2,wrEnBits_1,wrEnBits_0}; // @[Cat.scala 31:58]
+  wire  wrEnBits_8 = u_tpp_0_io_banks_wr_1_en_0; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_7 = u_tpp_0_io_banks_wr_0_en_7; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_6 = u_tpp_0_io_banks_wr_0_en_6; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_11 = u_tpp_0_io_banks_wr_1_en_3; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_10 = u_tpp_0_io_banks_wr_1_en_2; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_9 = u_tpp_0_io_banks_wr_1_en_1; // @[Preprocess.scala 84:26 95:23]
+  wire [11:0] tppWrEnPacked_lo = {wrEnBits_11,wrEnBits_10,wrEnBits_9,wrEnBits_8,wrEnBits_7,wrEnBits_6,
+    tppWrEnPacked_lo_lo}; // @[Cat.scala 31:58]
+  wire  wrEnBits_14 = u_tpp_0_io_banks_wr_1_en_6; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_13 = u_tpp_0_io_banks_wr_1_en_5; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_12 = u_tpp_0_io_banks_wr_1_en_4; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_17 = u_tpp_0_io_banks_wr_2_en_1; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_16 = u_tpp_0_io_banks_wr_2_en_0; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_15 = u_tpp_0_io_banks_wr_1_en_7; // @[Preprocess.scala 84:26 95:23]
+  wire [5:0] tppWrEnPacked_hi_lo = {wrEnBits_17,wrEnBits_16,wrEnBits_15,wrEnBits_14,wrEnBits_13,wrEnBits_12}; // @[Cat.scala 31:58]
+  wire  wrEnBits_20 = u_tpp_0_io_banks_wr_2_en_4; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_19 = u_tpp_0_io_banks_wr_2_en_3; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_18 = u_tpp_0_io_banks_wr_2_en_2; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_23 = u_tpp_0_io_banks_wr_2_en_7; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_22 = u_tpp_0_io_banks_wr_2_en_6; // @[Preprocess.scala 84:26 95:23]
+  wire  wrEnBits_21 = u_tpp_0_io_banks_wr_2_en_5; // @[Preprocess.scala 84:26 95:23]
+  wire [11:0] tppWrEnPacked_hi = {wrEnBits_23,wrEnBits_22,wrEnBits_21,wrEnBits_20,wrEnBits_19,wrEnBits_18,
+    tppWrEnPacked_hi_lo}; // @[Cat.scala 31:58]
+  wire [8:0] wrAddrBits_2 = u_tpp_0_io_banks_wr_0_addr_2; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_1 = u_tpp_0_io_banks_wr_0_addr_1; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_0 = u_tpp_0_io_banks_wr_0_addr_0; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_5 = u_tpp_0_io_banks_wr_0_addr_5; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_4 = u_tpp_0_io_banks_wr_0_addr_4; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_3 = u_tpp_0_io_banks_wr_0_addr_3; // @[Preprocess.scala 85:26 96:23]
+  wire [53:0] tppWrAddrPacked_lo_lo = {wrAddrBits_5,wrAddrBits_4,wrAddrBits_3,wrAddrBits_2,wrAddrBits_1,wrAddrBits_0}; // @[Cat.scala 31:58]
+  wire [8:0] wrAddrBits_8 = u_tpp_0_io_banks_wr_1_addr_0; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_7 = u_tpp_0_io_banks_wr_0_addr_7; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_6 = u_tpp_0_io_banks_wr_0_addr_6; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_11 = u_tpp_0_io_banks_wr_1_addr_3; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_10 = u_tpp_0_io_banks_wr_1_addr_2; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_9 = u_tpp_0_io_banks_wr_1_addr_1; // @[Preprocess.scala 85:26 96:23]
+  wire [107:0] tppWrAddrPacked_lo = {wrAddrBits_11,wrAddrBits_10,wrAddrBits_9,wrAddrBits_8,wrAddrBits_7,wrAddrBits_6,
+    tppWrAddrPacked_lo_lo}; // @[Cat.scala 31:58]
+  wire [8:0] wrAddrBits_14 = u_tpp_0_io_banks_wr_1_addr_6; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_13 = u_tpp_0_io_banks_wr_1_addr_5; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_12 = u_tpp_0_io_banks_wr_1_addr_4; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_17 = u_tpp_0_io_banks_wr_2_addr_1; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_16 = u_tpp_0_io_banks_wr_2_addr_0; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_15 = u_tpp_0_io_banks_wr_1_addr_7; // @[Preprocess.scala 85:26 96:23]
+  wire [53:0] tppWrAddrPacked_hi_lo = {wrAddrBits_17,wrAddrBits_16,wrAddrBits_15,wrAddrBits_14,wrAddrBits_13,
+    wrAddrBits_12}; // @[Cat.scala 31:58]
+  wire [8:0] wrAddrBits_20 = u_tpp_0_io_banks_wr_2_addr_4; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_19 = u_tpp_0_io_banks_wr_2_addr_3; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_18 = u_tpp_0_io_banks_wr_2_addr_2; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_23 = u_tpp_0_io_banks_wr_2_addr_7; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_22 = u_tpp_0_io_banks_wr_2_addr_6; // @[Preprocess.scala 85:26 96:23]
+  wire [8:0] wrAddrBits_21 = u_tpp_0_io_banks_wr_2_addr_5; // @[Preprocess.scala 85:26 96:23]
+  wire [107:0] tppWrAddrPacked_hi = {wrAddrBits_23,wrAddrBits_22,wrAddrBits_21,wrAddrBits_20,wrAddrBits_19,wrAddrBits_18
+    ,tppWrAddrPacked_hi_lo}; // @[Cat.scala 31:58]
+  wire [34:0] wrDataBits_2 = u_tpp_0_io_banks_wr_0_data_2; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_1 = u_tpp_0_io_banks_wr_0_data_1; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_0 = u_tpp_0_io_banks_wr_0_data_0; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_5 = u_tpp_0_io_banks_wr_0_data_5; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_4 = u_tpp_0_io_banks_wr_0_data_4; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_3 = u_tpp_0_io_banks_wr_0_data_3; // @[Preprocess.scala 86:26 97:23]
+  wire [209:0] tppWrDataPacked_lo_lo = {wrDataBits_5,wrDataBits_4,wrDataBits_3,wrDataBits_2,wrDataBits_1,wrDataBits_0}; // @[Cat.scala 31:58]
+  wire [34:0] wrDataBits_8 = u_tpp_0_io_banks_wr_1_data_0; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_7 = u_tpp_0_io_banks_wr_0_data_7; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_6 = u_tpp_0_io_banks_wr_0_data_6; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_11 = u_tpp_0_io_banks_wr_1_data_3; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_10 = u_tpp_0_io_banks_wr_1_data_2; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_9 = u_tpp_0_io_banks_wr_1_data_1; // @[Preprocess.scala 86:26 97:23]
+  wire [419:0] tppWrDataPacked_lo = {wrDataBits_11,wrDataBits_10,wrDataBits_9,wrDataBits_8,wrDataBits_7,wrDataBits_6,
+    tppWrDataPacked_lo_lo}; // @[Cat.scala 31:58]
+  wire [34:0] wrDataBits_14 = u_tpp_0_io_banks_wr_1_data_6; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_13 = u_tpp_0_io_banks_wr_1_data_5; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_12 = u_tpp_0_io_banks_wr_1_data_4; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_17 = u_tpp_0_io_banks_wr_2_data_1; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_16 = u_tpp_0_io_banks_wr_2_data_0; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_15 = u_tpp_0_io_banks_wr_1_data_7; // @[Preprocess.scala 86:26 97:23]
+  wire [209:0] tppWrDataPacked_hi_lo = {wrDataBits_17,wrDataBits_16,wrDataBits_15,wrDataBits_14,wrDataBits_13,
+    wrDataBits_12}; // @[Cat.scala 31:58]
+  wire [34:0] wrDataBits_20 = u_tpp_0_io_banks_wr_2_data_4; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_19 = u_tpp_0_io_banks_wr_2_data_3; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_18 = u_tpp_0_io_banks_wr_2_data_2; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_23 = u_tpp_0_io_banks_wr_2_data_7; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_22 = u_tpp_0_io_banks_wr_2_data_6; // @[Preprocess.scala 86:26 97:23]
+  wire [34:0] wrDataBits_21 = u_tpp_0_io_banks_wr_2_data_5; // @[Preprocess.scala 86:26 97:23]
+  wire [419:0] tppWrDataPacked_hi = {wrDataBits_23,wrDataBits_22,wrDataBits_21,wrDataBits_20,wrDataBits_19,wrDataBits_18
+    ,tppWrDataPacked_hi_lo}; // @[Cat.scala 31:58]
+  wire [8:0] rdAddrBits_2 = u_tpp_0_io_banks_rd_0_addr_2; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_1 = u_tpp_0_io_banks_rd_0_addr_1; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_0 = u_tpp_0_io_banks_rd_0_addr_0; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_5 = u_tpp_0_io_banks_rd_0_addr_5; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_4 = u_tpp_0_io_banks_rd_0_addr_4; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_3 = u_tpp_0_io_banks_rd_0_addr_3; // @[Preprocess.scala 100:23 87:26]
+  wire [53:0] tppRdAddrPacked_lo_lo = {rdAddrBits_5,rdAddrBits_4,rdAddrBits_3,rdAddrBits_2,rdAddrBits_1,rdAddrBits_0}; // @[Cat.scala 31:58]
+  wire [8:0] rdAddrBits_8 = u_tpp_0_io_banks_rd_1_addr_0; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_7 = u_tpp_0_io_banks_rd_0_addr_7; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_6 = u_tpp_0_io_banks_rd_0_addr_6; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_11 = u_tpp_0_io_banks_rd_1_addr_3; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_10 = u_tpp_0_io_banks_rd_1_addr_2; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_9 = u_tpp_0_io_banks_rd_1_addr_1; // @[Preprocess.scala 100:23 87:26]
+  wire [107:0] tppRdAddrPacked_lo = {rdAddrBits_11,rdAddrBits_10,rdAddrBits_9,rdAddrBits_8,rdAddrBits_7,rdAddrBits_6,
+    tppRdAddrPacked_lo_lo}; // @[Cat.scala 31:58]
+  wire [8:0] rdAddrBits_14 = u_tpp_0_io_banks_rd_1_addr_6; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_13 = u_tpp_0_io_banks_rd_1_addr_5; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_12 = u_tpp_0_io_banks_rd_1_addr_4; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_17 = u_tpp_0_io_banks_rd_2_addr_1; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_16 = u_tpp_0_io_banks_rd_2_addr_0; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_15 = u_tpp_0_io_banks_rd_1_addr_7; // @[Preprocess.scala 100:23 87:26]
+  wire [53:0] tppRdAddrPacked_hi_lo = {rdAddrBits_17,rdAddrBits_16,rdAddrBits_15,rdAddrBits_14,rdAddrBits_13,
+    rdAddrBits_12}; // @[Cat.scala 31:58]
+  wire [8:0] rdAddrBits_20 = u_tpp_0_io_banks_rd_2_addr_4; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_19 = u_tpp_0_io_banks_rd_2_addr_3; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_18 = u_tpp_0_io_banks_rd_2_addr_2; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_23 = u_tpp_0_io_banks_rd_2_addr_7; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_22 = u_tpp_0_io_banks_rd_2_addr_6; // @[Preprocess.scala 100:23 87:26]
+  wire [8:0] rdAddrBits_21 = u_tpp_0_io_banks_rd_2_addr_5; // @[Preprocess.scala 100:23 87:26]
+  wire [107:0] tppRdAddrPacked_hi = {rdAddrBits_23,rdAddrBits_22,rdAddrBits_21,rdAddrBits_20,rdAddrBits_19,rdAddrBits_18
+    ,tppRdAddrPacked_hi_lo}; // @[Cat.scala 31:58]
   wire [139:0] io_o_intt_concat_lo = {u_intt_0_io_wr_l_data_3,u_intt_0_io_wr_l_data_2,u_intt_0_io_wr_l_data_1,
     u_intt_0_io_wr_l_data_0}; // @[Cat.scala 31:58]
   wire [139:0] io_o_intt_concat_hi = {u_intt_0_io_wr_l_data_7,u_intt_0_io_wr_l_data_6,u_intt_0_io_wr_l_data_5,
@@ -1378,7 +1554,7 @@ module preprocess_top_chisel(
     u_intt_0_io_wr_l_addr_0}; // @[Cat.scala 31:58]
   wire [35:0] io_o_intt_addr_hi = {u_intt_0_io_wr_l_addr_7,u_intt_0_io_wr_l_addr_6,u_intt_0_io_wr_l_addr_5,
     u_intt_0_io_wr_l_addr_4}; // @[Cat.scala 31:58]
-  intt_17314086913 u_intt_0 ( // @[Preprocess.scala 44:48]
+  intt_17314086913 u_intt_0 ( // @[Preprocess.scala 39:46]
     .clock(u_intt_0_clock),
     .reset(u_intt_0_reset),
     .io_ntt_start(u_intt_0_io_ntt_start),
@@ -1465,7 +1641,7 @@ module preprocess_top_chisel(
     .io_rd_r_data_7(u_intt_0_io_rd_r_data_7),
     .io_o_we_result(u_intt_0_io_o_we_result)
   );
-  poly_ram_35_9_8 u_intt_buf_0 ( // @[Preprocess.scala 52:15]
+  poly_ram_35_9_8 u_intt_buf_0 ( // @[Preprocess.scala 43:11]
     .clock(u_intt_buf_0_clock),
     .io_wr_en_0(u_intt_buf_0_io_wr_en_0),
     .io_wr_en_1(u_intt_buf_0_io_wr_en_1),
@@ -1508,7 +1684,7 @@ module preprocess_top_chisel(
     .io_rd_data_6(u_intt_buf_0_io_rd_data_6),
     .io_rd_data_7(u_intt_buf_0_io_rd_data_7)
   );
-  triple_pp_buffer_35_512_8 u_tpp_0 ( // @[Preprocess.scala 55:15]
+  triple_pp_buffer_35_512_8 u_tpp_0 ( // @[Preprocess.scala 48:11]
     .clock(u_tpp_0_clock),
     .reset(u_tpp_0_reset),
     .io_i_done(u_tpp_0_io_i_done),
@@ -1591,9 +1767,129 @@ module preprocess_top_chisel(
     .io_polyvec1_wr_data_4(u_tpp_0_io_polyvec1_wr_data_4),
     .io_polyvec1_wr_data_5(u_tpp_0_io_polyvec1_wr_data_5),
     .io_polyvec1_wr_data_6(u_tpp_0_io_polyvec1_wr_data_6),
-    .io_polyvec1_wr_data_7(u_tpp_0_io_polyvec1_wr_data_7)
+    .io_polyvec1_wr_data_7(u_tpp_0_io_polyvec1_wr_data_7),
+    .io_banks_rd_0_addr_0(u_tpp_0_io_banks_rd_0_addr_0),
+    .io_banks_rd_0_addr_1(u_tpp_0_io_banks_rd_0_addr_1),
+    .io_banks_rd_0_addr_2(u_tpp_0_io_banks_rd_0_addr_2),
+    .io_banks_rd_0_addr_3(u_tpp_0_io_banks_rd_0_addr_3),
+    .io_banks_rd_0_addr_4(u_tpp_0_io_banks_rd_0_addr_4),
+    .io_banks_rd_0_addr_5(u_tpp_0_io_banks_rd_0_addr_5),
+    .io_banks_rd_0_addr_6(u_tpp_0_io_banks_rd_0_addr_6),
+    .io_banks_rd_0_addr_7(u_tpp_0_io_banks_rd_0_addr_7),
+    .io_banks_rd_0_data_0(u_tpp_0_io_banks_rd_0_data_0),
+    .io_banks_rd_0_data_1(u_tpp_0_io_banks_rd_0_data_1),
+    .io_banks_rd_0_data_2(u_tpp_0_io_banks_rd_0_data_2),
+    .io_banks_rd_0_data_3(u_tpp_0_io_banks_rd_0_data_3),
+    .io_banks_rd_0_data_4(u_tpp_0_io_banks_rd_0_data_4),
+    .io_banks_rd_0_data_5(u_tpp_0_io_banks_rd_0_data_5),
+    .io_banks_rd_0_data_6(u_tpp_0_io_banks_rd_0_data_6),
+    .io_banks_rd_0_data_7(u_tpp_0_io_banks_rd_0_data_7),
+    .io_banks_rd_1_addr_0(u_tpp_0_io_banks_rd_1_addr_0),
+    .io_banks_rd_1_addr_1(u_tpp_0_io_banks_rd_1_addr_1),
+    .io_banks_rd_1_addr_2(u_tpp_0_io_banks_rd_1_addr_2),
+    .io_banks_rd_1_addr_3(u_tpp_0_io_banks_rd_1_addr_3),
+    .io_banks_rd_1_addr_4(u_tpp_0_io_banks_rd_1_addr_4),
+    .io_banks_rd_1_addr_5(u_tpp_0_io_banks_rd_1_addr_5),
+    .io_banks_rd_1_addr_6(u_tpp_0_io_banks_rd_1_addr_6),
+    .io_banks_rd_1_addr_7(u_tpp_0_io_banks_rd_1_addr_7),
+    .io_banks_rd_1_data_0(u_tpp_0_io_banks_rd_1_data_0),
+    .io_banks_rd_1_data_1(u_tpp_0_io_banks_rd_1_data_1),
+    .io_banks_rd_1_data_2(u_tpp_0_io_banks_rd_1_data_2),
+    .io_banks_rd_1_data_3(u_tpp_0_io_banks_rd_1_data_3),
+    .io_banks_rd_1_data_4(u_tpp_0_io_banks_rd_1_data_4),
+    .io_banks_rd_1_data_5(u_tpp_0_io_banks_rd_1_data_5),
+    .io_banks_rd_1_data_6(u_tpp_0_io_banks_rd_1_data_6),
+    .io_banks_rd_1_data_7(u_tpp_0_io_banks_rd_1_data_7),
+    .io_banks_rd_2_addr_0(u_tpp_0_io_banks_rd_2_addr_0),
+    .io_banks_rd_2_addr_1(u_tpp_0_io_banks_rd_2_addr_1),
+    .io_banks_rd_2_addr_2(u_tpp_0_io_banks_rd_2_addr_2),
+    .io_banks_rd_2_addr_3(u_tpp_0_io_banks_rd_2_addr_3),
+    .io_banks_rd_2_addr_4(u_tpp_0_io_banks_rd_2_addr_4),
+    .io_banks_rd_2_addr_5(u_tpp_0_io_banks_rd_2_addr_5),
+    .io_banks_rd_2_addr_6(u_tpp_0_io_banks_rd_2_addr_6),
+    .io_banks_rd_2_addr_7(u_tpp_0_io_banks_rd_2_addr_7),
+    .io_banks_rd_2_data_0(u_tpp_0_io_banks_rd_2_data_0),
+    .io_banks_rd_2_data_1(u_tpp_0_io_banks_rd_2_data_1),
+    .io_banks_rd_2_data_2(u_tpp_0_io_banks_rd_2_data_2),
+    .io_banks_rd_2_data_3(u_tpp_0_io_banks_rd_2_data_3),
+    .io_banks_rd_2_data_4(u_tpp_0_io_banks_rd_2_data_4),
+    .io_banks_rd_2_data_5(u_tpp_0_io_banks_rd_2_data_5),
+    .io_banks_rd_2_data_6(u_tpp_0_io_banks_rd_2_data_6),
+    .io_banks_rd_2_data_7(u_tpp_0_io_banks_rd_2_data_7),
+    .io_banks_wr_0_en_0(u_tpp_0_io_banks_wr_0_en_0),
+    .io_banks_wr_0_en_1(u_tpp_0_io_banks_wr_0_en_1),
+    .io_banks_wr_0_en_2(u_tpp_0_io_banks_wr_0_en_2),
+    .io_banks_wr_0_en_3(u_tpp_0_io_banks_wr_0_en_3),
+    .io_banks_wr_0_en_4(u_tpp_0_io_banks_wr_0_en_4),
+    .io_banks_wr_0_en_5(u_tpp_0_io_banks_wr_0_en_5),
+    .io_banks_wr_0_en_6(u_tpp_0_io_banks_wr_0_en_6),
+    .io_banks_wr_0_en_7(u_tpp_0_io_banks_wr_0_en_7),
+    .io_banks_wr_0_addr_0(u_tpp_0_io_banks_wr_0_addr_0),
+    .io_banks_wr_0_addr_1(u_tpp_0_io_banks_wr_0_addr_1),
+    .io_banks_wr_0_addr_2(u_tpp_0_io_banks_wr_0_addr_2),
+    .io_banks_wr_0_addr_3(u_tpp_0_io_banks_wr_0_addr_3),
+    .io_banks_wr_0_addr_4(u_tpp_0_io_banks_wr_0_addr_4),
+    .io_banks_wr_0_addr_5(u_tpp_0_io_banks_wr_0_addr_5),
+    .io_banks_wr_0_addr_6(u_tpp_0_io_banks_wr_0_addr_6),
+    .io_banks_wr_0_addr_7(u_tpp_0_io_banks_wr_0_addr_7),
+    .io_banks_wr_0_data_0(u_tpp_0_io_banks_wr_0_data_0),
+    .io_banks_wr_0_data_1(u_tpp_0_io_banks_wr_0_data_1),
+    .io_banks_wr_0_data_2(u_tpp_0_io_banks_wr_0_data_2),
+    .io_banks_wr_0_data_3(u_tpp_0_io_banks_wr_0_data_3),
+    .io_banks_wr_0_data_4(u_tpp_0_io_banks_wr_0_data_4),
+    .io_banks_wr_0_data_5(u_tpp_0_io_banks_wr_0_data_5),
+    .io_banks_wr_0_data_6(u_tpp_0_io_banks_wr_0_data_6),
+    .io_banks_wr_0_data_7(u_tpp_0_io_banks_wr_0_data_7),
+    .io_banks_wr_1_en_0(u_tpp_0_io_banks_wr_1_en_0),
+    .io_banks_wr_1_en_1(u_tpp_0_io_banks_wr_1_en_1),
+    .io_banks_wr_1_en_2(u_tpp_0_io_banks_wr_1_en_2),
+    .io_banks_wr_1_en_3(u_tpp_0_io_banks_wr_1_en_3),
+    .io_banks_wr_1_en_4(u_tpp_0_io_banks_wr_1_en_4),
+    .io_banks_wr_1_en_5(u_tpp_0_io_banks_wr_1_en_5),
+    .io_banks_wr_1_en_6(u_tpp_0_io_banks_wr_1_en_6),
+    .io_banks_wr_1_en_7(u_tpp_0_io_banks_wr_1_en_7),
+    .io_banks_wr_1_addr_0(u_tpp_0_io_banks_wr_1_addr_0),
+    .io_banks_wr_1_addr_1(u_tpp_0_io_banks_wr_1_addr_1),
+    .io_banks_wr_1_addr_2(u_tpp_0_io_banks_wr_1_addr_2),
+    .io_banks_wr_1_addr_3(u_tpp_0_io_banks_wr_1_addr_3),
+    .io_banks_wr_1_addr_4(u_tpp_0_io_banks_wr_1_addr_4),
+    .io_banks_wr_1_addr_5(u_tpp_0_io_banks_wr_1_addr_5),
+    .io_banks_wr_1_addr_6(u_tpp_0_io_banks_wr_1_addr_6),
+    .io_banks_wr_1_addr_7(u_tpp_0_io_banks_wr_1_addr_7),
+    .io_banks_wr_1_data_0(u_tpp_0_io_banks_wr_1_data_0),
+    .io_banks_wr_1_data_1(u_tpp_0_io_banks_wr_1_data_1),
+    .io_banks_wr_1_data_2(u_tpp_0_io_banks_wr_1_data_2),
+    .io_banks_wr_1_data_3(u_tpp_0_io_banks_wr_1_data_3),
+    .io_banks_wr_1_data_4(u_tpp_0_io_banks_wr_1_data_4),
+    .io_banks_wr_1_data_5(u_tpp_0_io_banks_wr_1_data_5),
+    .io_banks_wr_1_data_6(u_tpp_0_io_banks_wr_1_data_6),
+    .io_banks_wr_1_data_7(u_tpp_0_io_banks_wr_1_data_7),
+    .io_banks_wr_2_en_0(u_tpp_0_io_banks_wr_2_en_0),
+    .io_banks_wr_2_en_1(u_tpp_0_io_banks_wr_2_en_1),
+    .io_banks_wr_2_en_2(u_tpp_0_io_banks_wr_2_en_2),
+    .io_banks_wr_2_en_3(u_tpp_0_io_banks_wr_2_en_3),
+    .io_banks_wr_2_en_4(u_tpp_0_io_banks_wr_2_en_4),
+    .io_banks_wr_2_en_5(u_tpp_0_io_banks_wr_2_en_5),
+    .io_banks_wr_2_en_6(u_tpp_0_io_banks_wr_2_en_6),
+    .io_banks_wr_2_en_7(u_tpp_0_io_banks_wr_2_en_7),
+    .io_banks_wr_2_addr_0(u_tpp_0_io_banks_wr_2_addr_0),
+    .io_banks_wr_2_addr_1(u_tpp_0_io_banks_wr_2_addr_1),
+    .io_banks_wr_2_addr_2(u_tpp_0_io_banks_wr_2_addr_2),
+    .io_banks_wr_2_addr_3(u_tpp_0_io_banks_wr_2_addr_3),
+    .io_banks_wr_2_addr_4(u_tpp_0_io_banks_wr_2_addr_4),
+    .io_banks_wr_2_addr_5(u_tpp_0_io_banks_wr_2_addr_5),
+    .io_banks_wr_2_addr_6(u_tpp_0_io_banks_wr_2_addr_6),
+    .io_banks_wr_2_addr_7(u_tpp_0_io_banks_wr_2_addr_7),
+    .io_banks_wr_2_data_0(u_tpp_0_io_banks_wr_2_data_0),
+    .io_banks_wr_2_data_1(u_tpp_0_io_banks_wr_2_data_1),
+    .io_banks_wr_2_data_2(u_tpp_0_io_banks_wr_2_data_2),
+    .io_banks_wr_2_data_3(u_tpp_0_io_banks_wr_2_data_3),
+    .io_banks_wr_2_data_4(u_tpp_0_io_banks_wr_2_data_4),
+    .io_banks_wr_2_data_5(u_tpp_0_io_banks_wr_2_data_5),
+    .io_banks_wr_2_data_6(u_tpp_0_io_banks_wr_2_data_6),
+    .io_banks_wr_2_data_7(u_tpp_0_io_banks_wr_2_data_7)
   );
-  poly_wr_interface_35_512_8 u_dp1_wr_itf_0 ( // @[Preprocess.scala 65:15]
+  poly_wr_interface_35_512_8 u_dp1_wr_itf_0 ( // @[Preprocess.scala 53:11]
     .io_vpu_wr_en(u_dp1_wr_itf_0_io_vpu_wr_en),
     .io_vpu_wr_addr(u_dp1_wr_itf_0_io_vpu_wr_addr),
     .io_vpu_wr_data(u_dp1_wr_itf_0_io_vpu_wr_data),
@@ -1622,7 +1918,7 @@ module preprocess_top_chisel(
     .io_buf_wr_data_6(u_dp1_wr_itf_0_io_buf_wr_data_6),
     .io_buf_wr_data_7(u_dp1_wr_itf_0_io_buf_wr_data_7)
   );
-  poly_rd_interface_35_512_8_1 u_dp1_rd_itf_0 ( // @[Preprocess.scala 68:15]
+  poly_rd_interface_35_512_8_1 u_dp1_rd_itf_0 ( // @[Preprocess.scala 56:11]
     .clock(u_dp1_rd_itf_0_clock),
     .io_vpu_rd_addr(u_dp1_rd_itf_0_io_vpu_rd_addr),
     .io_vpu_rd_data(u_dp1_rd_itf_0_io_vpu_rd_data),
@@ -1643,141 +1939,169 @@ module preprocess_top_chisel(
     .io_buf_rd_data_6(u_dp1_rd_itf_0_io_buf_rd_data_6),
     .io_buf_rd_data_7(u_dp1_rd_itf_0_io_buf_rd_data_7)
   );
-  assign io_o_intt_done = u_intt_0_io_ntt_done; // @[Preprocess.scala 121:25]
-  assign io_dp1_rd_0_data = u_dp1_rd_itf_0_io_vpu_rd_data; // @[Preprocess.scala 90:33]
+  assign io_o_intt_done = u_intt_0_io_ntt_done; // @[Preprocess.scala 153:19]
+  assign io_dp1_rd_0_data = u_dp1_rd_itf_0_io_vpu_rd_data; // @[Preprocess.scala 122:29]
   assign io_o_intt_concat = {io_o_intt_concat_hi,io_o_intt_concat_lo}; // @[Cat.scala 31:58]
   assign io_o_intt_addr = {io_o_intt_addr_hi,io_o_intt_addr_lo}; // @[Cat.scala 31:58]
-  assign io_o_intt_we_result = u_intt_0_io_o_we_result; // @[Preprocess.scala 150:25]
+  assign io_o_intt_we_result = u_intt_0_io_o_we_result; // @[Preprocess.scala 154:23]
+  assign tppWrEnPacked = {tppWrEnPacked_hi,tppWrEnPacked_lo}; // @[Cat.scala 31:58]
+  assign tppWrAddrPacked = {tppWrAddrPacked_hi,tppWrAddrPacked_lo}; // @[Cat.scala 31:58]
+  assign tppWrDataPacked = {tppWrDataPacked_hi,tppWrDataPacked_lo}; // @[Cat.scala 31:58]
+  assign tppRdAddrPacked = {tppRdAddrPacked_hi,tppRdAddrPacked_lo}; // @[Cat.scala 31:58]
   assign u_intt_0_clock = clock;
   assign u_intt_0_reset = reset;
-  assign u_intt_0_io_ntt_start = io_i_intt_start; // @[Preprocess.scala 119:25]
-  assign u_intt_0_io_rd_l_data_0 = u_tpp_0_io_polyvec1_rd_data_0; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_1 = u_tpp_0_io_polyvec1_rd_data_1; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_2 = u_tpp_0_io_polyvec1_rd_data_2; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_3 = u_tpp_0_io_polyvec1_rd_data_3; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_4 = u_tpp_0_io_polyvec1_rd_data_4; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_5 = u_tpp_0_io_polyvec1_rd_data_5; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_6 = u_tpp_0_io_polyvec1_rd_data_6; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_l_data_7 = u_tpp_0_io_polyvec1_rd_data_7; // @[Preprocess.scala 95:33]
-  assign u_intt_0_io_rd_r_data_0 = u_intt_buf_0_io_rd_data_0; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_1 = u_intt_buf_0_io_rd_data_1; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_2 = u_intt_buf_0_io_rd_data_2; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_3 = u_intt_buf_0_io_rd_data_3; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_4 = u_intt_buf_0_io_rd_data_4; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_5 = u_intt_buf_0_io_rd_data_5; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_6 = u_intt_buf_0_io_rd_data_6; // @[Preprocess.scala 100:33]
-  assign u_intt_0_io_rd_r_data_7 = u_intt_buf_0_io_rd_data_7; // @[Preprocess.scala 100:33]
+  assign u_intt_0_io_ntt_start = io_i_intt_start; // @[Preprocess.scala 152:19]
+  assign u_intt_0_io_rd_l_data_0 = u_tpp_0_io_polyvec1_rd_data_0; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_1 = u_tpp_0_io_polyvec1_rd_data_1; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_2 = u_tpp_0_io_polyvec1_rd_data_2; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_3 = u_tpp_0_io_polyvec1_rd_data_3; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_4 = u_tpp_0_io_polyvec1_rd_data_4; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_5 = u_tpp_0_io_polyvec1_rd_data_5; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_6 = u_tpp_0_io_polyvec1_rd_data_6; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_l_data_7 = u_tpp_0_io_polyvec1_rd_data_7; // @[Preprocess.scala 128:29]
+  assign u_intt_0_io_rd_r_data_0 = u_intt_buf_0_io_rd_data_0; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_1 = u_intt_buf_0_io_rd_data_1; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_2 = u_intt_buf_0_io_rd_data_2; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_3 = u_intt_buf_0_io_rd_data_3; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_4 = u_intt_buf_0_io_rd_data_4; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_5 = u_intt_buf_0_io_rd_data_5; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_6 = u_intt_buf_0_io_rd_data_6; // @[Preprocess.scala 134:29]
+  assign u_intt_0_io_rd_r_data_7 = u_intt_buf_0_io_rd_data_7; // @[Preprocess.scala 134:29]
   assign u_intt_buf_0_clock = clock;
-  assign u_intt_buf_0_io_wr_en_0 = u_intt_0_io_wr_r_en_0; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_1 = u_intt_0_io_wr_r_en_1; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_2 = u_intt_0_io_wr_r_en_2; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_3 = u_intt_0_io_wr_r_en_3; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_4 = u_intt_0_io_wr_r_en_4; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_5 = u_intt_0_io_wr_r_en_5; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_6 = u_intt_0_io_wr_r_en_6; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_en_7 = u_intt_0_io_wr_r_en_7; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_0 = u_intt_0_io_wr_r_addr_0; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_1 = u_intt_0_io_wr_r_addr_1; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_2 = u_intt_0_io_wr_r_addr_2; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_3 = u_intt_0_io_wr_r_addr_3; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_4 = u_intt_0_io_wr_r_addr_4; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_5 = u_intt_0_io_wr_r_addr_5; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_6 = u_intt_0_io_wr_r_addr_6; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_addr_7 = u_intt_0_io_wr_r_addr_7; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_0 = u_intt_0_io_wr_r_data_0; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_1 = u_intt_0_io_wr_r_data_1; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_2 = u_intt_0_io_wr_r_data_2; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_3 = u_intt_0_io_wr_r_data_3; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_4 = u_intt_0_io_wr_r_data_4; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_5 = u_intt_0_io_wr_r_data_5; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_6 = u_intt_0_io_wr_r_data_6; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_wr_data_7 = u_intt_0_io_wr_r_data_7; // @[Preprocess.scala 99:33]
-  assign u_intt_buf_0_io_rd_addr_0 = u_intt_0_io_rd_r_addr_0; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_1 = u_intt_0_io_rd_r_addr_1; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_2 = u_intt_0_io_rd_r_addr_2; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_3 = u_intt_0_io_rd_r_addr_3; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_4 = u_intt_0_io_rd_r_addr_4; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_5 = u_intt_0_io_rd_r_addr_5; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_6 = u_intt_0_io_rd_r_addr_6; // @[Preprocess.scala 100:33]
-  assign u_intt_buf_0_io_rd_addr_7 = u_intt_0_io_rd_r_addr_7; // @[Preprocess.scala 100:33]
+  assign u_intt_buf_0_io_wr_en_0 = u_intt_0_io_wr_r_en_0; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_1 = u_intt_0_io_wr_r_en_1; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_2 = u_intt_0_io_wr_r_en_2; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_3 = u_intt_0_io_wr_r_en_3; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_4 = u_intt_0_io_wr_r_en_4; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_5 = u_intt_0_io_wr_r_en_5; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_6 = u_intt_0_io_wr_r_en_6; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_en_7 = u_intt_0_io_wr_r_en_7; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_0 = u_intt_0_io_wr_r_addr_0; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_1 = u_intt_0_io_wr_r_addr_1; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_2 = u_intt_0_io_wr_r_addr_2; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_3 = u_intt_0_io_wr_r_addr_3; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_4 = u_intt_0_io_wr_r_addr_4; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_5 = u_intt_0_io_wr_r_addr_5; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_6 = u_intt_0_io_wr_r_addr_6; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_addr_7 = u_intt_0_io_wr_r_addr_7; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_0 = u_intt_0_io_wr_r_data_0; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_1 = u_intt_0_io_wr_r_data_1; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_2 = u_intt_0_io_wr_r_data_2; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_3 = u_intt_0_io_wr_r_data_3; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_4 = u_intt_0_io_wr_r_data_4; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_5 = u_intt_0_io_wr_r_data_5; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_6 = u_intt_0_io_wr_r_data_6; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_wr_data_7 = u_intt_0_io_wr_r_data_7; // @[Preprocess.scala 133:29]
+  assign u_intt_buf_0_io_rd_addr_0 = u_intt_0_io_rd_r_addr_0; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_1 = u_intt_0_io_rd_r_addr_1; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_2 = u_intt_0_io_rd_r_addr_2; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_3 = u_intt_0_io_rd_r_addr_3; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_4 = u_intt_0_io_rd_r_addr_4; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_5 = u_intt_0_io_rd_r_addr_5; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_6 = u_intt_0_io_rd_r_addr_6; // @[Preprocess.scala 134:29]
+  assign u_intt_buf_0_io_rd_addr_7 = u_intt_0_io_rd_r_addr_7; // @[Preprocess.scala 134:29]
   assign u_tpp_0_clock = clock;
   assign u_tpp_0_reset = reset;
-  assign u_tpp_0_io_i_done = io_i_pre_switch; // @[Preprocess.scala 128:28]
-  assign u_tpp_0_io_polyvec0_rd_addr_0 = u_dp1_rd_itf_0_io_buf_rd_addr_0; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_1 = u_dp1_rd_itf_0_io_buf_rd_addr_1; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_2 = u_dp1_rd_itf_0_io_buf_rd_addr_2; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_3 = u_dp1_rd_itf_0_io_buf_rd_addr_3; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_4 = u_dp1_rd_itf_0_io_buf_rd_addr_4; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_5 = u_dp1_rd_itf_0_io_buf_rd_addr_5; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_6 = u_dp1_rd_itf_0_io_buf_rd_addr_6; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_rd_addr_7 = u_dp1_rd_itf_0_io_buf_rd_addr_7; // @[Preprocess.scala 93:33]
-  assign u_tpp_0_io_polyvec0_wr_en_0 = u_dp1_wr_itf_0_io_buf_wr_en_0; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_1 = u_dp1_wr_itf_0_io_buf_wr_en_1; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_2 = u_dp1_wr_itf_0_io_buf_wr_en_2; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_3 = u_dp1_wr_itf_0_io_buf_wr_en_3; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_4 = u_dp1_wr_itf_0_io_buf_wr_en_4; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_5 = u_dp1_wr_itf_0_io_buf_wr_en_5; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_6 = u_dp1_wr_itf_0_io_buf_wr_en_6; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_en_7 = u_dp1_wr_itf_0_io_buf_wr_en_7; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_0 = u_dp1_wr_itf_0_io_buf_wr_addr_0; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_1 = u_dp1_wr_itf_0_io_buf_wr_addr_1; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_2 = u_dp1_wr_itf_0_io_buf_wr_addr_2; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_3 = u_dp1_wr_itf_0_io_buf_wr_addr_3; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_4 = u_dp1_wr_itf_0_io_buf_wr_addr_4; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_5 = u_dp1_wr_itf_0_io_buf_wr_addr_5; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_6 = u_dp1_wr_itf_0_io_buf_wr_addr_6; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_addr_7 = u_dp1_wr_itf_0_io_buf_wr_addr_7; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_0 = u_dp1_wr_itf_0_io_buf_wr_data_0; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_1 = u_dp1_wr_itf_0_io_buf_wr_data_1; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_2 = u_dp1_wr_itf_0_io_buf_wr_data_2; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_3 = u_dp1_wr_itf_0_io_buf_wr_data_3; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_4 = u_dp1_wr_itf_0_io_buf_wr_data_4; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_5 = u_dp1_wr_itf_0_io_buf_wr_data_5; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_6 = u_dp1_wr_itf_0_io_buf_wr_data_6; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec0_wr_data_7 = u_dp1_wr_itf_0_io_buf_wr_data_7; // @[Preprocess.scala 92:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_0 = u_intt_0_io_rd_l_addr_0; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_1 = u_intt_0_io_rd_l_addr_1; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_2 = u_intt_0_io_rd_l_addr_2; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_3 = u_intt_0_io_rd_l_addr_3; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_4 = u_intt_0_io_rd_l_addr_4; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_5 = u_intt_0_io_rd_l_addr_5; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_6 = u_intt_0_io_rd_l_addr_6; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_rd_addr_7 = u_intt_0_io_rd_l_addr_7; // @[Preprocess.scala 95:33]
-  assign u_tpp_0_io_polyvec1_wr_en_0 = u_intt_0_io_wr_l_en_0; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_1 = u_intt_0_io_wr_l_en_1; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_2 = u_intt_0_io_wr_l_en_2; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_3 = u_intt_0_io_wr_l_en_3; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_4 = u_intt_0_io_wr_l_en_4; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_5 = u_intt_0_io_wr_l_en_5; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_6 = u_intt_0_io_wr_l_en_6; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_en_7 = u_intt_0_io_wr_l_en_7; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_0 = u_intt_0_io_wr_l_addr_0; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_1 = u_intt_0_io_wr_l_addr_1; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_2 = u_intt_0_io_wr_l_addr_2; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_3 = u_intt_0_io_wr_l_addr_3; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_4 = u_intt_0_io_wr_l_addr_4; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_5 = u_intt_0_io_wr_l_addr_5; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_6 = u_intt_0_io_wr_l_addr_6; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_addr_7 = u_intt_0_io_wr_l_addr_7; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_0 = u_intt_0_io_wr_l_data_0; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_1 = u_intt_0_io_wr_l_data_1; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_2 = u_intt_0_io_wr_l_data_2; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_3 = u_intt_0_io_wr_l_data_3; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_4 = u_intt_0_io_wr_l_data_4; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_5 = u_intt_0_io_wr_l_data_5; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_6 = u_intt_0_io_wr_l_data_6; // @[Preprocess.scala 94:33]
-  assign u_tpp_0_io_polyvec1_wr_data_7 = u_intt_0_io_wr_l_data_7; // @[Preprocess.scala 94:33]
-  assign u_dp1_wr_itf_0_io_vpu_wr_en = io_dp1_wr_0_en; // @[Preprocess.scala 89:33]
-  assign u_dp1_wr_itf_0_io_vpu_wr_addr = io_dp1_wr_0_addr; // @[Preprocess.scala 89:33]
-  assign u_dp1_wr_itf_0_io_vpu_wr_data = io_dp1_wr_0_data; // @[Preprocess.scala 89:33]
+  assign u_tpp_0_io_i_done = io_i_pre_switch; // @[Preprocess.scala 138:24]
+  assign u_tpp_0_io_polyvec0_rd_addr_0 = u_dp1_rd_itf_0_io_buf_rd_addr_0; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_1 = u_dp1_rd_itf_0_io_buf_rd_addr_1; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_2 = u_dp1_rd_itf_0_io_buf_rd_addr_2; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_3 = u_dp1_rd_itf_0_io_buf_rd_addr_3; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_4 = u_dp1_rd_itf_0_io_buf_rd_addr_4; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_5 = u_dp1_rd_itf_0_io_buf_rd_addr_5; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_6 = u_dp1_rd_itf_0_io_buf_rd_addr_6; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_rd_addr_7 = u_dp1_rd_itf_0_io_buf_rd_addr_7; // @[Preprocess.scala 126:29]
+  assign u_tpp_0_io_polyvec0_wr_en_0 = u_dp1_wr_itf_0_io_buf_wr_en_0; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_1 = u_dp1_wr_itf_0_io_buf_wr_en_1; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_2 = u_dp1_wr_itf_0_io_buf_wr_en_2; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_3 = u_dp1_wr_itf_0_io_buf_wr_en_3; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_4 = u_dp1_wr_itf_0_io_buf_wr_en_4; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_5 = u_dp1_wr_itf_0_io_buf_wr_en_5; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_6 = u_dp1_wr_itf_0_io_buf_wr_en_6; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_en_7 = u_dp1_wr_itf_0_io_buf_wr_en_7; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_0 = u_dp1_wr_itf_0_io_buf_wr_addr_0; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_1 = u_dp1_wr_itf_0_io_buf_wr_addr_1; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_2 = u_dp1_wr_itf_0_io_buf_wr_addr_2; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_3 = u_dp1_wr_itf_0_io_buf_wr_addr_3; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_4 = u_dp1_wr_itf_0_io_buf_wr_addr_4; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_5 = u_dp1_wr_itf_0_io_buf_wr_addr_5; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_6 = u_dp1_wr_itf_0_io_buf_wr_addr_6; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_addr_7 = u_dp1_wr_itf_0_io_buf_wr_addr_7; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_0 = u_dp1_wr_itf_0_io_buf_wr_data_0; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_1 = u_dp1_wr_itf_0_io_buf_wr_data_1; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_2 = u_dp1_wr_itf_0_io_buf_wr_data_2; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_3 = u_dp1_wr_itf_0_io_buf_wr_data_3; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_4 = u_dp1_wr_itf_0_io_buf_wr_data_4; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_5 = u_dp1_wr_itf_0_io_buf_wr_data_5; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_6 = u_dp1_wr_itf_0_io_buf_wr_data_6; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec0_wr_data_7 = u_dp1_wr_itf_0_io_buf_wr_data_7; // @[Preprocess.scala 125:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_0 = u_intt_0_io_rd_l_addr_0; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_1 = u_intt_0_io_rd_l_addr_1; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_2 = u_intt_0_io_rd_l_addr_2; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_3 = u_intt_0_io_rd_l_addr_3; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_4 = u_intt_0_io_rd_l_addr_4; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_5 = u_intt_0_io_rd_l_addr_5; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_6 = u_intt_0_io_rd_l_addr_6; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_rd_addr_7 = u_intt_0_io_rd_l_addr_7; // @[Preprocess.scala 128:29]
+  assign u_tpp_0_io_polyvec1_wr_en_0 = u_intt_0_io_wr_l_en_0; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_1 = u_intt_0_io_wr_l_en_1; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_2 = u_intt_0_io_wr_l_en_2; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_3 = u_intt_0_io_wr_l_en_3; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_4 = u_intt_0_io_wr_l_en_4; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_5 = u_intt_0_io_wr_l_en_5; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_6 = u_intt_0_io_wr_l_en_6; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_en_7 = u_intt_0_io_wr_l_en_7; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_0 = u_intt_0_io_wr_l_addr_0; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_1 = u_intt_0_io_wr_l_addr_1; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_2 = u_intt_0_io_wr_l_addr_2; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_3 = u_intt_0_io_wr_l_addr_3; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_4 = u_intt_0_io_wr_l_addr_4; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_5 = u_intt_0_io_wr_l_addr_5; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_6 = u_intt_0_io_wr_l_addr_6; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_addr_7 = u_intt_0_io_wr_l_addr_7; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_0 = u_intt_0_io_wr_l_data_0; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_1 = u_intt_0_io_wr_l_data_1; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_2 = u_intt_0_io_wr_l_data_2; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_3 = u_intt_0_io_wr_l_data_3; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_4 = u_intt_0_io_wr_l_data_4; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_5 = u_intt_0_io_wr_l_data_5; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_6 = u_intt_0_io_wr_l_data_6; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_polyvec1_wr_data_7 = u_intt_0_io_wr_l_data_7; // @[Preprocess.scala 127:29]
+  assign u_tpp_0_io_banks_rd_0_data_0 = tppRdDataPacked[34:0]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_1 = tppRdDataPacked[69:35]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_2 = tppRdDataPacked[104:70]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_3 = tppRdDataPacked[139:105]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_4 = tppRdDataPacked[174:140]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_5 = tppRdDataPacked[209:175]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_6 = tppRdDataPacked[244:210]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_0_data_7 = tppRdDataPacked[279:245]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_0 = tppRdDataPacked[314:280]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_1 = tppRdDataPacked[349:315]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_2 = tppRdDataPacked[384:350]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_3 = tppRdDataPacked[419:385]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_4 = tppRdDataPacked[454:420]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_5 = tppRdDataPacked[489:455]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_6 = tppRdDataPacked[524:490]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_1_data_7 = tppRdDataPacked[559:525]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_0 = tppRdDataPacked[594:560]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_1 = tppRdDataPacked[629:595]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_2 = tppRdDataPacked[664:630]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_3 = tppRdDataPacked[699:665]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_4 = tppRdDataPacked[734:700]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_5 = tppRdDataPacked[769:735]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_6 = tppRdDataPacked[804:770]; // @[Preprocess.scala 105:59]
+  assign u_tpp_0_io_banks_rd_2_data_7 = tppRdDataPacked[839:805]; // @[Preprocess.scala 105:59]
+  assign u_dp1_wr_itf_0_io_vpu_wr_en = io_dp1_wr_0_en; // @[Preprocess.scala 121:29]
+  assign u_dp1_wr_itf_0_io_vpu_wr_addr = io_dp1_wr_0_addr; // @[Preprocess.scala 121:29]
+  assign u_dp1_wr_itf_0_io_vpu_wr_data = io_dp1_wr_0_data; // @[Preprocess.scala 121:29]
   assign u_dp1_rd_itf_0_clock = clock;
-  assign u_dp1_rd_itf_0_io_vpu_rd_addr = io_dp1_rd_0_addr; // @[Preprocess.scala 90:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_0 = u_tpp_0_io_polyvec0_rd_data_0; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_1 = u_tpp_0_io_polyvec0_rd_data_1; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_2 = u_tpp_0_io_polyvec0_rd_data_2; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_3 = u_tpp_0_io_polyvec0_rd_data_3; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_4 = u_tpp_0_io_polyvec0_rd_data_4; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_5 = u_tpp_0_io_polyvec0_rd_data_5; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_6 = u_tpp_0_io_polyvec0_rd_data_6; // @[Preprocess.scala 93:33]
-  assign u_dp1_rd_itf_0_io_buf_rd_data_7 = u_tpp_0_io_polyvec0_rd_data_7; // @[Preprocess.scala 93:33]
+  assign u_dp1_rd_itf_0_io_vpu_rd_addr = io_dp1_rd_0_addr; // @[Preprocess.scala 122:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_0 = u_tpp_0_io_polyvec0_rd_data_0; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_1 = u_tpp_0_io_polyvec0_rd_data_1; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_2 = u_tpp_0_io_polyvec0_rd_data_2; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_3 = u_tpp_0_io_polyvec0_rd_data_3; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_4 = u_tpp_0_io_polyvec0_rd_data_4; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_5 = u_tpp_0_io_polyvec0_rd_data_5; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_6 = u_tpp_0_io_polyvec0_rd_data_6; // @[Preprocess.scala 126:29]
+  assign u_dp1_rd_itf_0_io_buf_rd_data_7 = u_tpp_0_io_polyvec0_rd_data_7; // @[Preprocess.scala 126:29]
 endmodule

@@ -10,142 +10,146 @@ import chisel3._
 import chisel3.util._
 
 class preprocess_top_chisel extends Module {
-    val bramDelay = 1
+  val bramDelay = 1
 
-    val io = IO(new Bundle {
-        val i_intt_start = Input(Bool())
-        val o_intt_done  = Output(Bool())
-        //val i_vpu4_start = Input(Bool())
-        //val o_vpu4_done  = Output(Bool())
-        val i_pre_switch = Input(Bool())
-        val i_mux_done   = Input(Bool())
+  val io = IO(new Bundle {
+    val i_intt_start = Input(Bool())
+    val o_intt_done  = Output(Bool())
+    val i_pre_switch = Input(Bool())
+    val i_mux_done   = Input(Bool())
 
-        val i_coeff_index = Input(UInt(12.W))
-        
-        val dp1_wr = MixedVec(
-            List.tabulate(1) { x => Flipped(new VpuWrPort(utils.MODWIDTH(x/2), 12, 8)) }
-        )
-        val dp1_rd = MixedVec(
-            List.tabulate(1) { x => Flipped(new VpuRdPort(utils.MODWIDTH(x/2), 12, 8)) }
-        )
-        /*
-        val mux_rd = MixedVec(
-            List.tabulate(4) { x => Flipped(new VpuRdPort(utils.MODWIDTH(x%2), 12, 8)) }
-        )
-        */
+    val i_coeff_index = Input(UInt(12.W))
 
-        // NEW: concatenated output of all 8 INTT lanes
-        val o_intt_concat = Output(UInt((utils.MODWIDTH(0) * 8).W))
-        val o_intt_addr = Output(UInt((9 * 8).W))
+    val dp1_wr = MixedVec(
+      List.tabulate(1) { x => Flipped(new VpuWrPort(utils.MODWIDTH(x/2), 12, 8)) }
+    )
+    val dp1_rd = MixedVec(
+      List.tabulate(1) { x => Flipped(new VpuRdPort(utils.MODWIDTH(x/2), 12, 8)) }
+    )
 
-        val o_intt_we_result = Output(Bool())
-    })
+    // NEW: concatenated output of all 8 INTT lanes
+    val o_intt_concat    = Output(UInt((utils.MODWIDTH(0) * 8).W))
+    val o_intt_addr      = Output(UInt((9 * 8).W))
+    val o_intt_we_result = Output(Bool())
 
-    val u_intt = List.tabulate(1) { x => Module(new intt_wrapper(x/2)) }
-    
-    /*
-    val u_vpu4 = Module(new vpu4_top(4096, 1))
-    u_vpu4.io := DontCare // drives all *inputs* of the child with DontCare
-    */
+    // === NEW: Packed external TPP bank interfaces (parent will implement RAMs) ===
+    // We define the exact widths after u_tpp is created (below), then rebind IO.
+  })
 
-    val u_intt_buf = List.tabulate(1) { x =>
-        Module(new poly_ram_wrapper(utils.MODWIDTH(x/2), 9, 8))
-    }
-    val u_tpp = List.tabulate(1) { x =>
-        Module(new triple_pp_buffer(utils.MODWIDTH(x/2), 512, 8))
-    }
-    
-    /*
-    val u_dpp = List.tabulate(4) { x =>
-        Module(new double_pp_buffer(utils.MODWIDTH(x%2), 512, 8))
-    }
-    */
+  val u_intt = List.tabulate(1) { x => Module(new intt_wrapper(x/2)) }
 
-    val u_dp1_wr_itf = List.tabulate(1) { x =>
-        Module(new poly_wr_interface(utils.MODWIDTH(x/2), 512, 8))
-    }
-    val u_dp1_rd_itf = List.tabulate(1) { x =>
-        Module(new poly_rd_interface(utils.MODWIDTH(x/2), 512, 8, bramDelay))
-    }
-    /*
-    val u_vpu4_rd_itf = List.tabulate(1) { x =>
-        Module(new poly_rd_interface(utils.MODWIDTH(x/2), 512, 8, bramDelay))
-    }
-    */
+  // INTT right-side scratch (kept here)
+  val u_intt_buf = List.tabulate(1) { x =>
+    Module(new poly_ram_wrapper(utils.MODWIDTH(x/2), 9, 8))
+  }
 
-    /*
-    val u_vpu4_wr_itf = List.tabulate(4) { x =>
-        Module(new poly_wr_interface(utils.MODWIDTH(x%2), 512, 8))
-    }
-    */
+  // Triple PP buffer (expects bank ports; we’ll route those up)
+  val u_tpp = List.tabulate(1) { x =>
+    Module(new triple_pp_buffer(utils.MODWIDTH(x/2), 512, 8))
+  }
 
-    /*
-    val u_mux_rd_itf = List.tabulate(4) { x =>
-        Module(new poly_rd_interface(utils.MODWIDTH(x%2), 512, 8, bramDelay))
-    }
-    */
+  // Interfaces to/from VPU adapter
+  val u_dp1_wr_itf = List.tabulate(1) { x =>
+    Module(new poly_wr_interface(utils.MODWIDTH(x/2), 512, 8))
+  }
+  val u_dp1_rd_itf = List.tabulate(1) { x =>
+    Module(new poly_rd_interface(utils.MODWIDTH(x/2), 512, 8, bramDelay))
+  }
 
-    for (i <- 0 until 1) {
-        io.dp1_wr(i)            <> u_dp1_wr_itf(i).io.vpu_wr
-        io.dp1_rd(i)            <> u_dp1_rd_itf(i).io.vpu_rd
+  // ------------------------------
+  // NEW: Packed external bank IOs
+  // ------------------------------
+  // Derive structural sizes from the TPP bank bundles to keep things consistent.
+  // banks_wr: Vec[N_PV] of BufWrPort { en: Vec[N_BANK] Bool, addr: Vec[N_BANK] UInt(AW), data: Vec[N_BANK] UInt(DW) }
+  // banks_rd: Vec[N_PV] of BufRdPort { addr: Vec[N_BANK] UInt(AW), data: Vec[N_BANK] UInt(DW) }
+  val N_PV   = u_tpp(0).io.banks_wr.length
+  val N_BANK = u_tpp(0).io.banks_wr(0).addr.length
+  val AW     = u_tpp(0).io.banks_wr(0).addr.head.getWidth
+  val DW     = u_tpp(0).io.banks_wr(0).data.head.getWidth
 
-        u_tpp(i).io.polyvec0_wr <> u_dp1_wr_itf(i).io.buf_wr
-        u_tpp(i).io.polyvec0_rd <> u_dp1_rd_itf(i).io.buf_rd
-        u_tpp(i).io.polyvec1_wr <> u_intt(i).io.wr_l
-        u_tpp(i).io.polyvec1_rd <> u_intt(i).io.rd_l
-        u_tpp(i).io.polyvec2_rd <> DontCare
-        u_tpp(i).io.polyvec2_wr <> DontCare
+  // Create *packed* IO lines: EN, WR.ADDR, WR.DATA, RD.ADDR (all outputs) and RD.DATA (input)
+  val tppWrEnPacked   = IO(Output(UInt((N_PV * N_BANK).W)))
+  val tppWrAddrPacked = IO(Output(UInt((N_PV * N_BANK * AW).W)))
+  val tppWrDataPacked = IO(Output(UInt((N_PV * N_BANK * DW).W)))
+  val tppRdAddrPacked = IO(Output(UInt((N_PV * N_BANK * AW).W)))
+  val tppRdDataPacked = IO(Input (UInt((N_PV * N_BANK * DW).W)))
 
-        u_intt(i).io.wr_r       <> u_intt_buf(i).io.wr
-        u_intt(i).io.rd_r       <> u_intt_buf(i).io.rd
+  // Helper to compute flat bit indices
+  def lin(p: Int, b: Int) = p * N_BANK + b
 
-        //u_vpu4.io.vpu4_rd(i)    <> u_vpu4_rd_itf(i).io.vpu_rd
-    }
+  // Pack WR.EN / WR.ADDR / WR.DATA and RD.ADDR from u_tpp into the IO buses
+  // Also unpack RD.DATA back into u_tpp
+  {
+    // Mutable wires to gather concatenation elements
+    val wrEnBits   = Wire(Vec(N_PV * N_BANK, Bool()))
+    val wrAddrBits = Wire(Vec(N_PV * N_BANK, UInt(AW.W)))
+    val wrDataBits = Wire(Vec(N_PV * N_BANK, UInt(DW.W)))
+    val rdAddrBits = Wire(Vec(N_PV * N_BANK, UInt(AW.W)))
 
-    /*
-    for (i <- 0 until 4) {
-        u_vpu4.io.vpu4_wr(i)    <> u_vpu4_wr_itf(i).io.vpu_wr
+    // Drive per-bank connections and collect for packing
+    for (p <- 0 until N_PV) {
+      for (b <- 0 until N_BANK) {
+        val k = lin(p, b)
 
-        u_dpp(i).io.polyvec0_wr <> u_vpu4_wr_itf(i).io.buf_wr
-        u_dpp(i).io.polyvec0_rd <> DontCare
-        u_dpp(i).io.polyvec1_rd <> u_mux_rd_itf(i).io.buf_rd
-        u_dpp(i).io.polyvec1_wr <> DontCare
+        // Collect WR side from TPP
+        wrEnBits  (k) := u_tpp(0).io.banks_wr(p).en  (b)
+        wrAddrBits(k) := u_tpp(0).io.banks_wr(p).addr(b)
+        wrDataBits(k) := u_tpp(0).io.banks_wr(p).data(b)
 
-        io.mux_rd(i)            <> u_mux_rd_itf(i).io.vpu_rd
-    }
-    */
+        // Collect RD.ADDR from TPP, and *return* RD.DATA back to TPP
+        rdAddrBits(k) := u_tpp(0).io.banks_rd(p).addr(b)
 
-    for (i <- 0 until 1) {
-        io.i_intt_start <> u_intt(i).io.ntt_start
-    }
-    io.o_intt_done      := u_intt(0).io.ntt_done
-
-    //io.i_vpu4_start     <> u_vpu4.io.i_vpu4_start
-    //io.o_vpu4_done      <> u_vpu4.io.o_vpu4_done
-    //io.i_coeff_index    <> u_vpu4.io.i_vpu4_coeff_index
-
-    for (i <- 0 until 1) {
-        u_tpp(i).io.i_done := io.i_pre_switch
-    }
-    
-    for (i <- 0 until 4) {
-        //u_dpp(i).io.i_done := io.o_vpu4_done && io.i_mux_done
+        // Unpack RD.DATA from the packed input bus back to TPP
+        val rdLo = k * DW
+        val rdHi = rdLo + DW - 1
+        u_tpp(0).io.banks_rd(p).data(b) := tppRdDataPacked(rdHi, rdLo)
+      }
     }
 
-    // -----------------------------------------------------------------------
-    // Concatenate the INTT's 8-lane output bus
-    // -----------------------------------------------------------------------
-    {
-        // Replace ".data" with the actual Vec field name in intt_wrapper
-        val lanes: Vec[UInt] = u_intt(0).io.wr_l.data
-        io.o_intt_concat := Cat(lanes.reverse)
-    }
+    // Pack (Cat) in consistent MSB..LSB order: higher k toward MSB
+    tppWrEnPacked   := Cat((wrEnBits  .reverse).map(_.asUInt))
+    tppWrAddrPacked := Cat((wrAddrBits.reverse))
+    tppWrDataPacked := Cat((wrDataBits.reverse))
+    tppRdAddrPacked := Cat((rdAddrBits.reverse))
+  }
 
-    {
-        // Replace ".data" with the actual Vec field name in intt_wrapper
-        val lanes: Vec[UInt] = u_intt(0).io.wr_l.addr
-        io.o_intt_addr := Cat(lanes.reverse)
-    }
+  // ------------------------------
+  // Rest of the original plumbing
+  // ------------------------------
+  for (i <- 0 until 1) {
+    // VPU <-> adapters
+    io.dp1_wr(i)            <> u_dp1_wr_itf(i).io.vpu_wr
+    io.dp1_rd(i)            <> u_dp1_rd_itf(i).io.vpu_rd
 
-    io.o_intt_we_result := u_intt(0).io.o_we_result
+    // TPP polyvec endpoints
+    u_tpp(i).io.polyvec0_wr <> u_dp1_wr_itf(i).io.buf_wr
+    u_tpp(i).io.polyvec0_rd <> u_dp1_rd_itf(i).io.buf_rd
+    u_tpp(i).io.polyvec1_wr <> u_intt(i).io.wr_l
+    u_tpp(i).io.polyvec1_rd <> u_intt(i).io.rd_l
+    u_tpp(i).io.polyvec2_rd <> DontCare
+    u_tpp(i).io.polyvec2_wr <> DontCare
+
+    // INTT right side stays local
+    u_intt(i).io.wr_r       <> u_intt_buf(i).io.wr
+    u_intt(i).io.rd_r       <> u_intt_buf(i).io.rd
+  }
+
+  for (i <- 0 until 1) {
+    u_tpp(i).io.i_done := io.i_pre_switch
+  }
+
+  // Concatenate the INTT's 8-lane output bus
+  {
+    val lanes: Vec[UInt] = u_intt(0).io.wr_l.data
+    io.o_intt_concat := Cat(lanes.reverse)
+  }
+  {
+    val lanes: Vec[UInt] = u_intt(0).io.wr_l.addr
+    io.o_intt_addr := Cat(lanes.reverse)
+  }
+
+  // Control handshakes
+  io.i_intt_start <> u_intt(0).io.ntt_start
+  io.o_intt_done  := u_intt(0).io.ntt_done
+  io.o_intt_we_result := u_intt(0).io.o_we_result
 }

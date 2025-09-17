@@ -137,9 +137,9 @@ def GenBuf():
     gen.append(f'')
 
     ##########################################
-    ######preprocess init and check###########
+    ###### preprocess init and check #########
     ##########################################
-    
+
     gen.append(f'// -------------------------------------')
     gen.append(f'// preprocess Ping-pong buffer init')
     gen.append(f'// -------------------------------------')
@@ -151,7 +151,7 @@ def GenBuf():
     gen.append(f'')
 
     for ppi in range(2):
-        mem = f'tpp' if ppi == 0 else f'dpp'
+        mem = "tpp" if ppi == 0 else "dpp"
         gen.append(f'{tab*1}// --------------------------------------------')
         gen.append(f'{tab*1}// init preprocess Ping-pong buffer {mem}')
         gen.append(f'{tab*1}// --------------------------------------------')
@@ -159,6 +159,7 @@ def GenBuf():
 
         buf_num = 3 if ppi == 0 else 2
         poly_num = 1 if ppi == 0 else 0
+
         for n_pp in range(1):
             for n_buf in range(buf_num):
                 gen.append(f'{tab*1}task initialize_pp{n_pp}_{mem}_buf{n_buf}_as_input(string filename);')
@@ -174,7 +175,7 @@ def GenBuf():
                 for n_poly in range(poly_num):
                     for n_bank in range(8):
                         gen.append(f'{tab*2}for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin')
-                        gen.append(f'{tab*2}`PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx]')
+                        gen.append(f'{tab*2}tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx]')
                         gen.append(f'{tab*2}    = _pp_{mem}_temp{n_pp}[{n_poly}*4096 + {n_bank}*512 + _pp_idx];')
                         gen.append(f'{tab*2}end')
                 gen.append(f'{tab*1}endtask')
@@ -188,13 +189,14 @@ def GenBuf():
     gen.append(f'')
 
     for ppi in range(2):
-        mem = f'tpp' if ppi == 0 else f'dpp'
+        mem = "tpp" if ppi == 0 else "dpp"
         gen.append(f'{tab*1}// -------------------------------------')
         gen.append(f'{tab*1}// check preprocess Ping-pong buffer {mem}')
         gen.append(f'{tab*1}// -------------------------------------')
 
         buf_num = 3 if ppi == 0 else 2
         poly_num = 1 if ppi == 0 else 0
+
         for n_pp in range(1):
             for n_buf in range(buf_num):
                 gen.append(f'{tab*1}task check_pp{n_pp}_{mem}_buf{n_buf}_as_output(string filename);')
@@ -211,18 +213,18 @@ def GenBuf():
                     for n_poly in range(poly_num):
                         for n_bank in range(8):
                             gen.append(f'{tab*2}for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin')
-                            gen.append(f'{tab*3}if (`PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx] ===')
+                            gen.append(f'{tab*3}if (tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx] ===')
                             gen.append(f'{tab*3}    _pp_{mem}_model_data[{n_poly}*4096 + {n_bank}*512 + _pp_idx]) begin')
                             gen.append(f'{tab*3}end')
                             gen.append(f'{tab*3}else begin')
-                            gen.append(f'{tab*4}$display("`PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\\n",')
+                            gen.append(f'{tab*4}$display("tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\\n",')
                             gen.append(f'{tab*4}         _pp_idx,')
-                            gen.append(f'{tab*4}         `PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx],')
+                            gen.append(f'{tab*4}         tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx],')
                             gen.append(f'{tab*4}         _pp_{mem}_model_data[{n_poly}*4096 + {n_bank}*512 + _pp_idx]')
                             gen.append(f'{tab*4});')
-                            gen.append(f'{tab*4}$display("`PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\\n",')
+                            gen.append(f'{tab*4}$display("tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\\n",')
                             gen.append(f'{tab*4}         _pp_idx,')
-                            gen.append(f'{tab*4}         `PP{n_pp}.u_{mem}_{n_poly}.u_ram_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx],')
+                            gen.append(f'{tab*4}         tb_top.tppBank_{n_buf}.u_ram.genblk1[{n_bank}].base_bank.mem_bank[_pp_idx],')
                             gen.append(f'{tab*4}         _pp_{mem}_model_data[{n_poly}*4096 + {n_bank}*512 + _pp_idx]')
                             gen.append(f'{tab*4});')
                             gen.append(f'{tab*4}$finish;')

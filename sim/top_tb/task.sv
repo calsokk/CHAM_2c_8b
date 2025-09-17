@@ -136,35 +136,35 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_temp1 [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 0*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 1*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 2*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 3*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 4*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 5*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 6*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 7*512 + _pp_idx];
         end
     endtask
@@ -180,35 +180,35 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_temp1 [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 0*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 1*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 2*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 3*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 4*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 5*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 6*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 7*512 + _pp_idx];
         end
     endtask
@@ -224,35 +224,35 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_temp1 [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 0*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 1*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 2*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 3*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 4*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 5*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 6*512 + _pp_idx];
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-        `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
+        tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx]
             = _pp_tpp_temp0[0*4096 + 7*512 + _pp_idx];
         end
     endtask
@@ -305,144 +305,144 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_model_data [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_0.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
                 $finish;
@@ -461,144 +461,144 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_model_data [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_1.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
                 $finish;
@@ -617,144 +617,144 @@ logic [PP_PP_COE_WIDTH-1:0] _pp_dpp_model_data [0:4*4096-1];
         end
 
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[0].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 0*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[1].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 1*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[2].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 2*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[3].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 3*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[4].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 4*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[5].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 5*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[6].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 6*512 + _pp_idx]
                 );
                 $finish;
             end
         end
         for (_pp_idx = 0; _pp_idx < 512; _pp_idx = _pp_idx + 1) begin
-            if (`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
+            if (tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx] ===
                 _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]) begin
             end
             else begin
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %d wrong! Correct value should be %d !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
-                $display("`PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
+                $display("tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[%d] out value %h wrong! Correct value should be %h !\n",
                          _pp_idx,
-                         `PP0.u_tpp_0.u_ram_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
+                         tb_top.tppBank_2.u_ram.genblk1[7].base_bank.mem_bank[_pp_idx],
                          _pp_tpp_model_data[0*4096 + 7*512 + _pp_idx]
                 );
                 $finish;

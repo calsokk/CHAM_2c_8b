@@ -86,7 +86,13 @@ module mvp_top #(
     output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addra2,
     output [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  o_polyvec_dina2,
     output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addrb2,
-    input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb2
+    input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb2,
+
+    output wire  [23:0]               tppWrEnPacked,     // 3 polyvecs * 8 banks
+    output wire  [215:0]              tppWrAddrPacked,   // 24 * 9
+    output wire  [839:0]              tppWrDataPacked,   // 24 * 35
+    output wire  [215:0]              tppRdAddrPacked,   // 24 * 9
+    input  wire  [839:0]              tppRdDataPacked    // 24 * 35
 );
 
 
@@ -572,7 +578,13 @@ u_preprocess_top0(
     .io_o_mux_rddata        ( mux_pre_rdata_a0_w),
     .io_o_intt_concat (io_o_intt_concat),
     .io_o_intt_we_result(io_o_intt_we_result),
-    .io_o_intt_addr_result(io_o_intt_addr_result)
+    .io_o_intt_addr_result(io_o_intt_addr_result),
+
+    .tppWrEnPacked       (tppWrEnPacked   ), // output [23:0]
+    .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
+    .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
+    .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
+    .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
 );
 
 /*
