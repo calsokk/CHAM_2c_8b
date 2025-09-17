@@ -287,7 +287,13 @@ u_mvp_top (
     .ksk_ptr                ( ksk_ptr               ),
     .mat_ptr                ( mat_ptr               ),
     .vec_ptr                ( vec_ptr               ),
-    .data_ptr               ( output_ptr            )
+    .data_ptr               ( output_ptr            ),
+    // ---- New array I/Os to external polyvec RAMs ----
+    .o_polyvec_wea          (),
+    .o_polyvec_addra        (),
+    .o_polyvec_dina         (),
+    .o_polyvec_addrb        (),
+    .i_polyvec_doutb        ()
 );
 
   assign test_axi_c1_awid = 'b0;

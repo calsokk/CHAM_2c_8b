@@ -299,6 +299,38 @@ module tb_top;
     bit [C_DATA_AXI_ADDR_WIDTH-1:0]     csr_vec_ptr  ;  // TODO
     bit [C_DATA_AXI_ADDR_WIDTH-1:0]     csr_rslt_ptr ;  // TODO
 
+
+    // -------------------------------------------------------------------
+    // TB-side constants for external polyvec RAM wiring
+    // (match these to your DUT config)
+    // -------------------------------------------------------------------
+    localparam int TB_NUM_BASE_BANK = 8;   // == NUM_BASE_BANK
+    localparam int TB_NUM_POLY      = 1;   // == N_POLY
+    localparam int TB_ADDR_WIDTH    = 9;   // == ADDR_WIDTH_L
+    localparam int TB_COE_WIDTH     = 39;  // == COE_WIDTH_L
+
+    // === External polyvec RAM interfaces exposed by mvp_top ===
+    // Polyvec0
+    logic [TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]                 tb_polyvec_wea0;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addra0;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_dina0;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addrb0;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_doutb0;
+
+    // Polyvec1
+    logic [TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]                 tb_polyvec_wea1;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addra1;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_dina1;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addrb1;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_doutb1;
+
+    // Polyvec2
+    logic [TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]                 tb_polyvec_wea2;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addra2;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_dina2;
+    logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addrb2;
+    logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_doutb2;
+
     mvp_top # (
         .AXI_ADDR_WIDTH     ( C_DATA_AXI_ADDR_WIDTH ),
         .AXI_DATA_WIDTH     ( C_DATA_AXI_DATA_WIDTH_MVP )
@@ -345,9 +377,87 @@ module tb_top;
         .data_ptr   ( csr_rslt_ptr  ),
         
         .io_o_intt_concat(io_o_intt_concat),
-        .io_o_intt_we_result(io_o_intt_we_result)
+        .io_o_intt_we_result(io_o_intt_we_result),
+
+        // === External polyvec banks ===
+        .o_polyvec_wea0   (tb_polyvec_wea0),
+        .o_polyvec_addra0 (tb_polyvec_addra0),
+        .o_polyvec_dina0  (tb_polyvec_dina0),
+        .o_polyvec_addrb0 (tb_polyvec_addrb0),
+        .i_polyvec_doutb0 (tb_polyvec_doutb0),
+
+        .o_polyvec_wea1   (tb_polyvec_wea1),
+        .o_polyvec_addra1 (tb_polyvec_addra1),
+        .o_polyvec_dina1  (tb_polyvec_dina1),
+        .o_polyvec_addrb1 (tb_polyvec_addrb1),
+        .i_polyvec_doutb1 (tb_polyvec_doutb1),
+
+        .o_polyvec_wea2   (tb_polyvec_wea2),
+        .o_polyvec_addra2 (tb_polyvec_addra2),
+        .o_polyvec_dina2  (tb_polyvec_dina2),
+        .o_polyvec_addrb2 (tb_polyvec_addrb2),
+        .i_polyvec_doutb2 (tb_polyvec_doutb2)
+
     );
 
+    // -------------------------------------------------------------------
+    // TB instantiation of the externalized polyvec banks
+    // Uses TB_* params and the per-bank wires you already declared.
+    // -------------------------------------------------------------------
+    localparam int TB_Q_TYPE             = 0;
+    localparam int TB_COMMON_BRAM_DELAY  = 1;   // match DUT if needed
+
+    // polyvec_0
+    polyvec_ram #(
+    .COE_WIDTH         (TB_COE_WIDTH),
+    .Q_TYPE            (TB_Q_TYPE),
+    .ADDR_WIDTH        (TB_ADDR_WIDTH),
+    .NUM_POLY          (TB_NUM_POLY),
+    .NUM_BASE_BANK     (TB_NUM_BASE_BANK),
+    .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
+    ) tb_polyvec_0 (
+    .clk   (clk),
+    .wea   (tb_polyvec_wea0),
+    .addra (tb_polyvec_addra0),
+    .dina  (tb_polyvec_dina0),
+    .addrb (tb_polyvec_addrb0),
+    .doutb (tb_polyvec_doutb0)
+    );
+
+    // polyvec_1
+    polyvec_ram #(
+    .COE_WIDTH         (TB_COE_WIDTH),
+    .Q_TYPE            (TB_Q_TYPE),
+    .ADDR_WIDTH        (TB_ADDR_WIDTH),
+    .NUM_POLY          (TB_NUM_POLY),
+    .NUM_BASE_BANK     (TB_NUM_BASE_BANK),
+    .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
+    ) tb_polyvec_1 (
+    .clk   (clk),
+    .wea   (tb_polyvec_wea1),
+    .addra (tb_polyvec_addra1),
+    .dina  (tb_polyvec_dina1),
+    .addrb (tb_polyvec_addrb1),
+    .doutb (tb_polyvec_doutb1)
+    );
+
+    // polyvec_2
+    polyvec_ram #(
+    .COE_WIDTH         (TB_COE_WIDTH),
+    .Q_TYPE            (TB_Q_TYPE),
+    .ADDR_WIDTH        (TB_ADDR_WIDTH),
+    .NUM_POLY          (TB_NUM_POLY),
+    .NUM_BASE_BANK     (TB_NUM_BASE_BANK),
+    .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
+    ) tb_polyvec_2 (
+    .clk   (clk),
+    .wea   (tb_polyvec_wea2),
+    .addra (tb_polyvec_addra2),
+    .dina  (tb_polyvec_dina2),
+    .addrb (tb_polyvec_addrb2),
+    .doutb (tb_polyvec_doutb2)
+    );
+    
     assign interrupt = csr_ap_done[0];  // TODO
     
     /*

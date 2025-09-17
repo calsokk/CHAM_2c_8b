@@ -43,9 +43,29 @@ module dp_top#(
     output                                              o_madd_done,
     output                                              o_madd_we,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_wraddr,
-    output [COE_WIDTH*NUM_POLY-1:0]                   o_madd_data,
+    output [COE_WIDTH*NUM_POLY-1:0]                     o_madd_data,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_rdaddr,
-    input  [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_data
+    input  [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_data,
+
+    // ==== Pass-through polyvec RAM ports for tri_pp0 ====
+    output [NUM_BASE_BANK*NUM_POLY-1:0]              o_polyvec_wea0,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addra0,
+    output [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_polyvec_dina0,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addrb0,
+    input  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    i_polyvec_doutb0,
+
+    output [NUM_BASE_BANK*NUM_POLY-1:0]              o_polyvec_wea1,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addra1,
+    output [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_polyvec_dina1,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addrb1,
+    input  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    i_polyvec_doutb1,
+
+    output [NUM_BASE_BANK*NUM_POLY-1:0]              o_polyvec_wea2,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addra2,
+    output [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_polyvec_dina2,
+    output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addrb2,
+    input  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    i_polyvec_doutb2
+
 );
 
 localparam M_CTXT = 2'b01;
@@ -162,33 +182,60 @@ always @(*) begin
     endcase
 end
 
-/* instance of the triple buffer */
-(* keep = "true" *) dp_triple_pp_buffer#(
-    .COE_WIDTH        (COE_WIDTH),
-    .ADDR_WIDTH       (ADDR_WIDTH),                 // Depth of ram is 1<<ADDR_WIDTH
-    .LOG_NUM_BANK     (LOG_NUM_BANK),
-    .NUM_POLY         (NUM_POLY),                   // number of polys in one polyvec
-    .NUM_BASE_BANK    (NUM_BASE_BANK),              // number of banks for one poly
-    .COMMON_BRAM_DELAY(COMMON_BRAM_DELAY)
-)
-tri_pp0(
-    .clk                (clk),
-    .rst_n              (rst_n),
-    .i_done             (axi_ntt_madd_done),
-    .i_axi_we           (i_axi_we[NUM_BASE_BANK*NUM_POLY-1                -: NUM_BASE_BANK*NUM_POLY]),
-    .i_axi_wraddr       (i_axi_wraddr),
-    .i_axi_data         (i_axi_data),
-    .i_ntt_we           (ntt_we[NUM_BASE_BANK*NUM_POLY-1                  -: NUM_BASE_BANK*NUM_POLY]),
-    .i_ntt_wraddr       (ntt_wraddr[ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1   -: ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY]),
-    .i_ntt_data         (ntt_tpp_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1  -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
-    .i_ntt_rdaddr       (ntt_rdaddr[ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1   -: ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY]),
-    .o_ntt_data         (tpp_ntt_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1  -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
-    .i_madd_rdaddr      (madd_rdaddr),
-    .o_madd_data        (tpp_madd_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1 -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
-    .uram_rdaddr        (uram_rdaddr_shifted[8:0]),
-    .o_temp_uram_data   (o_temp_uram_data),
-    .ntt_done           (o_ntt_done)
+(* keep = "true" *) dp_triple_pp_buffer #(
+    .COE_WIDTH         (COE_WIDTH),
+    .ADDR_WIDTH        (ADDR_WIDTH),
+    .LOG_NUM_BANK      (LOG_NUM_BANK),
+    .NUM_POLY          (NUM_POLY),
+    .NUM_BASE_BANK     (NUM_BASE_BANK),
+    .COMMON_BRAM_DELAY (COMMON_BRAM_DELAY)
+) tri_pp0 (
+    .clk              (clk),
+    .rst_n            (rst_n),
+    .i_done           (axi_ntt_madd_done),
+
+    // AXI side
+    .i_axi_we         (i_axi_we[NUM_BASE_BANK*NUM_POLY-1                -: NUM_BASE_BANK*NUM_POLY]),
+    .i_axi_wraddr     (i_axi_wraddr),
+    .i_axi_data       (i_axi_data),
+
+    // NTT side
+    .i_ntt_we         (ntt_we[NUM_BASE_BANK*NUM_POLY-1                  -: NUM_BASE_BANK*NUM_POLY]),
+    .i_ntt_wraddr     (ntt_wraddr[ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1   -: ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+    .i_ntt_data       (ntt_tpp_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1  -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+    .i_ntt_rdaddr     (ntt_rdaddr[ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1   -: ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+    .o_ntt_data       (tpp_ntt_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1  -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+
+    // MADD side
+    .i_madd_rdaddr    (madd_rdaddr),
+    .o_madd_data      (tpp_madd_data[COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1 -: COE_WIDTH*NUM_BASE_BANK*NUM_POLY]),
+
+    // URAM tap
+    .uram_rdaddr      (uram_rdaddr_shifted[8:0]),
+    .o_temp_uram_data (o_temp_uram_data),
+    .ntt_done         (o_ntt_done),
+
+    // Array ports
+    // === External polyvec banks ===
+    .o_polyvec_wea0   (o_polyvec_wea0),
+    .o_polyvec_addra0 (o_polyvec_addra0),
+    .o_polyvec_dina0  (o_polyvec_dina0),
+    .o_polyvec_addrb0 (o_polyvec_addrb0),
+    .i_polyvec_doutb0 (i_polyvec_doutb0),
+
+    .o_polyvec_wea1   (o_polyvec_wea1),
+    .o_polyvec_addra1 (o_polyvec_addra1),
+    .o_polyvec_dina1  (o_polyvec_dina1),
+    .o_polyvec_addrb1 (o_polyvec_addrb1),
+    .i_polyvec_doutb1 (i_polyvec_doutb1),
+
+    .o_polyvec_wea2   (o_polyvec_wea2),
+    .o_polyvec_addra2 (o_polyvec_addra2),
+    .o_polyvec_dina2  (o_polyvec_dina2),
+    .o_polyvec_addrb2 (o_polyvec_addrb2),
+    .i_polyvec_doutb2 (i_polyvec_doutb2)
 );
+
 
 /* instance two dp_core */
 (* keep = "true" *) dp_core#(

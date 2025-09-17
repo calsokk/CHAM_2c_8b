@@ -42,9 +42,12 @@ def GenBuf():
             gen.append(f'{tab*3}flag = $fscanf(fp_r{n_mem}, "%h", _dp_temp{n_mem}[_dp_idx]);')
             gen.append(f'{tab*2}end')
             gen.append(f'')
+            '''
             for n_poly in range(1):
                 for n_bank in range(8):
                     gen.append(f'{tab*2}`DP.{mem}{n_mem}.polyvec_{n_buf}.genblk1[{n_poly}].polynomial.genblk1[{n_bank}].base_bank.mem_bank = _dp_temp{n_mem}[{n_bank}*512+{n_poly}*4096 +: 512];')
+                    gen.append(f'{tab*2}`DP.{mem}{n_mem}.polyvec_{n_buf}.genblk1[{n_poly}].polynomial.genblk1[{n_bank}].base_bank.mem_bank = _dp_temp{n_mem}[{n_bank}*512+{n_poly}*4096 +: 512];')
+            '''
             gen.append(f'{tab*1}endtask')
             gen.append(f'')
 
@@ -72,6 +75,7 @@ def GenBuf():
             gen.append(f'{tab*3}flag = $fscanf(fp_r{n_mem}, "%h", _dp_model_data[_dp_idx]);')
             gen.append(f'{tab*2}end')
             gen.append(f'')
+            '''
             if n_mem == 0: 
                 for n_poly in range(1):
                     for n_bank in range(8):
@@ -93,6 +97,7 @@ def GenBuf():
                         gen.append(f'{tab*4}$finish;')
                         gen.append(f'{tab*3}end')
                         gen.append(f'{tab*2}end')
+            '''
             gen.append(f'{tab*1}endtask')
             gen.append(f'')
 

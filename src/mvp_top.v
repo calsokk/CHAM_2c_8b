@@ -17,10 +17,14 @@
 `include "common_defines.vh"
 
 module mvp_top #(
-    parameter integer AXI_ADDR_WIDTH      = 64 ,
-    parameter integer AXI_DATA_WIDTH      = 128
-)
-(
+    parameter integer AXI_ADDR_WIDTH       = 64,
+    parameter integer AXI_DATA_WIDTH       = 128,
+    // New params for external polyvec RAM interface widths
+    parameter integer PV_COE_WIDTH         = 39,  // == COE_WIDTH_L
+    parameter integer PV_ADDR_WIDTH        = 9,   // == ADDR_WIDTH_L
+    parameter integer PV_NUM_BASE_BANK     = 8,   // == NUM_BASE_BANK
+    parameter integer PV_NUM_POLY          = 1    // == N_POLY
+)(
     input  wire                             clk                  ,
     input  wire                             rst_n                ,
     // AXI MM
@@ -60,11 +64,31 @@ module mvp_top #(
     input  wire [AXI_ADDR_WIDTH-1:0]        mat_ptr              ,
     input  wire [AXI_ADDR_WIDTH-1:0]        vec_ptr              ,
     input  wire [AXI_ADDR_WIDTH-1:0]        data_ptr             ,
-    
-    output  wire    [279:0]             io_o_intt_concat,
-    output  wire                        io_o_intt_we_result,
-    output  wire    [71:0]              io_o_intt_addr_result
+
+    output  wire    [279:0]                 io_o_intt_concat,
+    output  wire                            io_o_intt_we_result,
+    output  wire    [71:0]                  io_o_intt_addr_result,
+
+    // ==== Pass-through polyvec RAM ports for tri_pp0 ====
+    output [PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]               o_polyvec_wea0,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addra0,
+    output [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  o_polyvec_dina0,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addrb0,
+    input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb0,
+
+    output [PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]               o_polyvec_wea1,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addra1,
+    output [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  o_polyvec_dina1,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addrb1,
+    input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb1,
+
+    output [PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]               o_polyvec_wea2,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addra2,
+    output [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  o_polyvec_dina2,
+    output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addrb2,
+    input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb2
 );
+
 
     parameter LEVEL_WIDTH       = 4;
     parameter NUM_POLY          = 4;
@@ -444,12 +468,11 @@ dp_top #(
     .URAM_ADDR_WIDTH        ( ADDR_WIDTH        ),
     .NUM_SPLIT              ( 4                 ),
     .LOG_NUM_BANK           ( ADDR_WIDTH_H      ),
-    .NUM_POLY               ( N_POLY          ),
+    .NUM_POLY               ( N_POLY            ),
     .NUM_BASE_BANK          ( NUM_BASE_BANK     ),
     .COMMON_BRAM_DELAY      ( COMMON_BRAM_DELAY ),
     .DP_MADD_PIP_DELAY      ( 5                 )
-)
-u_dp_top(
+) u_dp_top (
     .clk                    ( clk               ),
     .rst_n                  ( rst_n             ),
     .i_idx_split            ( idx_split_w[1:0]  ), //3 bits
@@ -465,11 +488,32 @@ u_dp_top(
     .i_madd_start           ( start_w[2]        ),
     .o_madd_done            ( done_w[2]         ),
     .o_madd_we              ( dp1_pre_we_w      ),
-    .o_madd_wraddr          ( dp1_pre_waddr_w   ), //output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_wraddr,
-    .o_madd_data            ( dp1_pre_wdata_w   ), //output [COE_WIDTH*NUM_POLY*4-1:0]                   o_madd_data,
-    .o_madd_rdaddr          ( dp1_pre_raddr_w   ), //output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_rdaddr,
-    .i_madd_data            ( dp1_pre_rdata_w   )  //input  [COE_WIDTH*NUM_POLY*4-1:0]                   i_madd_data
+    .o_madd_wraddr          ( dp1_pre_waddr_w   ), 
+    .o_madd_data            ( dp1_pre_wdata_w   ), 
+    .o_madd_rdaddr          ( dp1_pre_raddr_w   ), 
+    .i_madd_data            ( dp1_pre_rdata_w   ), 
+
+    // ---- New array I/Os to external polyvec RAMs ----
+    // === External polyvec banks ===
+    .o_polyvec_wea0   (o_polyvec_wea0),
+    .o_polyvec_addra0 (o_polyvec_addra0),
+    .o_polyvec_dina0  (o_polyvec_dina0),
+    .o_polyvec_addrb0 (o_polyvec_addrb0),
+    .i_polyvec_doutb0 (i_polyvec_doutb0),
+
+    .o_polyvec_wea1   (o_polyvec_wea1),
+    .o_polyvec_addra1 (o_polyvec_addra1),
+    .o_polyvec_dina1  (o_polyvec_dina1),
+    .o_polyvec_addrb1 (o_polyvec_addrb1),
+    .i_polyvec_doutb1 (i_polyvec_doutb1),
+
+    .o_polyvec_wea2   (o_polyvec_wea2),
+    .o_polyvec_addra2 (o_polyvec_addra2),
+    .o_polyvec_dina2  (o_polyvec_dina2),
+    .o_polyvec_addrb2 (o_polyvec_addrb2),
+    .i_polyvec_doutb2 (i_polyvec_doutb2)
 );
+
 
 wire pre_mux_done_w;
 assign pre_mux_done_w = done_w[5] | stall_w; //Risky
