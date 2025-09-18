@@ -22,7 +22,7 @@
 [0m[[0m[0mdebug[0m] [0m[0mcompilation cycle 1[0m
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/users/calsokk/research/CHAM_2c_8b/chisel/target/scala-2.13/classes ...[0m
 [0m[[0m[0mdebug[0m] [0m[0mGetting org.scala-sbt:compiler-bridge_2.13:1.4.4:compile for Scala 2.13.7[0m
-[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler b701b06 for Scala compiler version 2.13.7[0m
+[0m[[0m[0mdebug[0m] [0m[0m[zinc] Running cached compiler 38ff2f9a for Scala compiler version 2.13.7[0m
 [0m[[0m[0mdebug[0m] [0m[0m[zinc] The Scala compiler is invoked with:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-language:reflectiveCalls[0m
 [0m[[0m[0mdebug[0m] [0m[0m	-deprecation[0m
@@ -36,8 +36,8 @@
 [0m[[0m[0mdebug[0m] [0m[0mInvalidating (transitively) by inheritance from mvp.preprocess.preprocess_top_chisel...[0m
 [0m[[0m[0mdebug[0m] [0m[0mInitial set of included nodes: mvp.preprocess.preprocess_top_chisel[0m
 [0m[[0m[0mdebug[0m] [0m[0mInvalidated by transitive inheritance dependency: Set(mvp.preprocess.preprocess_top_chisel)[0m
-[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(mvp.preprocess.preprocess_top_chisel,ModifiedNames(changes = UsedName(DW,[Default]), UsedName(N_PV,[Default]), UsedName(extBanksWr,[Default]), UsedName(lin,[Default]), UsedName(tppWrDataPacked,[Default]), UsedName(extBanksRd,[Default]), UsedName(tppRdAddrPacked,[Default]), UsedName(AW,[Default]), UsedName(N_BANK,[Default]), UsedName(tppWrAddrPacked,[Default]), UsedName(tppRdDataPacked,[Default]), UsedName(tppWrEnPacked,[Default]))) invalidates 1 classes due to The mvp.preprocess.preprocess_top_chisel has the following regular definitions changed:[0m
-[0m[[0m[0mdebug[0m] [0m[0m	UsedName(DW,[Default]), UsedName(N_PV,[Default]), UsedName(extBanksWr,[Default]), UsedName(lin,[Default]), UsedName(tppWrDataPacked,[Default]), UsedName(extBanksRd,[Default]), UsedName(tppRdAddrPacked,[Default]), UsedName(AW,[Default]), UsedName(N_BANK,[Default]), UsedName(tppWrAddrPacked,[Default]), UsedName(tppRdDataPacked,[Default]), UsedName(tppWrEnPacked,[Default]).[0m
+[0m[[0m[0mdebug[0m] [0m[0mChange NamesChange(mvp.preprocess.preprocess_top_chisel,ModifiedNames(changes = UsedName(inttRdDataPacked,[Default]), UsedName(inttRdAddrPacked,[Default]), UsedName(io,[Default]), UsedName(INTT_COE_WIDTH,[Default]), UsedName(intt_buf_wr,[Default]), UsedName(inttWrEnPacked,[Default]), UsedName(intt_buf_rd,[Default]), UsedName(inttWrAddrPacked,[Default]), UsedName(inttWrDataPacked,[Default]))) invalidates 1 classes due to The mvp.preprocess.preprocess_top_chisel has the following regular definitions changed:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	UsedName(inttRdDataPacked,[Default]), UsedName(inttRdAddrPacked,[Default]), UsedName(io,[Default]), UsedName(INTT_COE_WIDTH,[Default]), UsedName(intt_buf_wr,[Default]), UsedName(inttWrEnPacked,[Default]), UsedName(intt_buf_rd,[Default]), UsedName(inttWrAddrPacked,[Default]), UsedName(inttWrDataPacked,[Default]).[0m
 [0m[[0m[0mdebug[0m] [0m[0m  > by transitive inheritance: Set(mvp.preprocess.preprocess_top_chisel)[0m
 [0m[[0m[0mdebug[0m] [0m[0m  > [0m
 [0m[[0m[0mdebug[0m] [0m[0m  > [0m
@@ -48,5 +48,5 @@
 [0m[[0m[0mdebug[0m] [0m[0mFinal step, transitive dependencies:[0m
 [0m[[0m[0mdebug[0m] [0m[0m	Set()[0m
 [0m[[0m[0mdebug[0m] [0m[0mNo classes were invalidated.[0m
-[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 7.09812461 s[0m
+[0m[[0m[0mdebug[0m] [0m[0mScala compilation took 7.293802276 s[0m
 [0m[[0m[0mdebug[0m] [0m[0mdone compiling[0m

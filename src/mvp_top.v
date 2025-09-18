@@ -88,6 +88,13 @@ module mvp_top #(
     output [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0] o_polyvec_addrb2,
     input  [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]  i_polyvec_doutb2,
 
+    // >>> NEW: expose packed INTT buffer buses up <<<
+    output wire  [7:0]                io_inttWrEnPacked,
+    output wire  [71:0]               io_inttWrAddrPacked,
+    output wire  [279:0]              io_inttWrDataPacked,   // 8 * 35
+    output wire  [71:0]               io_inttRdAddrPacked,
+    input  wire  [279:0]              io_inttRdDataPacked,   // 8 * 35
+
     output wire  [23:0]               tppWrEnPacked,     // 3 polyvecs * 8 banks
     output wire  [215:0]              tppWrAddrPacked,   // 24 * 9
     output wire  [839:0]              tppWrDataPacked,   // 24 * 35
@@ -598,7 +605,14 @@ u_preprocess_top0(
     .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
     .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
     .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
-    .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
+    .tppRdDataPacked     (tppRdDataPacked ),  //  input [839:0]
+
+    // ---- NEW: pass-through packed INTT buses ----
+    .io_inttWrEnPacked   (io_inttWrEnPacked),
+    .io_inttWrAddrPacked (io_inttWrAddrPacked),
+    .io_inttWrDataPacked (io_inttWrDataPacked),
+    .io_inttRdAddrPacked (io_inttRdAddrPacked),
+    .io_inttRdDataPacked (io_inttRdDataPacked)
 );
 
 /*

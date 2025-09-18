@@ -350,6 +350,12 @@ module tb_top;
     wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppRdAddrPacked;  // [215:0]
     wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppRdDataPacked;  // [839:0]
 
+    // Packed INTT buses (from preprocess_top)
+    wire [7:0]    io_inttWrEnPacked;
+    wire [71:0]   io_inttWrAddrPacked;   // 8 * 9
+    wire [279:0]  io_inttWrDataPacked;   // 8 * 35
+    wire [71:0]   io_inttRdAddrPacked;   // 8 * 9
+    wire [279:0]  io_inttRdDataPacked;   // 8 * 35
 
     mvp_top # (
         .AXI_ADDR_WIDTH     ( C_DATA_AXI_ADDR_WIDTH ),
@@ -429,7 +435,14 @@ module tb_top;
         .o_poly_addra(o_poly_addra),
         .o_poly_dina(o_poly_dina),
         .o_poly_addrb(o_poly_addrb),
-        .i_poly_doutb(i_poly_doutb)
+        .i_poly_doutb(i_poly_doutb),
+
+        // ---- NEW: pass-through packed INTT buses ----
+        .io_inttWrEnPacked   (io_inttWrEnPacked),
+        .io_inttWrAddrPacked (io_inttWrAddrPacked),
+        .io_inttWrDataPacked (io_inttWrDataPacked),
+        .io_inttRdAddrPacked (io_inttRdAddrPacked),
+        .io_inttRdDataPacked (io_inttRdDataPacked)
 
     );
 
@@ -658,6 +671,84 @@ module tb_top;
         .addrb(o_poly_addrb),
         .doutb(i_poly_doutb)
     );
+
+    /* INTT exclusive buffer */
+    // Capture RAM read data per lane to re-pack upward
+    wire [34:0] intt_rd_data_0;
+    wire [34:0] intt_rd_data_1;
+    wire [34:0] intt_rd_data_2;
+    wire [34:0] intt_rd_data_3;
+    wire [34:0] intt_rd_data_4;
+    wire [34:0] intt_rd_data_5;
+    wire [34:0] intt_rd_data_6;
+    wire [34:0] intt_rd_data_7;
+
+    poly_ram_35_9_8 u_intt_buf_0 (
+    .clock           (clk),
+
+    // ---- WR.EN (1b each) ----
+    .io_wr_en_0      (io_inttWrEnPacked[0]),
+    .io_wr_en_1      (io_inttWrEnPacked[1]),
+    .io_wr_en_2      (io_inttWrEnPacked[2]),
+    .io_wr_en_3      (io_inttWrEnPacked[3]),
+    .io_wr_en_4      (io_inttWrEnPacked[4]),
+    .io_wr_en_5      (io_inttWrEnPacked[5]),
+    .io_wr_en_6      (io_inttWrEnPacked[6]),
+    .io_wr_en_7      (io_inttWrEnPacked[7]),
+
+    // ---- WR.ADDR (9b each) ----
+    .io_wr_addr_0    (io_inttWrAddrPacked[  0*9 +: 9]),
+    .io_wr_addr_1    (io_inttWrAddrPacked[  1*9 +: 9]),
+    .io_wr_addr_2    (io_inttWrAddrPacked[  2*9 +: 9]),
+    .io_wr_addr_3    (io_inttWrAddrPacked[  3*9 +: 9]),
+    .io_wr_addr_4    (io_inttWrAddrPacked[  4*9 +: 9]),
+    .io_wr_addr_5    (io_inttWrAddrPacked[  5*9 +: 9]),
+    .io_wr_addr_6    (io_inttWrAddrPacked[  6*9 +: 9]),
+    .io_wr_addr_7    (io_inttWrAddrPacked[  7*9 +: 9]),
+
+    // ---- WR.DATA (35b each) ----
+    .io_wr_data_0    (io_inttWrDataPacked[  0*35 +: 35]),
+    .io_wr_data_1    (io_inttWrDataPacked[  1*35 +: 35]),
+    .io_wr_data_2    (io_inttWrDataPacked[  2*35 +: 35]),
+    .io_wr_data_3    (io_inttWrDataPacked[  3*35 +: 35]),
+    .io_wr_data_4    (io_inttWrDataPacked[  4*35 +: 35]),
+    .io_wr_data_5    (io_inttWrDataPacked[  5*35 +: 35]),
+    .io_wr_data_6    (io_inttWrDataPacked[  6*35 +: 35]),
+    .io_wr_data_7    (io_inttWrDataPacked[  7*35 +: 35]),
+
+    // ---- RD.ADDR (9b each) ----
+    .io_rd_addr_0    (io_inttRdAddrPacked[  0*9 +: 9]),
+    .io_rd_addr_1    (io_inttRdAddrPacked[  1*9 +: 9]),
+    .io_rd_addr_2    (io_inttRdAddrPacked[  2*9 +: 9]),
+    .io_rd_addr_3    (io_inttRdAddrPacked[  3*9 +: 9]),
+    .io_rd_addr_4    (io_inttRdAddrPacked[  4*9 +: 9]),
+    .io_rd_addr_5    (io_inttRdAddrPacked[  5*9 +: 9]),
+    .io_rd_addr_6    (io_inttRdAddrPacked[  6*9 +: 9]),
+    .io_rd_addr_7    (io_inttRdAddrPacked[  7*9 +: 9]),
+
+    // ---- RD.DATA (35b each) ----
+    .io_rd_data_0    (intt_rd_data_0),
+    .io_rd_data_1    (intt_rd_data_1),
+    .io_rd_data_2    (intt_rd_data_2),
+    .io_rd_data_3    (intt_rd_data_3),
+    .io_rd_data_4    (intt_rd_data_4),
+    .io_rd_data_5    (intt_rd_data_5),
+    .io_rd_data_6    (intt_rd_data_6),
+    .io_rd_data_7    (intt_rd_data_7)
+    );
+
+    // Re-pack RAM RD.DATA up to the DUT
+    assign io_inttRdDataPacked = {
+    intt_rd_data_7,
+    intt_rd_data_6,
+    intt_rd_data_5,
+    intt_rd_data_4,
+    intt_rd_data_3,
+    intt_rd_data_2,
+    intt_rd_data_1,
+    intt_rd_data_0
+    };
+
 
     assign interrupt = csr_ap_done[0];  // TODO
     

@@ -1,7 +1,16 @@
-[0m[[0m[33mwarn[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Buffer.scala:107:5: Reference to uninitialized value io[0m
-[0m[[0m[33mwarn[0m] [0m[0m    io.banks_wr.foreach { wr =>[0m
-[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Buffer.scala:112:5: Reference to uninitialized value io[0m
-[0m[[0m[33mwarn[0m] [0m[0m    io.banks_rd.foreach { rd =>[0m
-[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:128:44: not found: value tppRdDataPacked[0m
+[0m[[0m[31merror[0m] [0m[0m        u_tpp(0).io.banks_rd(p).data(b) := tppRdDataPacked(rdHi, rdLo)[0m
+[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:132:5: not found: value tppWrEnPacked[0m
+[0m[[0m[31merror[0m] [0m[0m    tppWrEnPacked   := Cat((wrEnBits  .reverse).map(_.asUInt))[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:133:5: not found: value tppWrAddrPacked[0m
+[0m[[0m[31merror[0m] [0m[0m    tppWrAddrPacked := Cat((wrAddrBits.reverse))[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:134:5: not found: value tppWrDataPacked[0m
+[0m[[0m[31merror[0m] [0m[0m    tppWrDataPacked := Cat((wrDataBits.reverse))[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/users/calsokk/research/CHAM_2c_8b/chisel/src/main/scala/Preprocess.scala:135:5: not found: value tppRdAddrPacked[0m
+[0m[[0m[31merror[0m] [0m[0m    tppRdAddrPacked := Cat((rdAddrBits.reverse))[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
+[0m[[0m[31merror[0m] [0m[0m5 errors found[0m

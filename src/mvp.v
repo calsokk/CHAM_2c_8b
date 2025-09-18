@@ -288,7 +288,7 @@ u_mvp_top (
     .mat_ptr                ( mat_ptr               ),
     .vec_ptr                ( vec_ptr               ),
     .data_ptr               ( output_ptr            ),
-    
+
     // ---- New array I/Os to external polyvec RAMs (tpp dot product) ----
     .o_polyvec_wea0   (),
     .o_polyvec_addra0 (),
@@ -306,7 +306,7 @@ u_mvp_top (
     .o_polyvec_addra2 (),
     .o_polyvec_dina2  (),
     .o_polyvec_addrb2 (),
-    .i_polyvec_doutb2 ()
+    .i_polyvec_doutb2 (),
 
 
     // (tpp preprocess) 
@@ -314,7 +314,7 @@ u_mvp_top (
     .tppWrAddrPacked     (), // output [215:0]
     .tppWrDataPacked     (), // output [839:0]
     .tppRdAddrPacked     (), // output [215:0]
-    .tppRdDataPacked     ()  //  input [839:0]    
+    .tppRdDataPacked     (),  //  input [839:0]    
 
     // ---------------- Polyvec RAM ports ----------------
     .o_poly_wea(),
@@ -322,6 +322,13 @@ u_mvp_top (
     .o_poly_dina(),
     .o_poly_addrb(),
     .i_poly_doutb(),
+
+    // ---- NEW: pass-through packed INTT buses ----
+    .io_inttWrEnPacked   (),
+    .io_inttWrAddrPacked (),
+    .io_inttWrDataPacked (),
+    .io_inttRdAddrPacked (),
+    .io_inttRdDataPacked ()
 
 );
 

@@ -32,6 +32,13 @@ module preprocess_top #(
     output wire                       io_o_intt_we_result,
     output wire  [71:0]               io_o_intt_addr_result,
 
+    // >>> NEW: expose packed INTT buffer buses up <<<
+    output wire  [7:0]                io_inttWrEnPacked,
+    output wire  [71:0]               io_inttWrAddrPacked,
+    output wire  [279:0]              io_inttWrDataPacked,   // 8 * 35
+    output wire  [71:0]               io_inttRdAddrPacked,
+    input  wire  [279:0]              io_inttRdDataPacked,   // 8 * 35
+
     // >>> Expose Triple-PP packed bank buses up to test env <<<
     output wire  [23:0]               tppWrEnPacked,     // 3 polyvecs * 8 banks
     output wire  [215:0]              tppWrAddrPacked,   // 24 * 9
@@ -72,7 +79,14 @@ module preprocess_top #(
         .io_o_intt_addr      (io_o_intt_addr_result),
         .io_o_intt_we_result (io_o_intt_we_result),
 
-        // ---- Packed bank buses routed up to the testbench ----
+        // ---- NEW: pass-through packed INTT buses ----
+        .io_inttWrEnPacked   (io_inttWrEnPacked),
+        .io_inttWrAddrPacked (io_inttWrAddrPacked),
+        .io_inttWrDataPacked (io_inttWrDataPacked),
+        .io_inttRdAddrPacked (io_inttRdAddrPacked),
+        .io_inttRdDataPacked (io_inttRdDataPacked),
+
+        // ---- Packed TPP bank buses (unchanged) ----
         .tppWrEnPacked       (tppWrEnPacked),
         .tppWrAddrPacked     (tppWrAddrPacked),
         .tppWrDataPacked     (tppWrDataPacked),

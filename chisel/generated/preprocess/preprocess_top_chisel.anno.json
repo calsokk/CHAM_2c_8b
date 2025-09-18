@@ -34,16 +34,16 @@
   },
   {
     "class":"firrtl.transforms.CombinationalPath",
-    "sink":"~preprocess_top_chisel|preprocess_top_chisel>tppWrAddrPacked",
+    "sink":"~preprocess_top_chisel|preprocess_top_chisel>io_dp1_rd_0_data",
     "sources":[
-      "~preprocess_top_chisel|preprocess_top_chisel>io_dp1_wr_0_addr"
+      "~preprocess_top_chisel|preprocess_top_chisel>tppRdDataPacked"
     ]
   },
   {
     "class":"firrtl.transforms.CombinationalPath",
-    "sink":"~preprocess_top_chisel|preprocess_top_chisel>io_dp1_rd_0_data",
+    "sink":"~preprocess_top_chisel|preprocess_top_chisel>tppWrAddrPacked",
     "sources":[
-      "~preprocess_top_chisel|preprocess_top_chisel>tppRdDataPacked"
+      "~preprocess_top_chisel|preprocess_top_chisel>io_dp1_wr_0_addr"
     ]
   },
   {

@@ -10,7 +10,8 @@ import chisel3._
 import chisel3.util._
 
 class preprocess_top_chisel extends Module {
-  val bramDelay = 1
+  val bramDelay     = 1
+  val INTT_COE_WIDTH = 35   // INTT coeffs are 35 bits
 
   val io = IO(new Bundle {
     val i_intt_start = Input(Bool())
@@ -27,28 +28,28 @@ class preprocess_top_chisel extends Module {
       List.tabulate(1) { x => Flipped(new VpuRdPort(utils.MODWIDTH(x/2), 12, 8)) }
     )
 
-    // NEW: concatenated output of all 8 INTT lanes
+    // Concatenated output of all 8 INTT lanes
     val o_intt_concat    = Output(UInt((utils.MODWIDTH(0) * 8).W))
     val o_intt_addr      = Output(UInt((9 * 8).W))
     val o_intt_we_result = Output(Bool())
 
-    // === NEW: Packed external TPP bank interfaces (parent will implement RAMs) ===
-    // We define the exact widths after u_tpp is created (below), then rebind IO.
+    // Packed external TPP bank interfaces (leave unchanged)
+    // ...
+
+    // === NEW: Packed INTT buffer ports ===
+    val inttWrEnPacked   = Output(UInt(8.W))
+    val inttWrAddrPacked = Output(UInt((9 * 8).W))
+    val inttWrDataPacked = Output(UInt((INTT_COE_WIDTH * 8).W))
+    val inttRdAddrPacked = Output(UInt((9 * 8).W))
+    val inttRdDataPacked = Input (UInt((INTT_COE_WIDTH * 8).W))
   })
 
   val u_intt = List.tabulate(1) { x => Module(new intt_wrapper(x/2)) }
 
-  // INTT right-side scratch (kept here)
-  val u_intt_buf = List.tabulate(1) { x =>
-    Module(new poly_ram_wrapper(utils.MODWIDTH(x/2), 9, 8))
-  }
-
-  // Triple PP buffer (expects bank ports; we’ll route those up)
   val u_tpp = List.tabulate(1) { x =>
     Module(new triple_pp_buffer(utils.MODWIDTH(x/2), 512, 8))
   }
 
-  // Interfaces to/from VPU adapter
   val u_dp1_wr_itf = List.tabulate(1) { x =>
     Module(new poly_wr_interface(utils.MODWIDTH(x/2), 512, 8))
   }
@@ -57,56 +58,70 @@ class preprocess_top_chisel extends Module {
   }
 
   // ------------------------------
-  // NEW: Packed external bank IOs
+  // Pack INTT buf IOs (35-bit coeffs, 8 lanes)
   // ------------------------------
-  // Derive structural sizes from the TPP bank bundles to keep things consistent.
-  // banks_wr: Vec[N_PV] of BufWrPort { en: Vec[N_BANK] Bool, addr: Vec[N_BANK] UInt(AW), data: Vec[N_BANK] UInt(DW) }
-  // banks_rd: Vec[N_PV] of BufRdPort { addr: Vec[N_BANK] UInt(AW), data: Vec[N_BANK] UInt(DW) }
+  {
+    val wrEnBits   = Wire(Vec(8, Bool()))
+    val wrAddrBits = Wire(Vec(8, UInt(9.W)))
+    val wrDataBits = Wire(Vec(8, UInt(INTT_COE_WIDTH.W)))
+    val rdAddrBits = Wire(Vec(8, UInt(9.W)))
+
+    for (lane <- 0 until 8) {
+      wrEnBits(lane)   := u_intt(0).io.wr_r.en(lane)
+      wrAddrBits(lane) := u_intt(0).io.wr_r.addr(lane)
+      wrDataBits(lane) := u_intt(0).io.wr_r.data(lane)
+
+      rdAddrBits(lane) := u_intt(0).io.rd_r.addr(lane)
+
+      val lo = lane * INTT_COE_WIDTH
+      val hi = lo + INTT_COE_WIDTH - 1
+      u_intt(0).io.rd_r.data(lane) := io.inttRdDataPacked(hi, lo)
+    }
+
+    io.inttWrEnPacked   := Cat(wrEnBits.reverse.map(_.asUInt))
+    io.inttWrAddrPacked := Cat(wrAddrBits.reverse)
+    io.inttWrDataPacked := Cat(wrDataBits.reverse)
+    io.inttRdAddrPacked := Cat(rdAddrBits.reverse)
+  }
+
+  // ------------------------------
+  // Packed external bank IOs (unchanged TPP code)
+  // ------------------------------
   val N_PV   = u_tpp(0).io.banks_wr.length
   val N_BANK = u_tpp(0).io.banks_wr(0).addr.length
   val AW     = u_tpp(0).io.banks_wr(0).addr.head.getWidth
   val DW     = u_tpp(0).io.banks_wr(0).data.head.getWidth
 
-  // Create *packed* IO lines: EN, WR.ADDR, WR.DATA, RD.ADDR (all outputs) and RD.DATA (input)
   val tppWrEnPacked   = IO(Output(UInt((N_PV * N_BANK).W)))
   val tppWrAddrPacked = IO(Output(UInt((N_PV * N_BANK * AW).W)))
   val tppWrDataPacked = IO(Output(UInt((N_PV * N_BANK * DW).W)))
   val tppRdAddrPacked = IO(Output(UInt((N_PV * N_BANK * AW).W)))
   val tppRdDataPacked = IO(Input (UInt((N_PV * N_BANK * DW).W)))
 
-  // Helper to compute flat bit indices
   def lin(p: Int, b: Int) = p * N_BANK + b
 
-  // Pack WR.EN / WR.ADDR / WR.DATA and RD.ADDR from u_tpp into the IO buses
-  // Also unpack RD.DATA back into u_tpp
   {
-    // Mutable wires to gather concatenation elements
     val wrEnBits   = Wire(Vec(N_PV * N_BANK, Bool()))
     val wrAddrBits = Wire(Vec(N_PV * N_BANK, UInt(AW.W)))
     val wrDataBits = Wire(Vec(N_PV * N_BANK, UInt(DW.W)))
     val rdAddrBits = Wire(Vec(N_PV * N_BANK, UInt(AW.W)))
 
-    // Drive per-bank connections and collect for packing
     for (p <- 0 until N_PV) {
       for (b <- 0 until N_BANK) {
         val k = lin(p, b)
 
-        // Collect WR side from TPP
         wrEnBits  (k) := u_tpp(0).io.banks_wr(p).en  (b)
         wrAddrBits(k) := u_tpp(0).io.banks_wr(p).addr(b)
         wrDataBits(k) := u_tpp(0).io.banks_wr(p).data(b)
 
-        // Collect RD.ADDR from TPP, and *return* RD.DATA back to TPP
         rdAddrBits(k) := u_tpp(0).io.banks_rd(p).addr(b)
 
-        // Unpack RD.DATA from the packed input bus back to TPP
         val rdLo = k * DW
         val rdHi = rdLo + DW - 1
         u_tpp(0).io.banks_rd(p).data(b) := tppRdDataPacked(rdHi, rdLo)
       }
     }
 
-    // Pack (Cat) in consistent MSB..LSB order: higher k toward MSB
     tppWrEnPacked   := Cat((wrEnBits  .reverse).map(_.asUInt))
     tppWrAddrPacked := Cat((wrAddrBits.reverse))
     tppWrDataPacked := Cat((wrDataBits.reverse))
@@ -114,31 +129,24 @@ class preprocess_top_chisel extends Module {
   }
 
   // ------------------------------
-  // Rest of the original plumbing
+  // Rest of plumbing
   // ------------------------------
   for (i <- 0 until 1) {
-    // VPU <-> adapters
     io.dp1_wr(i)            <> u_dp1_wr_itf(i).io.vpu_wr
     io.dp1_rd(i)            <> u_dp1_rd_itf(i).io.vpu_rd
 
-    // TPP polyvec endpoints
     u_tpp(i).io.polyvec0_wr <> u_dp1_wr_itf(i).io.buf_wr
     u_tpp(i).io.polyvec0_rd <> u_dp1_rd_itf(i).io.buf_rd
     u_tpp(i).io.polyvec1_wr <> u_intt(i).io.wr_l
     u_tpp(i).io.polyvec1_rd <> u_intt(i).io.rd_l
     u_tpp(i).io.polyvec2_rd <> DontCare
     u_tpp(i).io.polyvec2_wr <> DontCare
-
-    // INTT right side stays local
-    u_intt(i).io.wr_r       <> u_intt_buf(i).io.wr
-    u_intt(i).io.rd_r       <> u_intt_buf(i).io.rd
   }
 
   for (i <- 0 until 1) {
     u_tpp(i).io.i_done := io.i_pre_switch
   }
 
-  // Concatenate the INTT's 8-lane output bus
   {
     val lanes: Vec[UInt] = u_intt(0).io.wr_l.data
     io.o_intt_concat := Cat(lanes.reverse)
@@ -148,7 +156,6 @@ class preprocess_top_chisel extends Module {
     io.o_intt_addr := Cat(lanes.reverse)
   }
 
-  // Control handshakes
   io.i_intt_start <> u_intt(0).io.ntt_start
   io.o_intt_done  := u_intt(0).io.ntt_done
   io.o_intt_we_result := u_intt(0).io.o_we_result
