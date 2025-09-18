@@ -24,11 +24,12 @@ module dp_triple_pp_buffer#(
     input                                                clk,
     input                                                rst_n,
     input                                                i_done,
+    output  [1:0]                                        dp_tpp_mode,
 
     // ---------------- AXI input port ----------------
-    input  [NUM_BASE_BANK*NUM_POLY-1:0]                  i_axi_we,
-    input  [ADDR_WIDTH*NUM_BASE_BANK-1:0]                i_axi_wraddr,
-    input  [COE_WIDTH*NUM_BASE_BANK-1:0]                 i_axi_data,
+    //input  [NUM_BASE_BANK*NUM_POLY-1:0]                  i_axi_we,
+    //input  [ADDR_WIDTH*NUM_BASE_BANK-1:0]                i_axi_wraddr,
+    //input  [COE_WIDTH*NUM_BASE_BANK-1:0]                 i_axi_data,
 
     // ---------------- NTT in/out port ----------------
     input  [NUM_BASE_BANK*NUM_POLY-1:0]                  i_ntt_we,
@@ -75,6 +76,8 @@ module dp_triple_pp_buffer#(
   reg [1:0] mode_nxt;
   reg       i_done_reg;
 
+  assign dp_tpp_mode = mode;
+
   always @(posedge clk) begin
     if (!rst_n)
       i_done_reg <= 0;
@@ -103,10 +106,10 @@ module dp_triple_pp_buffer#(
   end
 
   // convenience wires
-  wire [NUM_BASE_BANK*NUM_POLY-1:0]            inf_mem_weaxi    = i_axi_we;
-  wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] inf_mem_addraxi  = {NUM_POLY{i_axi_wraddr}};
-  wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]  inf_mem_dataaxi  = {NUM_POLY{i_axi_data}};
-  wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] inf_mem_addrmadd = {NUM_POLY{i_madd_rdaddr}};
+  //wire [NUM_BASE_BANK*NUM_POLY-1:0]            inf_mem_weaxi    = i_axi_we;
+  //wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] inf_mem_addraxi  = {NUM_POLY{i_axi_wraddr}};
+  //wire [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]  inf_mem_dataaxi  = {NUM_POLY{i_axi_data}};
+  //wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] inf_mem_addrmadd = {NUM_POLY{i_madd_rdaddr}};
   wire [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0] temp_uram_addr   = {NUM_BASE_BANK{uram_rdaddr}};
 
   // muxing
@@ -121,9 +124,12 @@ module dp_triple_pp_buffer#(
 
     case (mode)
       S_AXI_NTT_MADD: begin
-        o_polyvec_wea0   = inf_mem_weaxi;
-        o_polyvec_addra0 = inf_mem_addraxi;
-        o_polyvec_dina0  = inf_mem_dataaxi;
+        //o_polyvec_wea0   = inf_mem_weaxi;
+        //o_polyvec_addra0 = inf_mem_addraxi;
+        //o_polyvec_dina0  = inf_mem_dataaxi;
+        o_polyvec_wea0   = 'd0;
+        o_polyvec_addra0 = 'd0;
+        o_polyvec_dina0  = 'd0;
         o_polyvec_addrb0 = temp_uram_addr;
         o_temp_uram_data = i_polyvec_doutb0;
 
@@ -138,9 +144,12 @@ module dp_triple_pp_buffer#(
       end
 
       S_NTT_MADD_AXI: begin
-        o_polyvec_wea2   = inf_mem_weaxi;
-        o_polyvec_addra2 = inf_mem_addraxi;
-        o_polyvec_dina2  = inf_mem_dataaxi;
+        //o_polyvec_wea2   = inf_mem_weaxi;
+        //o_polyvec_addra2 = inf_mem_addraxi;
+        //o_polyvec_dina2  = inf_mem_dataaxi;
+        o_polyvec_wea2   = 'd0;
+        o_polyvec_addra2 = 'd0;
+        o_polyvec_dina2  = 'd0;
         o_polyvec_addrb2 = temp_uram_addr;
         o_temp_uram_data = i_polyvec_doutb2;
 
@@ -155,9 +164,12 @@ module dp_triple_pp_buffer#(
       end
 
       S_MADD_AXI_NTT: begin
-        o_polyvec_wea1   = inf_mem_weaxi;
-        o_polyvec_addra1 = inf_mem_addraxi;
-        o_polyvec_dina1  = inf_mem_dataaxi;
+        //o_polyvec_wea1   = inf_mem_weaxi;
+        //o_polyvec_addra1 = inf_mem_addraxi;
+        //o_polyvec_dina1  = inf_mem_dataaxi;
+        o_polyvec_wea1   = 'd0;
+        o_polyvec_addra1 = 'd0;
+        o_polyvec_dina1  = 'd0;
 
         o_polyvec_wea2   = i_ntt_we;
         o_polyvec_addra2 = i_ntt_wraddr;

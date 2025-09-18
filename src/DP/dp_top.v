@@ -30,9 +30,9 @@ module dp_top#(
     input [1:0]                                         i_idx_split,           
     input [1:0]                                         i_mode,                 //01 for ciphertext vec, 10 for plaintext mat
     input                                               i_axi_done,
-    input [NUM_BASE_BANK*NUM_POLY*2-1:0]                i_axi_we,
-    input [ADDR_WIDTH*NUM_BASE_BANK-1:0]                i_axi_wraddr,
-    input [COE_WIDTH*NUM_BASE_BANK-1:0]                 i_axi_data,
+    //input [NUM_BASE_BANK*NUM_POLY*2-1:0]                i_axi_we,
+    //input [ADDR_WIDTH*NUM_BASE_BANK-1:0]                i_axi_wraddr,
+    //input [COE_WIDTH*NUM_BASE_BANK-1:0]                 i_axi_data,
     // ntt control ports
     input                                               i_ntt_start,
     output                                              o_ntt_done,
@@ -46,6 +46,8 @@ module dp_top#(
     output [COE_WIDTH*NUM_POLY-1:0]                     o_madd_data,
     output [ADDR_WIDTH+LOG_NUM_BANK-1:0]                o_madd_rdaddr,
     input  [COE_WIDTH*NUM_POLY*2-1:0]                   i_madd_data,
+
+    output  [1:0]                                        dp_tpp_mode,
 
     // ==== Pass-through polyvec RAM ports for tri_pp0 ====
     output [NUM_BASE_BANK*NUM_POLY-1:0]              o_polyvec_wea0,
@@ -200,11 +202,12 @@ end
     .clk              (clk),
     .rst_n            (rst_n),
     .i_done           (axi_ntt_madd_done),
+    .dp_tpp_mode      (dp_tpp_mode),
 
     // AXI side
-    .i_axi_we         (i_axi_we[NUM_BASE_BANK*NUM_POLY-1                -: NUM_BASE_BANK*NUM_POLY]),
-    .i_axi_wraddr     (i_axi_wraddr),
-    .i_axi_data       (i_axi_data),
+    //.i_axi_we         (i_axi_we[NUM_BASE_BANK*NUM_POLY-1                -: NUM_BASE_BANK*NUM_POLY]),
+    //.i_axi_wraddr     (i_axi_wraddr),
+    //.i_axi_data       (i_axi_data),
 
     // NTT side
     .i_ntt_we         (ntt_we[NUM_BASE_BANK*NUM_POLY-1                  -: NUM_BASE_BANK*NUM_POLY]),

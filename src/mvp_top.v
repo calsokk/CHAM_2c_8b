@@ -27,7 +27,13 @@ module mvp_top #(
 )(
     input  wire                             clk                  ,
     input  wire                             rst_n                ,
+
+    output wire    [MVP_STATUS_WIDTH-1:0]   o_start_w            ,
+    output wire                             o_mvp_start_w        ,
+    input  wire                             mem_init_all_done    ,
+    input  wire                             mem_init_stage_done  ,
     // AXI MM
+    /*
     output wire                             data_axi_awvalid     ,
     input  wire                             data_axi_awready     ,
     output wire [AXI_ADDR_WIDTH-1:0]        data_axi_awaddr      ,
@@ -47,6 +53,7 @@ module mvp_top #(
     output wire                             data_axi_rready      ,
     input  wire [AXI_DATA_WIDTH-1:0]        data_axi_rdata       ,
     input  wire                             data_axi_rlast       ,
+    */
     // control
     output wire [31:0]                      test1                ,
     output wire [31:0]                      test2                ,
@@ -68,6 +75,8 @@ module mvp_top #(
     output  wire    [279:0]                 io_o_intt_concat,
     output  wire                            io_o_intt_we_result,
     output  wire    [71:0]                  io_o_intt_addr_result,
+
+    output  [1:0]                           dp_tpp_mode,
 
     // ==== Pass-through polyvec RAM ports for tri_pp0 ====
     output [PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]               o_polyvec_wea0,
@@ -167,9 +176,9 @@ module mvp_top #(
     wire    [11 : 0]                coeff_index_w;
     // axi => dp
     wire    [N_POLY *2 * 3 * NUM_BASE_BANK-1:0]        axi_dp_we_w;
-    wire    [N_POLY * 2 * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
-    wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  axi_dp_waddr_w; 
-    wire    [NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
+    //wire    [N_POLY * 2 * NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
+    //wire    [NUM_BASE_BANK * ADDR_WIDTH_L-1:0]  axi_dp_waddr_w; 
+    // wire    [NUM_BASE_BANK * COE_WIDTH_L-1:0]      axi_dp_wdata_w; 
     // dp1 => preprocess
     wire                                        dp1_pre_we_w; //bit_width ?
     wire    [ADDR_WIDTH -1:0]  dp1_pre_waddr_w; 
@@ -201,13 +210,13 @@ module mvp_top #(
     wire    [12 * COE_WIDTH_L-1:0]  ksk_rdata_w;
     wire    [12 * COE_WIDTH_L-1:0]  ksk_rdata_w_sf;
     //size
-    reg     [AXI_XFER_WIDTH-1:0]    mat_size_bytes_r;
-    wire    [AXI_XFER_WIDTH-1:0]    mat_size_bytes_w;
-    reg     [AXI_XFER_WIDTH-1:0]    vec_size_bytes_r;
-    wire    [AXI_XFER_WIDTH-1:0]    vec_size_bytes_w;
+    //reg     [AXI_XFER_WIDTH-1:0]    mat_size_bytes_r;
+    //wire    [AXI_XFER_WIDTH-1:0]    mat_size_bytes_w;
+    //reg     [AXI_XFER_WIDTH-1:0]    vec_size_bytes_r;
+    //wire    [AXI_XFER_WIDTH-1:0]    vec_size_bytes_w;
     wire    [AXI_XFER_WIDTH-1:0]    ksk_size_bytes;
     wire    [AXI_XFER_WIDTH-1:0]    data_size_bytes;
-    wire    [            15-1:0]    data_size_batches;
+    //wire    [            15-1:0]    data_size_batches;
     //ap
     reg                             ap_idle_r;
     reg                             ap_start_r;
@@ -229,6 +238,12 @@ module mvp_top #(
 
     wire [12:0]  row_size;
     assign row_size = 1 << level[3:0];
+
+    assign o_mvp_start_w = mvp_start_w;
+    assign o_start_w = start_w;
+    assign axird_done = mem_init_stage_done;
+    assign axi_alldone_w = mem_init_all_done;
+
     //level
     always@(posedge clk or negedge rst_n)
         if(!rst_n)
@@ -288,20 +303,6 @@ module mvp_top #(
         axird_done_r1 <= axird_done;
         axiwr_done_r1 <= axiwr_done;
     end
-   
-    reg [11:0] arvalid_count;
-    always@(posedge clk)
-        if(mvp_start_w)
-            arvalid_count <= 'b0;
-        else if(data_axi_arvalid)
-            arvalid_count <= arvalid_count + 1'b1;
-
-    reg [17:0] rvalid_count;
-    always@(posedge clk)
-        if(mvp_start_w)
-            rvalid_count <= 'b0;
-        else if(data_axi_rvalid)
-            rvalid_count <= rvalid_count + 1'b1;
 
     always@(posedge clk)
         mvp_start_r <= mvp_start_pulse;
@@ -328,11 +329,11 @@ module mvp_top #(
     assign reduce_level_w = level[LEVEL_WIDTH-1:0];
     assign level_reduce_w = {level_s9_w, 4'b0, level_s7_w, 4'b0, level_s5_w};
     assign axi_run_command_w = command[0];
-    assign mat_size_bytes_w = mat_size_bytes_r; //for 200M; break the critical path
-    assign vec_size_bytes_w = vec_size_bytes_r; //for 250M; break the critical path
+    //assign mat_size_bytes_w = mat_size_bytes_r; //for 200M; break the critical path
+    //assign vec_size_bytes_w = vec_size_bytes_r; //for 250M; break the critical path
     assign ksk_size_bytes = 32'h00120000;
     assign data_size_bytes = 32'h00020000;
-    assign data_size_batches = mat_len[14:1] + split[2:0];
+    //assign data_size_batches = mat_len[14:1] + split[2:0];
     assign mvp_start_pulse = ap_start & !ap_start_r;
     assign mvp_start_w = mvp_start_r & ((config_error == 0) | !command[0]);
     assign ap_ready = ap_done[0];
@@ -346,9 +347,11 @@ module mvp_top #(
             axi_dp_we_w[43],axi_dp_we_w[37],axi_dp_we_w[31],axi_dp_we_w[25],axi_dp_we_w[19],axi_dp_we_w[13],axi_dp_we_w[07],axi_dp_we_w[01],
             axi_dp_we_w[42],axi_dp_we_w[36],axi_dp_we_w[30],axi_dp_we_w[24],axi_dp_we_w[18],axi_dp_we_w[12],axi_dp_we_w[06],axi_dp_we_w[00]};
     */
+    /*
     assign axi_dp_we_2_w =
         { axi_dp_we_w[45], axi_dp_we_w[39], axi_dp_we_w[33], axi_dp_we_w[27], axi_dp_we_w[21],axi_dp_we_w[15],axi_dp_we_w[9],axi_dp_we_w[3],
             axi_dp_we_w[42], axi_dp_we_w[36], axi_dp_we_w[30], axi_dp_we_w[24], axi_dp_we_w[18],axi_dp_we_w[12],axi_dp_we_w[6],axi_dp_we_w[0]};
+    */
     /*assign axi_dp_we_2_w = 
            {axi_dp_we_w[47],axi_dp_we_w[39],axi_dp_we_w[31],axi_dp_we_w[23],axi_dp_we_w[15],axi_dp_we_w[07],
             axi_dp_we_w[46],axi_dp_we_w[38],axi_dp_we_w[30],axi_dp_we_w[22],axi_dp_we_w[14],axi_dp_we_w[06],
@@ -390,7 +393,7 @@ module mvp_top #(
             ap_idle_r <= 1'b0;
         else if(ap_done_w)
             ap_idle_r <= 1'b1;
-
+    /*
     always@(posedge clk or negedge rst_n)
         if(!rst_n)
             mat_size_bytes_r <= 'b0;
@@ -402,7 +405,9 @@ module mvp_top #(
             vec_size_bytes_r <= 'b0;
         else
             vec_size_bytes_r <= 20'h30000 * split[2:0];
+    */
 
+/*
 axi_data_rd_top #(
     .AXI_ADDR_WIDTH         ( AXI_ADDR_WIDTH    ),
     .AXI_DATA_WIDTH         ( AXI_DATA_WIDTH    ),
@@ -446,6 +451,7 @@ u_axi_data_rd_top(
     .o_axird_pre_wraddr     ( axi_dp_waddr_w    ),
     .o_axird_pre_wrdata     ( axi_dp_wdata_w    )
 );
+*/
 
 /*
 axi_data_wr_top #(
@@ -498,9 +504,9 @@ dp_top #(
     .i_idx_split            ( idx_split_w[1:0]  ), //3 bits
     .i_mode                 ( dp_mode_w         ), //01 for ciphertext vec, 10 for plaintext mat
     .i_axi_done             ( done_w[0]         ),
-    .i_axi_we               ( axi_dp_we_2_w     ),
-    .i_axi_wraddr           ( axi_dp_waddr_w    ),
-    .i_axi_data             ( axi_dp_wdata_w    ),
+    //.i_axi_we               ( axi_dp_we_2_w     ),
+    //.i_axi_wraddr           ( axi_dp_waddr_w    ),
+    //.i_axi_data             ( axi_dp_wdata_w    ),
     .i_ntt_start            ( start_w[1]        ),
     .o_ntt_done             ( done_w[1]         ),
     .i_wruram_start         ( wruram_start_w    ),
@@ -512,6 +518,7 @@ dp_top #(
     .o_madd_data            ( dp1_pre_wdata_w   ), 
     .o_madd_rdaddr          ( dp1_pre_raddr_w   ), 
     .i_madd_data            ( dp1_pre_rdata_w   ), 
+    .dp_tpp_mode            ( dp_tpp_mode       ),  
 
     // ---- New array I/Os to external polyvec RAMs ----
     // === External polyvec banks ===

@@ -357,14 +357,25 @@ module tb_top;
     wire [71:0]   io_inttRdAddrPacked;   // 8 * 9
     wire [279:0]  io_inttRdDataPacked;   // 8 * 35
 
+    wire    [10-1:0]                 o_start_w;
+    wire                             o_mvp_start_w;
+    wire    [1:0]                    dp_tpp_mode;
+    wire                            axi_alldone_w;
+    wire                            axird_done;
+
     mvp_top # (
         .AXI_ADDR_WIDTH     ( C_DATA_AXI_ADDR_WIDTH ),
         .AXI_DATA_WIDTH     ( C_DATA_AXI_DATA_WIDTH_MVP )
     ) u_dut_top (
         .clk    ( clk   ),
         .rst_n  ( rst_n ),
+        .o_mvp_start_w          (o_mvp_start_w)        ,
+        .o_start_w              (o_start_w)            ,
+        .mem_init_all_done      (axi_alldone_w)    ,
+        .mem_init_stage_done    (axird_done)         ,         
 
         // AXI Interface
+        /*
         .data_axi_awvalid   ( data_axi_awvalid  ),
         .data_axi_awready   ( data_axi_awready  ),
         .data_axi_awaddr    ( data_axi_awaddr   ),
@@ -384,6 +395,7 @@ module tb_top;
         .data_axi_rready    ( data_axi_rready   ),
         .data_axi_rdata     ( data_axi_rdata    ),
         .data_axi_rlast     ( data_axi_rlast    ),
+        */
 
         // Control
         .test1      ( csr_test1     ),  // out
@@ -404,6 +416,7 @@ module tb_top;
         
         .io_o_intt_concat(io_o_intt_concat),
         .io_o_intt_we_result(io_o_intt_we_result),
+        .dp_tpp_mode(dp_tpp_mode),
 
         // === External polyvec banks ===
         .o_polyvec_wea0   (tb_polyvec_wea0),
@@ -453,6 +466,15 @@ module tb_top;
     localparam int TB_Q_TYPE             = 0;
     localparam int TB_COMMON_BRAM_DELAY  = 1;   // match DUT if needed
 
+    wire    [TB_NUM_POLY *2 * 3 * TB_NUM_BASE_BANK-1:0]             axi_dp_we_w;
+    wire    [TB_NUM_POLY * 2 * TB_NUM_BASE_BANK-1:0]        axi_dp_we_2_w;
+    wire    [TB_NUM_BASE_BANK * TB_ADDR_WIDTH-1:0]     axi_dp_waddr_w; 
+    wire    [TB_NUM_BASE_BANK * TB_COE_WIDTH-1:0]      axi_dp_wdata_w; 
+
+    assign axi_dp_we_2_w =
+    { axi_dp_we_w[45], axi_dp_we_w[39], axi_dp_we_w[33], axi_dp_we_w[27], axi_dp_we_w[21],axi_dp_we_w[15],axi_dp_we_w[9],axi_dp_we_w[3],
+        axi_dp_we_w[42], axi_dp_we_w[36], axi_dp_we_w[30], axi_dp_we_w[24], axi_dp_we_w[18],axi_dp_we_w[12],axi_dp_we_w[6],axi_dp_we_w[0]};
+
     // polyvec_0
     polyvec_ram #(
     .COE_WIDTH         (TB_COE_WIDTH),
@@ -463,9 +485,9 @@ module tb_top;
     .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
     ) tb_polyvec_0 (
     .clk   (clk),
-    .wea   (tb_polyvec_wea0),
-    .addra (tb_polyvec_addra0),
-    .dina  (tb_polyvec_dina0),
+    .wea   ((dp_tpp_mode == 2'd0) ? axi_dp_we_2_w    : tb_polyvec_wea0),
+    .addra ((dp_tpp_mode == 2'd0) ? axi_dp_waddr_w : tb_polyvec_addra0),
+    .dina  ((dp_tpp_mode == 2'd0) ? axi_dp_wdata_w : tb_polyvec_dina0),
     .addrb (tb_polyvec_addrb0),
     .doutb (tb_polyvec_doutb0)
     );
@@ -480,9 +502,9 @@ module tb_top;
     .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
     ) tb_polyvec_1 (
     .clk   (clk),
-    .wea   (tb_polyvec_wea1),
-    .addra (tb_polyvec_addra1),
-    .dina  (tb_polyvec_dina1),
+    .wea   ((dp_tpp_mode == 2'd2) ? axi_dp_we_2_w    : tb_polyvec_wea1),
+    .addra ((dp_tpp_mode == 2'd2) ? axi_dp_waddr_w : tb_polyvec_addra1),
+    .dina  ((dp_tpp_mode == 2'd2) ? axi_dp_wdata_w : tb_polyvec_dina1),
     .addrb (tb_polyvec_addrb1),
     .doutb (tb_polyvec_doutb1)
     );
@@ -497,12 +519,13 @@ module tb_top;
     .COMMON_BRAM_DELAY (TB_COMMON_BRAM_DELAY)
     ) tb_polyvec_2 (
     .clk   (clk),
-    .wea   (tb_polyvec_wea2),
-    .addra (tb_polyvec_addra2),
-    .dina  (tb_polyvec_dina2),
+    .wea   ((dp_tpp_mode == 2'd1) ? axi_dp_we_2_w    : tb_polyvec_wea2),
+    .addra ((dp_tpp_mode == 2'd1) ? axi_dp_waddr_w : tb_polyvec_addra2),
+    .dina  ((dp_tpp_mode == 2'd1) ? axi_dp_wdata_w : tb_polyvec_dina2),
     .addrb (tb_polyvec_addrb2),
     .doutb (tb_polyvec_doutb2)
     );
+
 
     // ---------------- Polyvec 0 banks ----------------
     poly_ram_35_9_8 tppBank_0 (
@@ -782,6 +805,73 @@ module tb_top;
         end
     endgenerate
     */
+    parameter AXI_XFER_WIDTH    = 32;
+    parameter COMMON_URAM_DELAY = 4;
+    reg     [AXI_XFER_WIDTH-1:0]    mat_size_bytes_r;
+    wire    [AXI_XFER_WIDTH-1:0]    mat_size_bytes_w;
+    reg     [AXI_XFER_WIDTH-1:0]    vec_size_bytes_r;
+    wire    [AXI_XFER_WIDTH-1:0]    vec_size_bytes_w;
+    wire    [            15-1:0]    data_size_batches;
+    
+    assign mat_size_bytes_w = mat_size_bytes_r; //for 200M; break the critical path
+    assign vec_size_bytes_w = vec_size_bytes_r; //for 250M; break the critical path
+    assign data_size_batches = csr_mat_len[14:1] + csr_split[2:0];
+
+    always@(posedge clk or negedge rst_n)
+        if(!rst_n)
+            mat_size_bytes_r <= 'b0;
+        else
+            mat_size_bytes_r <= 20'h18000 * csr_mat_len;
+
+    always@(posedge clk or negedge rst_n)
+        if(!rst_n)
+            vec_size_bytes_r <= 'b0;
+        else
+            vec_size_bytes_r <= 20'h30000 * csr_split[2:0];
+
+    axi_data_rd_top #(
+        .AXI_ADDR_WIDTH         ( C_DATA_AXI_ADDR_WIDTH    ),
+        .AXI_DATA_WIDTH         ( C_DATA_AXI_DATA_WIDTH_MVP    ),
+        .AXI_XFER_SIZE_WIDTH    ( AXI_XFER_WIDTH    ),
+        .INCLUDE_DATA_FIFO      ( 0 ),
+        //.KSK_DATA_WIDTH       ( COE_WIDTH_L       ),
+        .PRE_DATA_WIDTH         ( TB_COE_WIDTH       ),
+        .RAM_DELAY              ( COMMON_URAM_DELAY )
+    )
+    u_axi_data_rd_top(
+        .clk                    ( clk               ),
+        .rst_n                  ( rst_n             ),
+        // AXI read
+        .mvp_axi_arvalid        ( data_axi_arvalid  ),
+        .mvp_axi_arready        ( data_axi_arready  ),
+        .mvp_axi_araddr         ( data_axi_araddr   ),
+        .mvp_axi_arlen          ( data_axi_arlen    ),
+        .mvp_axi_rvalid         ( data_axi_rvalid   ),
+        .mvp_axi_rready         ( data_axi_rready   ),
+        .mvp_axi_rdata          ( data_axi_rdata    ),
+        .mvp_axi_rlast          ( data_axi_rlast    ),
+        // control
+        .i_axird_command        ( csr_command           ),
+        .i_axird_initstart      ( o_mvp_start_w       ),
+        .i_axird_start          ( o_start_w[0]        ),
+        .o_axird_done           ( axird_done        ),
+        .o_axird_alldone        ( axi_alldone_w     ),
+        //.ksk_ptr                ( ksk_ptr           ),
+        .mat_ptr                ( csr_mat_ptr           ),
+        .vec_ptr                ( csr_vec_ptr           ),
+        .mat_size_bytes         ( mat_size_bytes_w  ),
+        .vec_size_bytes         ( vec_size_bytes_w  ),
+        //.ksk_size_bytes         ( ksk_size_bytes    ),
+        .data_size_batches      ( data_size_batches ),
+        // KSK
+        //.i_axird_ksk_stage      ( level_s7_w        ),
+        //.i_axird_ksk_rdaddr     ( ksk_raddr_w       ),
+        //.o_axird_ksk_rddata     ( ksk_rdata_w       ),
+        // Preprocess
+        .o_axird_pre_wren       ( axi_dp_we_w       ),
+        .o_axird_pre_wraddr     ( axi_dp_waddr_w    ),
+        .o_axird_pre_wrdata     ( axi_dp_wdata_w    )
+    );
 
     wire                    rslt_wea  ;
     wire [10:0]             rslt_addra;
@@ -812,7 +902,7 @@ module tb_top;
         `PP0.io_o_intt_done,    // stg3
         `DP.o_madd_done,        // stg2
         `DP.o_ntt_done,         // stg1
-        `AXI_RD.o_axird_done    // stg0
+        axird_done    // stg0
     };
     assign stage_status = (PARTIAL_TEST == 1) ? ((DEBUG_SINGLE_STAGE == 1) ? stage_status_single_stage : stage_status_partial_test) : `CNTL.mvp_status_r;
     assign level_minus_one_partial_test = level_partial_test - 1'b1;
@@ -828,8 +918,8 @@ module tb_top;
 
     if(PARTIAL_TEST) begin
         initial begin
-            force `AXI_RD.i_axird_initstart = stage_start_partial_test[0];
-            force `AXI_RD.i_axird_start     = stage_start_partial_test[0];
+            force o_mvp_start_w = stage_start_partial_test[0];
+            force o_start_w[0]     = stage_start_partial_test[0];
             force `AXI_WR.i_axiwr_start     = stage_start_partial_test[10];
             force `DP.i_ntt_start           = stage_start_partial_test[1];
             force `DP.i_madd_start          = stage_start_partial_test[2];
@@ -928,7 +1018,7 @@ module tb_top;
             else begin
 
                 stage_start_d1 <= {/*`AXI_WR.i_axiwr_start, `RT.i_start_x5, `PP0.io_i_vpu4_start,*/ 1'd0, 5'd0, 1'd0,
-                    `PP0.io_i_intt_start, `DP.i_madd_start, `DP.i_ntt_start, `AXI_RD.i_axird_initstart};
+                    `PP0.io_i_intt_start, `DP.i_madd_start, `DP.i_ntt_start, o_mvp_start_w};
                 stage_start_d2 <= stage_start_d1;
                 stage_start_d3 <= stage_start_d2;
                 stage_start_d4 <= stage_start_d3;
