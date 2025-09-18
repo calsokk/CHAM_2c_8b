@@ -13,12 +13,12 @@
 module dp_core#(
     parameter COE_WIDTH          = 35,
     parameter Q_TYPE             = 0,
-    parameter ADDR_WIDTH         = 9,        // Depth of ram is 1<<ADDR_WIDTH
+    parameter ADDR_WIDTH         = 9,
     parameter URAM_ADDR_WIDTH    = 12,
     parameter NUM_SPLIT          = `MAX_N_SPLIT,
-    parameter LOG_NUM_BANK       = 3,        // width of the bank select signal
-    parameter NUM_POLY           = 3,        // number of polys in one polyvec
-    parameter NUM_BASE_BANK      = 8,        // number of banks for one poly
+    parameter LOG_NUM_BANK       = 3,
+    parameter NUM_POLY           = 3,
+    parameter NUM_BASE_BANK      = 8,
     parameter COMMON_BRAM_DELAY  = 1,
     parameter COMMON_URAM_DELAY  = `COMMON_URAM_DELAY,
     parameter DP_MADD_PIP_DELAY  = 4
@@ -29,27 +29,34 @@ module dp_core#(
     input                                                  ntt_start,
     output                                                 ntt_done,
     input       [1:0]                                      i_idx_split,
-    output      [NUM_BASE_BANK*NUM_POLY-1:0]               o_ntt_we,         // o_we_a_l,
-    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_ntt_wraddr,     //o_addr_a_l,
-    output      [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     o_ntt_data,       //o_data_a
-    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_ntt_rdaddr,     //o_addr_b_l,
-    input       [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     i_ntt_data,       //i_data_b_l,
+    output      [NUM_BASE_BANK*NUM_POLY-1:0]               o_ntt_we,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_ntt_wraddr,
+    output      [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     o_ntt_data,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_ntt_rdaddr,
+    input       [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     i_ntt_data,
+
+    // >>> Polyvec RAM connections moved to IO <<<
+    output      [NUM_BASE_BANK*NUM_POLY-1:0]               o_poly_wea,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_poly_addra,
+    output      [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     o_poly_dina,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_poly_addrb,
+    input       [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     i_poly_doutb,
+
     // madd ports
     input                                                  i_madd_start,
     output                                                 o_madd_done,
-    // madd ports to downstream buffer
     output                                                 o_madd_nxt_we,
     output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]              o_madd_nxt_wraddr,
     output      [COE_WIDTH * NUM_POLY-1:0]                 o_madd_nxt_dout,
-    // madd ports from upstream buffer
     output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]              o_madd_nxt_rdaddr,
     input       [COE_WIDTH*NUM_POLY-1:0]                   i_madd_nxt_din_psum,
-    output      [(ADDR_WIDTH+LOG_NUM_BANK)*NUM_BASE_BANK-1:0]              o_madd_rdaddr,
-    output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]               o_madd_curaddr,
+    output      [(ADDR_WIDTH+LOG_NUM_BANK)*NUM_BASE_BANK-1:0] o_madd_rdaddr,
+    output      [ADDR_WIDTH+LOG_NUM_BANK-1:0]              o_madd_curaddr,
     input       [COE_WIDTH*NUM_POLY-1:0]                   i_madd_dina,
-    output      [URAM_ADDR_WIDTH-1 : 0]                  o_uram_addr,
+    output      [URAM_ADDR_WIDTH-1 : 0]                    o_uram_addr,
     input       [NUM_POLY*COE_WIDTH*2-1 : 0]               i_uram_din
 );
+
 
 /* ntt and exclusive buffer wire (i.e.right-side buffer) */
     wire    [NUM_POLY-1:0]                              ntt_done_base;
@@ -100,7 +107,15 @@ generate
     end
 endgenerate
 
-/* NTT exclusive buffer */
+
+assign o_poly_wea   = o_we_a_r;
+assign o_poly_addra = o_addr_a_r;
+assign o_poly_dina  = o_ntt_data;
+assign o_poly_addrb = o_addr_b_r;
+assign i_data_b_r   = i_poly_doutb;
+
+/*
+// NTT exclusive buffer 
 polyvec_ram#(
     .COE_WIDTH(39),
     .Q_TYPE(Q_TYPE),
@@ -117,7 +132,7 @@ polyvec_ntt(
     .addrb(o_addr_b_r),
     .doutb(i_data_b_r)
 );
-
+*/
 
 /* instance madd */
 wire [NUM_POLY*COE_WIDTH-1 : 0] madd_dina, uram_din;

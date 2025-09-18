@@ -64,7 +64,14 @@ module dp_top#(
     output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addra2,
     output [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_polyvec_dina2,
     output [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]   o_polyvec_addrb2,
-    input  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    i_polyvec_doutb2
+    input  [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    i_polyvec_doutb2,
+
+    // >>> Polyvec RAM connections moved to IO <<<
+    output      [NUM_BASE_BANK*NUM_POLY-1:0]               o_poly_wea,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_poly_addra,
+    output      [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     o_poly_dina,
+    output      [ADDR_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]    o_poly_addrb,
+    input       [COE_WIDTH*NUM_BASE_BANK*NUM_POLY-1:0]     i_poly_doutb
 
 );
 
@@ -276,7 +283,14 @@ dp0(
     .o_madd_rdaddr        (madd_dina_rdaddr),          // multi-driven
     .i_madd_dina          (madd_dina[COE_WIDTH*NUM_POLY-1 -: COE_WIDTH*NUM_POLY]),
     .o_uram_addr          (uram_rdaddr),
-    .i_uram_din           (temp_dp_uram_din)
+    .i_uram_din           (temp_dp_uram_din),
+
+    // ---------------- Polyvec RAM ports ----------------
+    .o_poly_wea(o_poly_wea),
+    .o_poly_addra(o_poly_addra),
+    .o_poly_dina(o_poly_dina),
+    .o_poly_addrb(o_poly_addrb),
+    .i_poly_doutb(i_poly_doutb)
 );
 
 /* instance of the triple buffer */

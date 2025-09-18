@@ -92,7 +92,14 @@ module mvp_top #(
     output wire  [215:0]              tppWrAddrPacked,   // 24 * 9
     output wire  [839:0]              tppWrDataPacked,   // 24 * 35
     output wire  [215:0]              tppRdAddrPacked,   // 24 * 9
-    input  wire  [839:0]              tppRdDataPacked    // 24 * 35
+    input  wire  [839:0]              tppRdDataPacked,    // 24 * 35
+
+    // >>> Polyvec RAM connections moved to IO <<<
+    output      [PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]               o_poly_wea,
+    output      [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]    o_poly_addra,
+    output      [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]     o_poly_dina,
+    output      [PV_ADDR_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]    o_poly_addrb,
+    input       [PV_COE_WIDTH*PV_NUM_BASE_BANK*PV_NUM_POLY-1:0]     i_poly_doutb
 );
 
 
@@ -517,7 +524,14 @@ dp_top #(
     .o_polyvec_addra2 (o_polyvec_addra2),
     .o_polyvec_dina2  (o_polyvec_dina2),
     .o_polyvec_addrb2 (o_polyvec_addrb2),
-    .i_polyvec_doutb2 (i_polyvec_doutb2)
+    .i_polyvec_doutb2 (i_polyvec_doutb2),
+
+    // ---------------- Polyvec RAM ports ----------------
+    .o_poly_wea(o_poly_wea),
+    .o_poly_addra(o_poly_addra),
+    .o_poly_dina(o_poly_dina),
+    .o_poly_addrb(o_poly_addrb),
+    .i_poly_doutb(i_poly_doutb)
 );
 
 

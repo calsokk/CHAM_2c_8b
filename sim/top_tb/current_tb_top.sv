@@ -331,6 +331,26 @@ module tb_top;
     logic [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]   tb_polyvec_addrb2;
     logic [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    tb_polyvec_doutb2;
 
+    // ---------------- Polyvec RAM wires (TB side) ----------------
+    wire [TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]                  o_poly_wea;
+    wire [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    o_poly_addra;
+    wire [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]     o_poly_dina;
+    wire [TB_ADDR_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]    o_poly_addrb;
+    wire [TB_COE_WIDTH*TB_NUM_BASE_BANK*TB_NUM_POLY-1:0]     i_poly_doutb;
+
+    /***** Preprocess TPP Banks *****/
+    localparam integer PV_NPV   = 3;   // number of polyvecs
+    localparam integer PV_NBANK = 8;   // banks per polyvec
+    localparam integer PV_AW    = 9;   // bank address width
+    localparam integer PV_DW    = 35;  // bank data width
+
+    wire [PV_NPV*PV_NBANK      -1:0] tppWrEnPacked;    // [23:0]
+    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppWrAddrPacked;  // [215:0]
+    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppWrDataPacked;  // [839:0]
+    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppRdAddrPacked;  // [215:0]
+    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppRdDataPacked;  // [839:0]
+
+
     mvp_top # (
         .AXI_ADDR_WIDTH     ( C_DATA_AXI_ADDR_WIDTH ),
         .AXI_DATA_WIDTH     ( C_DATA_AXI_DATA_WIDTH_MVP )
@@ -402,7 +422,14 @@ module tb_top;
         .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
         .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
         .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
-        .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
+        .tppRdDataPacked     (tppRdDataPacked ),  //  input [839:0]
+
+        // ---------------- Polyvec RAM ports ----------------
+        .o_poly_wea(o_poly_wea),
+        .o_poly_addra(o_poly_addra),
+        .o_poly_dina(o_poly_dina),
+        .o_poly_addrb(o_poly_addrb),
+        .i_poly_doutb(i_poly_doutb)
 
     );
 
@@ -463,18 +490,6 @@ module tb_top;
     .addrb (tb_polyvec_addrb2),
     .doutb (tb_polyvec_doutb2)
     );
-
-    /***** Preprocess TPP Banks *****/
-    localparam integer PV_NPV   = 3;   // number of polyvecs
-    localparam integer PV_NBANK = 8;   // banks per polyvec
-    localparam integer PV_AW    = 9;   // bank address width
-    localparam integer PV_DW    = 35;  // bank data width
-
-    wire [PV_NPV*PV_NBANK      -1:0] tppWrEnPacked;    // [23:0]
-    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppWrAddrPacked;  // [215:0]
-    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppWrDataPacked;  // [839:0]
-    wire [PV_NPV*PV_NBANK*PV_AW-1:0] tppRdAddrPacked;  // [215:0]
-    wire [PV_NPV*PV_NBANK*PV_DW-1:0] tppRdDataPacked;  // [839:0]
 
     // ---------------- Polyvec 0 banks ----------------
     poly_ram_35_9_8 tppBank_0 (
@@ -626,7 +641,24 @@ module tb_top;
     .io_rd_data_7 (tppRdDataPacked [(((2*PV_NBANK)+7)*PV_DW) +: PV_DW])
     );
 
-    
+    /* NTT exclusive buffer */
+    polyvec_ram#(
+        .COE_WIDTH(39),
+        .Q_TYPE(TB_Q_TYPE),
+        .ADDR_WIDTH(TB_ADDR_WIDTH),                    // Depth of ram is 1<<ADDR_WIDTH
+        .NUM_POLY(TB_NUM_POLY),                        // number of polys in one polyvec
+        .NUM_BASE_BANK(TB_NUM_BASE_BANK),              // number of banks for one poly
+        .COMMON_BRAM_DELAY(TB_COMMON_BRAM_DELAY)
+    )
+    polyvec_ntt(
+        .clk(clk),
+        .wea(o_poly_wea),
+        .addra(o_poly_addra),
+        .dina(o_poly_dina),
+        .addrb(o_poly_addrb),
+        .doutb(i_poly_doutb)
+    );
+
     assign interrupt = csr_ap_done[0];  // TODO
     
     /*

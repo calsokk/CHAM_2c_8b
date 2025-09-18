@@ -288,17 +288,41 @@ u_mvp_top (
     .mat_ptr                ( mat_ptr               ),
     .vec_ptr                ( vec_ptr               ),
     .data_ptr               ( output_ptr            ),
-    // ---- New array I/Os to external polyvec RAMs ----
-    .o_polyvec_wea          (),
-    .o_polyvec_addra        (),
-    .o_polyvec_dina         (),
-    .o_polyvec_addrb        (),
-    .i_polyvec_doutb        (),
-    .tppWrEnPacked       (tppWrEnPacked   ), // output [23:0]
-    .tppWrAddrPacked     (tppWrAddrPacked ), // output [215:0]
-    .tppWrDataPacked     (tppWrDataPacked ), // output [839:0]
-    .tppRdAddrPacked     (tppRdAddrPacked ), // output [215:0]
-    .tppRdDataPacked     (tppRdDataPacked )  //  input [839:0]
+    
+    // ---- New array I/Os to external polyvec RAMs (tpp dot product) ----
+    .o_polyvec_wea0   (),
+    .o_polyvec_addra0 (),
+    .o_polyvec_dina0  (),
+    .o_polyvec_addrb0 (),
+    .i_polyvec_doutb0 (),
+
+    .o_polyvec_wea1   (),
+    .o_polyvec_addra1 (),
+    .o_polyvec_dina1  (),
+    .o_polyvec_addrb1 (),
+    .i_polyvec_doutb1 (),
+
+    .o_polyvec_wea2   (),
+    .o_polyvec_addra2 (),
+    .o_polyvec_dina2  (),
+    .o_polyvec_addrb2 (),
+    .i_polyvec_doutb2 ()
+
+
+    // (tpp preprocess) 
+    .tppWrEnPacked       (), // output [23:0]
+    .tppWrAddrPacked     (), // output [215:0]
+    .tppWrDataPacked     (), // output [839:0]
+    .tppRdAddrPacked     (), // output [215:0]
+    .tppRdDataPacked     ()  //  input [839:0]    
+
+    // ---------------- Polyvec RAM ports ----------------
+    .o_poly_wea(),
+    .o_poly_addra(),
+    .o_poly_dina(),
+    .o_poly_addrb(),
+    .i_poly_doutb(),
+
 );
 
   assign test_axi_c1_awid = 'b0;
